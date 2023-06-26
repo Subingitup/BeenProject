@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UsersDAO">
+
+
+	<resultMap type="user" id="userMap">
+		<id property="users_id" column="USERS_ID" />
+		<result property="users_name" column="USERS_NAME" />
+		<result property="users_pw" column="USERS_PW" />
+		<result property="users_tel" column="USERS_TEL" />
+		<result property="users_email" column="USERS_EMAIL" />
+		<result property="users_email2" column="USERS_EMAIL2" />
+		<result property="users_addr" column="USERS_ADDR" />
+		<result property="users_addr2" column="USERS_ADDR2" />
+		<result property="users_addr3" column="USERS_ADDR3" />
+		<result property="users_addr4" column="USERS_ADDR4" />
+		<result property="users_addr5" column="USERS_ADDR5" />
+		<result property="users_pick1" column="USERS_PICK1" />
+		<result property="users_pick2" column="USERS_PICK2" />
+		<result property="users_pick3" column="USERS_PICK3" />
+		<result property="users_pick4" column="USERS_PICK4" />
+		<result property="users_pick5" column="USERS_PICK5" />
+		<result property="users_role" column="USERS_ROLE" />
+		<result property="users_new_date" column="USERS_NEW_DATE" />
+		<result property="users_del" column="USERS_DEL" />
+		<result property="users_del_date" column="USERS_DEL_DATE" />
+		<result property="cnt" column="cnt" />
+	</resultMap>
+
+	<!-- 로그인 -->
+	<select id="getUsers" resultType="users">
+		select * from users where
+		USERS_ID = #{users_id} and USERS_PW = #{users_pw}
+	</select>
+	<!-- 내정보조회 -->
+	<select id="getUserInfo" resultType="users">
+		select * from users where
+		USERS_ID = #{users_id} and USERS_DEL='N'
+	</select>
+
+    	<select id="getUserInfoByEmail" resultType="users">
+		select * from users  where
+		USERS_EMAIL = #{users_email} and
+		USERS_EMAIL2 = #{users_email2}
+	</select>
+    
+	<!-- 회원가입 -->
+	<insert id="insertUser">
+		INSERT INTO USERS (USERS_ID, USERS_NAME, USERS_PW, USERS_TEL,
+		USERS_EMAIL, USERS_EMAIL2, USERS_ADDR,
+		USERS_ADDR2,USERS_ADDR3,USERS_ADDR4, USERS_ADDR5,USERS_ROLE, 
+		USERS_NEW_DATE,USERS_DEL,USERS_DEL_DATE)
+		VALUES(#{users_id}, #{users_name}, #{users_pw},
+		#{users_tel}, #{users_email}, #{users_email2}, #{users_addr},
+		#{users_addr2},#{users_addr3},#{users_addr4},#{users_addr5},'USER',
+		CURDATE(),'N',null)
+		<!-- +addr2+addr3+addr4 더할 방법 찾아야함 -->
+	</insert>
+
+	<!-- 중복체크 -->
+	<select id="checkId" resultType="users">
+		select * from users where
+		USERS_ID = #{users_id}
+	</select>
+
+	<select id="checkEmail" resultType="users">
+		select * from users where USERS_EMAIL = #{users_email} and USERS_EMAIL2 = #{users_email2}
+	</select>
+	
+	<!-- 비번 변경 -->
+	<update id="updateInfoPassword">
+		update users set USERS_PW=#{users_pw}
+		where USERS_ID = #{users_id}
+	</update>
+
+
+	<!-- [관리자]유저리스트(※0508추가) -->
+	<select id="userList" resultType="user">
+		select * from users where 1=1
+		<if test="searchCondition == '아이디' ">AND USERS_ID LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == '이름' ">AND USERS_NAME LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == '연락처' ">AND USERS_TEL LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="users_role == 'SUPERADMIN' ">AND USERS_ROLE LIKE CONCAT('%',#{users_role},'%')</if>
+		<if test="users_role == 'ADMIN' ">AND USERS_ROLE=#{users_role}</if>
+		<if test="users_role == 'USER' ">AND USERS_ROLE LIKE CONCAT('%',#{users_role},'%')</if>
+		<if
+			test="searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND users_new_date BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}
+		</if>
+		ORDER BY users_new_date DESC LIMIT #{start},10
+	</select>
+
+	<!-- [관리자]페이징 처리 할 리스트 수 카운트(※0508추가)  -->
+	<select id="userListCount" resultType="_int">
+		select count(*) from users where 1=1
+		<if test="searchCondition == '아이디' ">AND USERS_ID LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == '이름' ">AND USERS_NAME LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="searchCondition == '연락처' ">AND USERS_TEL LIKE CONCAT('%',#{searchKeyword},'%')</if>
+		<if test="users_role == 'SUPERADMIN' ">AND USERS_ROLE LIKE CONCAT('%',#{users_role},'%')</if>
+		<if test="users_role == 'ADMIN' ">AND USERS_ROLE=#{users_role}</if>
+		<if test="users_role == 'USER' ">AND USERS_ROLE LIKE CONCAT('%',#{users_role},'%')</if>
+		<if
+			test="searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND users_new_date BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}
+		</if>
+	</select>
+
+	<!-- [관리자]유저 상세보기 -->
+	<select id="userDtail" resultType="user">
+		select * from users where
+		users_id = #{users_id}
+	</select>
+
+	<!-- [관리자]유저 수정 -->
+	<update id="userUpdate">
+		update users set users_tel=#{users_tel},
+		users_addr=#{users_addr}, users_addr=#{users_addr},
+		users_addr2=#{users_addr2},users_addr3=#{users_addr3},users_addr4=#{users_addr4},users_addr5=#{users_addr5},
+		users_email=#{users_email},users_email2=#{users_email2},
+		users_role=#{users_role} where
+		users_id=#{users_id}
+	</update>
+
+	<!-- 일반회원 정보수정 -->
+   <update id="updateInfo">
+      update users 
+      set
+      USERS_ADDR=#{users_addr},USERS_ADDR2=#{users_addr2},USERS_ADDR3= #{users_addr3},USERS_ADDR4 =#{users_addr4},USERS_ADDR5 =#{users_addr5}
+      where USERS_ID = #{users_id}
+   </update>
+
+<!-- 일반회원 탈퇴 N(x),Y(o)로 표현 -->
+	<update id="deleteUser">
+	update users set USERS_DEL='Y', USERS_DEL_DATE = CURDATE() where USERS_ID =#{users_id}
+	</update>
+
+<!-- 	<resultMap type="users" id="usersMap"> -->
+<!-- 		<id property="users_id" column="USERS_ID" /> PK 있는 컬럼에 쓰임 -->
+<!-- 		<result property="users_name" column="USERS_NAME" /> -->
+<!-- 		<result property="users_pw" column="USERS_PW" /> -->
+<!-- 		<result property="users_role" column="USERS_ROLE" /> -->
+<!-- 		<result property="users_hos_name1" column="users_hos_name1" /> -->
+<!-- 		<result property="users_hos_name2" column="users_hos_name2" /> -->
+<!-- 		<result property="users_hos_name3" column="users_hos_name3" /> -->
+<!-- 		<result property="users_hos_name4" column="users_hos_name4" /> -->
+<!-- 		<result property="users_hos_name5" column="users_hos_name5" /> -->
+<!-- 	</resultMap> -->
+
+	<select id="getUsersHos" resultType="users">
+		SELECT * FROM USERS WHERE
+		USERS_ID = #{users_id}
+	</select>
+
+
+	<update id="delUsersZzim">
+		UPDATE USERS
+		<set>
+			<if test='delZzim == "hos1"'> users_pick1 = null </if>
+			<if test='delZzim == "hos2"'> users_pick2 = null </if>
+			<if test='delZzim == "hos3"'> users_pick3 = null </if>
+			<if test='delZzim == "hos4"'> users_pick4 = null </if>
+			<if test='delZzim == "hos5"'> users_pick5 = null </if>
+		</set>
+		<where>
+			<if test='delZzim == "hos1"'> users_id = #{users_id} and users_pick1 = #{users_pick1}
+			</if>
+			<if test='delZzim == "hos2"'> users_id = #{users_id} and users_pick2 = #{users_pick2}
+			</if>
+			<if test='delZzim == "hos3"'> users_id = #{users_id} and users_pick3 = #{users_pick3}
+			</if>
+			<if test='delZzim == "hos4"'> users_id = #{users_id} and users_pick4 = #{users_pick4}
+			</if>
+			<if test='delZzim == "hos5"'> users_id = #{users_id} and users_pick5 = #{users_pick5}
+			</if>
+		</where>
+	</update>
+
+	<update id="pickHos1"> 
+      update users set users_pick1 = #{hos_id} where users_id = #{users_id}
+   </update>
+   <update id="pickHos2"> 
+      update users set users_pick2 = #{hos_id} where users_id = #{users_id}
+   </update>
+   <update id="pickHos3"> 
+      update users set users_pick3 = #{hos_id} where users_id = #{users_id}
+   </update>
+   <update id="pickHos4"> 
+      update users set users_pick4 = #{hos_id} where users_id = #{users_id}
+   </update>
+   <update id="pickHos5"> 
+      update users set users_pick5 = #{hos_id} where users_id = #{users_id}
+   </update>
+	
+
+<!-- 유저 찜목록 병원들의 이름을 가져오는 SQL 쿼리문 -->
+	<!-- users_pick1 : 찜병원 아이디값임 -->
+	<select id="getZzimHosName" resultType="users">
+		SELECT users_id,
+		(SELECT hos_name FROM hospital WHERE HOS_ID = (SELECT USERS_PICK1 FROM users WHERE USERS_ID = #{users_id}) AND HOS_del='N') AS users_hos_name1,
+		(SELECT hos_name FROM hospital WHERE HOS_ID = (SELECT USERS_PICK2 FROM users WHERE USERS_ID = #{users_id}) AND HOS_del='N') AS users_hos_name2,
+		(SELECT hos_name FROM hospital WHERE HOS_ID = (SELECT USERS_PICK3 FROM users WHERE USERS_ID = #{users_id}) AND HOS_del='N') AS users_hos_name3,
+		(SELECT hos_name FROM hospital WHERE HOS_ID = (SELECT USERS_PICK4 FROM users WHERE USERS_ID = #{users_id}) AND HOS_del='N') AS users_hos_name4,
+		(SELECT hos_name FROM hospital WHERE HOS_ID = (SELECT USERS_PICK5 FROM users WHERE USERS_ID = #{users_id}) AND HOS_del='N') AS users_hos_name5
+		FROM users
+		WHERE USERS_ID =#{users_id}
+	</select>
+
+   
+   
+   <select id="checkPhone1" resultType="users">
+		select * from users where USERS_TEL = ${users_tel}
+	</select>
+	
+	<select id="checkPhone" resultType="users">
+		select * from users where USERS_TEL = #{users_tel} and USERS_NAME =#{users_name}
+	</select>
+
+
+<!-- 회원 이메일 업뎃하기 -->
+<update id="updateUsersEmail">
+	UPDATE USERS
+	SET USERS_EMAIL = #{users_email}, USERS_EMAIL2 = #{users_email2}
+	WHERE USERS_ID = #{users_id}
+</update>
+
+<!-- 회원 연락처 업뎃하기 -->
+<update id="updateUsersPhone">
+	UPDATE USERS
+	SET USERS_TEL = #{users_tel}
+	WHERE USERS_ID = #{users_id}
+</update>
+
+
+<!-- [회원] 찜 컬럼중 값이 null이 아닌 컬럼의 개수가져오기 -->
+   <select id="zzimcnt" resultMap="userMap">
+      SELECT
+         CASE WHEN users_pick1 IS NOT NULL THEN 1 ELSE 0 END +
+         CASE WHEN users_pick2 IS NOT NULL THEN 1 ELSE 0 END +
+         CASE WHEN users_pick3 IS NOT NULL THEN 1 ELSE 0 END +
+         CASE WHEN users_pick4 IS NOT NULL THEN 1 ELSE 0 END +
+         CASE WHEN users_pick5 IS NOT NULL THEN 1 ELSE 0 END AS cnt
+       FROM users
+       WHERE users_id = #{users_id}
+   </select>
+   
+   
+   <update id="hosZzimInsert1">
+   	update users set users_pick1 = #{hos_id} where users_id=#{users_id};
+   </update>
+   <update id="hosZzimInsert2">
+   	update users set users_pick2 = #{hos_id} where users_id=#{users_id};
+   </update>
+   <update id="hosZzimInsert3">
+   	update users set users_pick3 = #{hos_id} where users_id=#{users_id};
+   </update>
+   <update id="hosZzimInsert4">
+   	update users set users_pick4 = #{hos_id} where users_id=#{users_id};
+   </update>
+   <update id="hosZzimInsert5">
+   	update users set users_pick5 = #{hos_id} where users_id=#{users_id};
+   </update>
+   
+   <update id="hosZzimDel1">
+   	update users set users_pick1 = null where users_id=#{users_id};
+   </update>
+   <update id="hosZzimDel2">
+   	update users set users_pick2 = null where users_id=#{users_id};
+   </update>
+   <update id="hosZzimDel3">
+   	update users set users_pick3 = null where users_id=#{users_id};
+   </update>
+   <update id="hosZzimDel4">
+   	update users set users_pick4 = null where users_id=#{users_id};
+   </update>
+   <update id="hosZzimDel5">
+   	update users set users_pick5 = null where users_id=#{users_id};
+   </update>
+
+</mapper>
+  

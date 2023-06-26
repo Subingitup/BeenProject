@@ -1,0 +1,169 @@
+/* @charset "UTF-8"; */
+
+/* /* 스마트폰 세로 */     */
+/* /* └> 기본사이즈로 들어감 */ */
+
+/* /* 찜목록, 예약내역 제목 row */ */
+
+/* /* 찜 더보기버튼 (>) */ */
+
+/* /* 찜컨텐츠 1줄데이터 css */ */
+/* /* 예약내역 목록 */ */
+/* /* 테이블: .reserveMy */ */
+
+/* /* 마이액션찜.jsp *//* 마이액션예약.jsp */ */
+/* /* 찜, 예약 타이틀 및 한 줄 설명*/ */
+/* span#titlebutton{ */
+/* 	font-weight: bold; */
+/* } */
+/* div.webinputbox{ */
+/* 	display:none; */
+/* } */
+/* div.webDoctorTable{ */
+/* 	display:none; */
+/* } */
+/* div.webinputs{ */
+/* 	display: none; */
+/* } */
+/* div.mobileMyHosContainer{ */
+/* 	width:100%; */
+/* } */
+/* div.webmenus{ */
+/* 	display:none; */
+/* } */
+/* div.webMyHosContainer{ */
+/* 	display: none; */
+/* } */
+
+
+
+
+/* /* 모바일사이즈 마이페이지 메뉴 */ */
+/* div.0 {display:block;} */
+/* div#menuDiv { display:none; } */
+
+/* /* 껍데기: 컨테이너 */ */
+/* div.mobileMyMenu {  */
+/* 	background-color:#674ea7;  */
+/* 	color:white; */
+/* 	padding: 25px 50px; */
+/*     border-radius: 15px; */
+/* } */
+
+/* /* 타이틀(~님의 마이페이지) */ */
+/* div.mobileMytitle {  */
+/* 	flex-direction:column; */
+/* 	justify-content: center;  */
+/* 	padding-bottom:20px; */
+/* } */
+/* div.mobileMytitle > div.col { */
+/* 	display:flex;  */
+/* 	justify-content: center; */
+/* } */
+
+/* /* 마이페이지 메뉴 한 줄 */ */
+/* div.mobileMy_memu > div.col, */
+/* div.mobileMy_memu > div.col {  */
+/* 	padding-left:0px; */
+/* 	padding-right:0px; */
+/* 	padding:10px 0px; */
+/* 	display:flex;  */
+/* 	justify-content:center; */
+/* 	align-items:center; */
+/* 	color:white; */
+/* 	font-weight:bold; */
+/* } */
+
+/* /* 마이페이지 메뉴버튼들 */ */
+/* div.mobileMy_wrap {  */
+/*     display: grid; */
+/* 	align-content: center; */
+/* 	justify-content: center; */
+/*     text-align: center; */
+/* 	width:80px; */
+/* 	height:80px;  */
+/* 	border-radius:50%; */
+/* 	background-color: #Fbbc04; */
+/* } */
+/* div.mobileMy_wrap:active, */
+/* div.mobileMy_wrap:hover { */
+/* 	cursor:pointer; */
+/* 	background-color:white;  */
+/* 	color:#Fbbc04; */
+/* } */
+
+
+
+
+
+/* @media screen and (min-width:576px) { */
+/* /* 스마트폰 가로 */ */
+
+/* table.reserveMy tr:first-child, */
+/* div.reviewtable tr:first-child { */
+/* 	border-bottom:1px solid #ddd; */
+/* } */
+
+/* @media screen and (min-width:768px) { */
+/* /* 타블렛 */ */
+/* table.hos_map_info, tr.hos_map_info_tr, td.hos_map_info_tr, div#map{ */
+/* 	height:100%; */
+/* } */
+
+/* div.webinputbox{ */
+/* 	display:block; */
+/* } */
+/* div.mobileinputbox{ */
+/* 	display:none;	 */
+/* } */
+/* /* 마이페이지 으아아아 */ */
+
+/* /* 마이페이지 메뉴버튼들 */ */
+/* div.mobileMy_wrap {  */
+/*     display: grid; */
+/* 	align-content: center; */
+/* 	justify-content: center; */
+/*     text-align: center; */
+/* 	width:180px; */
+/* 	height:80px;  */
+/* 	border-radius:15px; */
+/* 	background-color: #Fbbc04; */
+/* } */
+
+
+/* } */
+
+/* @media screen and (min-width:992px) { */
+/* /* 데스크탑 */ */
+/* div.mobilemenus{width:80%;} */
+/* div.webDoctorTable{display:block;} */
+/* div.mobileDoctorTable{display:none;} */
+/* div.mobileMyHosContainer{width:80%;} */
+/* div.mobileMyMenu{ width:768px; } */
+/* table.hos_map_info, tr.hos_map_info_tr, td.hos_map_info_tr, div#map{ height:100%; } */
+/* div.hosUpdatecontainer{width:80%} */
+/* div.webinputbox{ width:80% } */
+
+/* } */
+
+/* @media screen and (min-width:1200px) { */
+/* /* 큰 데스크탑 */ */
+/* div.mobileinputs{ display: none; } */
+/* div.webinputs{ display: block; } */
+/* div.mobilemenus{ */
+/* 	display:none; */
+/* } */
+/* div.webinputbox{ width:100% } */
+/* div.hosUpdatecontainer{width:100%} */
+/* div.mobileMyHosContainer{display:none;} */
+/* div.webMyHosContainer{display:block; width:150px;} */
+/* div.webmenus{ */
+/* 	display:block; */
+/* 	width:90%; */
+/* } */
+/* div.webmenus{width:100%;} */
+/* div.mobileMyMenu {display:none;} */
+/* div#menuDiv { display:flex; } */
+/* } */
+
+/* box-shadow: 0 .1rem 2rem rgba(0, 0, 0,.08); */

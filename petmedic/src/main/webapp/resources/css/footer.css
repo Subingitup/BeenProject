@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+body,html {
+  height:100%;
+  margin: 0;
+}
+
+
+body{
+display: flex;
+flex-direction: column;
+}
+
+/*컨텐츠 감싸는 디브입니다 ..헤더에 추가 요망 */
+div#footerContainer {
+min-height: 60vh;
+}
+
+footer{
+flex: 1;
+margin-top:80px;
+}
+
+#footerDiv{
+background-color:#3a3e3f;
+color: #dcdcdc;
+padding: 20px 5% 50px 5%;
+}
+
+#petMedicFooterImg{
+padding-bottom: 20px;
+text-align:center;
+border-bottom: 1px solid #dcdcdc36;
+}
+
+#petMedicFooterImg >span{
+font-size: 24px;
+margin-left: 10px;
+font-weight: bold;
+}
+
+#petMedicFooterImg >img{
+width:60px;
+}
+
+
+.footerNCopy{
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.footerNCopy >div{
+margin:15px 0;
+}
+
+#footerCopyright a{
+color:#dcdcdc;
+}
+
+/*위치,연락처,이메일*/
+.footerTitle{
+color: #8cc055;
+font-size: 24px;
+font-weight: bold;
+margin:0;
+}
+
+/*Copyright*/
+#footerCopyright{
+opacity:0.4;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+#footerCopyright p{
+margin:0;
+}
+
+/*사이트맵*/
+#footerSiteMap{
+text-align:right;	
+}
+
+#footerSiteMap >a{
+cursor:pointer;
+font-size:0.85rem;
+}
+
+#footerSiteMap >a:hover{
+text-decoration:underline;	
+}
+

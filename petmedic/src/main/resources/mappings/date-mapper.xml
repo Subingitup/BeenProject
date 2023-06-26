@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dateDAO">
+	<!-- 20230519 수정 -->
+	<select id="intoCurrentMonth" parameterType="java.lang.String" resultType="caldate">
+		SELECT 
+		concat(MONTH(#{today})) AS today,
+		1 as firstday, DAY(f.lastday ) lastday,
+		ceiling(DAY(f.lastday)/7) wk 
+		FROM hospital h 
+		JOIN (SELECT LAST_DAY(#{today}) AS lastday FROM DUAL) f
+		LIMIT 1
+<!-- 		SELECT  -->
+<!-- 		concat(MONTH('2023-02-01'),'월') AS today, -->
+<!-- 		1 as firstday, DAY(f.lastday ) lastday, -->
+<!-- 		ceiling(DAY(f.lastday)/7) wk  -->
+<!-- 		FROM hospital h  -->
+<!-- 		JOIN (SELECT LAST_DAY('2023-02-01') AS lastday FROM DUAL) f -->
+<!-- 		LIMIT 1 -->
+	</select>
+	
+	<select id="weeksum" resultType="caldate">
+		SELECT 
+		(SELECT COUNT(*) FROM hospital 
+		WHERE 
+		<![CDATA[  
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') >= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 1 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') <= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 7 ) , '%Y%m%d') 
+			)  AS WEEK_1
+		]]>
+		
+		, (SELECT COUNT(*) FROM hospital 
+		WHERE 
+		<![CDATA[  
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') >= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 8 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') <= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 15 ), '%Y%m%d') 
+			) AS WEEK_2 
+		]]>
+		
+		, (SELECT COUNT(*) FROM hospital 
+		WHERE 
+		<![CDATA[  
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') >= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 16 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') <= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 22 ), '%Y%m%d') 
+			) AS WEEK_3 
+		]]>
+		<if test="wk == 4">
+		, (SELECT COUNT(*) FROM hospital 
+		WHERE 
+		<![CDATA[  
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') >= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 23 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') <= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', ${lastday} ), '%Y%m%d') 
+			) AS WEEK_4 
+		]]>
+		</if>
+		<if test="wk > 4">
+			, (SELECT COUNT(*) FROM hospital 
+			WHERE 
+			<![CDATA[  
+				DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') >= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 23 ), '%Y%m%d') 
+				AND 
+				DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') <= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 29 ), '%Y%m%d') 
+				) AS WEEK_4 
+			]]>
+			, (SELECT COUNT(*) FROM hospital 
+			WHERE 
+			<![CDATA[
+				DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') >= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', 30 ), '%Y%m%d') 
+				AND 
+				DATE_FORMAT(HOS_NEW_DATE, '%Y%m%d') <= DATE_FORMAT(CONCAT(YEAR(NOW()), '-', ${today},'-', ${lastday} ), '%Y%m%d') 
+				) AS WEEK_5
+			]]>
+		</if>
+		FROM DUAL
+	</select>
+	
+	<select id="hosCategory" resultType="hos">
+		SELECT DISTINCT hos_cate
+		FROM hospital 
+		ORDER BY hos_cate
+	</select>
+	
+	<select id="reserveWeeksum" resultType="caldate">
+		SELECT 
+		distinct hos.hos_cate AS hos_cate,
+		(
+		SELECT count(*) 
+		FROM reserve r
+		JOIN hospital h
+		ON r.RES_HOS_ID = h.HOS_ID
+		WHERE 
+		<![CDATA[
+			DATE_FORMAT(RES_DATE, '%Y%m%d') >= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 1 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(RES_DATE, '%Y%m%d') <= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 7 ) , '%Y%m%d') 
+			AND 
+			h.hos_cate  = hos.hos_cate
+			)  AS WEEK_1
+		]]>
+		,(
+		SELECT count(*) 
+		FROM reserve r
+		JOIN hospital h
+		ON r.RES_HOS_ID = h.HOS_ID
+		WHERE 
+		<![CDATA[
+			DATE_FORMAT(RES_DATE, '%Y%m%d') >= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 8 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(RES_DATE, '%Y%m%d') <= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 15 ) , '%Y%m%d') 
+			AND 
+			h.hos_cate  = hos.hos_cate
+			) AS WEEK_2
+		]]>
+		,(
+		SELECT count(*) 
+		FROM reserve r
+		JOIN hospital h
+		ON r.RES_HOS_ID = h.HOS_ID
+		WHERE 
+		<![CDATA[
+			DATE_FORMAT(RES_DATE, '%Y%m%d') >= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 16 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(RES_DATE, '%Y%m%d') <= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 22 ) , '%Y%m%d') 
+			AND 
+			h.hos_cate  = hos.hos_cate
+			) AS WEEK_3 
+		]]>
+		
+		<if test="wk == 4">
+		,(
+		SELECT count(*) 
+		FROM reserve r
+		JOIN hospital h
+		ON r.RES_HOS_ID = h.HOS_ID
+		WHERE 
+		<![CDATA[
+			DATE_FORMAT(RES_DATE, '%Y%m%d') >= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 23 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(RES_DATE, '%Y%m%d') <= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', ${lastday} ) , '%Y%m%d') 
+			AND 
+			h.hos_cate  = hos.hos_cate
+			) AS WEEK_4 
+		]]>
+		</if>
+		
+		<if test="wk > 4">
+		,(
+		SELECT count(*) 
+		FROM reserve r
+		JOIN hospital h
+		ON r.RES_HOS_ID = h.HOS_ID
+		WHERE 
+		<![CDATA[
+			DATE_FORMAT(RES_DATE, '%Y%m%d') >= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 23 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(RES_DATE, '%Y%m%d') <= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 29 ) , '%Y%m%d') 
+			AND 
+			h.hos_cate  = hos.hos_cate
+			) AS WEEK_4 
+		]]>
+		,(
+		SELECT count(*) 
+		FROM reserve r
+		JOIN hospital h
+		ON r.RES_HOS_ID = h.HOS_ID
+		WHERE 
+		<![CDATA[
+			DATE_FORMAT(RES_DATE, '%Y%m%d') >= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', 30 ), '%Y%m%d') 
+			AND 
+			DATE_FORMAT(RES_DATE, '%Y%m%d') <= DATE_FORMAT( CONCAT(YEAR(NOW()), '-', ${today},'-', ${lastday} ) , '%Y%m%d') 
+			AND 
+			h.hos_cate  = hos.hos_cate
+			) AS WEEK_5
+		]]>
+		</if>
+		FROM hospital hos
+	</select>
+</mapper>

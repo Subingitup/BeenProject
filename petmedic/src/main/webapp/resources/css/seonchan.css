@@ -1,0 +1,500 @@
+@charset "UTF-8";
+
+/* .btn-primary { */
+/*     border-color: transparent; */
+/* } */
+.seonchanaclass {
+	display: inline;
+}
+
+.text-right {
+	margin: 5px;
+}
+
+#loginmodal {
+	width: 350px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* .btn-danger { */
+/*     color: #fff; */
+/*     background-color: #dc3545; */
+/*     border-color: #dc3545; */
+/* } */
+
+/* #reservegobtn{ */
+/* 	background-color: #008a41; */
+/*     border: 4px solid #008a41; */
+/*     color: #white; */
+/* } */
+/* ##reservegobtn:hover{ */
+/* 	background-color: #ffffff; */
+/*     border: 4px solid #008a41; */
+/*     color: #008a41; */
+/* } */
+
+#hosmypagereservebtbt{
+	background-color: #008a41; 
+	border: 4px solid #008a41; 
+	color: white;
+}
+
+#hosmypagereservebtbt:hover{
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+.hosmypage-button {
+    width: 100px; /* Adjust the width as needed */
+}
+
+#hosmypagereservebtbt1{
+	background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
+    color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+    border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+}
+
+#btbt {
+	background-color: #3e7c17;
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: 0.25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	color: white;
+}
+
+#btbt:hover {
+	font-weight: bold !important;
+}
+
+/***********************회원가입부분join.jsp************************************/
+
+/*휴대폰 인증 버튼*/
+#phoneChk {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+}
+/*휴대폰 인증 버튼 호버*/
+#phoneChk:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+#nextstep:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+/*휴대폰 인증 확인 버튼*/
+#phoneChk2 {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+/*휴대폰 인증 확인 버튼 호버*/
+#phoneChk2:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+/*아이디 중복 확인 버튼*/
+#idCheck {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+}
+
+#idCheck:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+/*주소 검색 버튼*/
+#joinaddr {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+}
+/*주소 검색 버튼 호버*/
+#joinaddr:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+/*이메일 인증 버튼*/
+#mail-Check-Btn {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+}
+
+/*이메일 인증 버튼 호버*/
+#mail-Check-Btn:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+/*이메일 인증 확인 버튼*/
+#emailConfirmBtn {
+	outline: none !important;
+	box-shadow: none;
+	background-color: #674ea7;
+	border-color: transparent;
+}
+
+/*이메일 인증 확인 버튼 호버*/
+#emailConfirmBtn {
+	color: white;
+	font-weight: bold;
+}
+
+/*가입하기 버튼*/
+#joinsubmit {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: white;
+	margin-top: 10px;
+	width: 100%;
+	/*     width: 75%; */
+	/*     text-align:center; */
+}
+
+/*로고*/
+#navbarlogo1 {
+	text-align: center;
+}
+
+/****************************아이디 찾기 비번 바꾸기 부분****************************/
+/*비번 변경 버튼*/
+#changepw {
+	outline: none !important;
+	box-shadow: none;
+	border-color: transparent;
+	background-color: #674ea7;
+}
+
+/*로그인버튼*/
+#forgotIdlogin {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+	margin-bottom: 20px;
+}
+
+#forgotIdlogin:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+#emailChk {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+}
+
+#emailChk:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+#emailChk2 {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+}
+
+#emailChk2:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+/*회원가입 버튼*/
+#forgotIdJoin {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: #white;
+	margin-bottom: 150px;
+}
+
+#forgotIdJoin:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+/*묶고 있는 id명*/
+#forgotIdContent {
+	margin-top: 50px;
+}
+
+#navbarlogo1 img {
+	width: 120px;
+	margin-bottom: 70px;
+}
+
+#phoneNumberAlert, #phoneConfirmAlert, #idAlertSpan {
+	color: red;
+	font-size: 14px;
+}
+
+#idDisplay {
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#resetpasswordid {
+	margin-bottom: 15px;
+}
+
+
+
+#phoneNumber {
+	margin: 0;
+}
+
+.forgotIdDiv {
+	margin-top: 100px;
+	width: 50%;
+}
+
+.forgothosIdDiv{
+	margin-top: 100px;
+	width: 70%;
+}
+
+#usersname {
+	margin-bottom: 15px;
+}
+
+#forgotIdresetPassword {
+	color: gray;
+}
+/*이용약관 부분*/
+#beforejointext {
+	width: 100%;
+	height: 200px;
+	padding: 10px;
+	resize: none;
+	margin-top: 10px;
+}
+
+.beforejointitle {
+	text-align: center;
+}
+
+.fontweight {
+	font-weight: bold;
+}
+
+#beforejoindiv {
+	margin: 0 auto;
+}
+
+#nextstep {
+	/* 	outline:none !important; */
+	/* 	box-shadow: none; */
+	/* 	border-color: transparent; */
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: white;
+}
+
+#beforejoincontainer {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#buttonform {
+	margin-bottom: 40px;
+}
+/*예약부분*/
+.reservrtime {
+	text-align: left;
+}
+
+#sisisisi {
+	text-align: left;
+}
+
+.reservrtime {
+	margin-bottom: 30px;
+}
+
+.dang1 {
+	color: red;
+}
+
+/*로그인 모달*/
+#loginmodaltxt {
+	color: gray;
+}
+
+#navbarloginbt {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: white;
+}
+
+#navbarloginbt2 {
+	background-color: #008a41;
+	border: 4px solid #008a41;
+	color: white;
+	margin-bottom: 50px;
+}
+
+#navbarloginbt:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+#navbarloginbt2:hover {
+	background-color: #ffffff;
+	border: 4px solid #008a41;
+	color: #008a41;
+}
+
+#kakaologin {
+	width: 466.4px;
+	height: 47.2px;
+}
+
+#navbarkakaologinbt {
+	border-color: transparent;
+	background-color: #FEE500;
+	color: black;
+	border-radius: 0.3rem;
+	outline: none !important;
+	box-shadow: none;
+}
+
+#forgottitle{
+	margin-bottom:50px;
+}
+
+#zxczxc {
+	margin-bottom:5px;
+}
+
+/*반응형 시작*/
+
+@media(max-width:768px){
+
+	
+	
+#forgothosidemail{
+	width:100px;
+}
+
+#phoneChk2 {
+	font-size: 1em;
+	padding: 5px;
+	width: 100%;
+}
+
+#phoneNumber {
+	font-size: 1em;
+	padding: 5px;
+	width: 50px;
+	border-radius: 0.25rem;
+}
+
+#email1 {
+	width: 100px;
+}
+
+#phoneChk {
+	font-size: 1em; /* 적절한 크기로 조정해주세요 */
+	padding: 5px; /* 적절한 패딩 값을 사용해주세요 */
+	width: 165px; /* 부모 요소에 맞게 너비를 설정해주세요 */
+}
+
+#xxxx {
+	width: 165px;
+}
+
+#xxxxx {
+	width: 165px;
+}
+
+#xxxxxx {
+	width: 165px;
+}
+
+#usersname {
+	width: 165px;
+}
+
+#forgotIdlogin {
+	width: 165px;
+}
+
+#forgotIdJoin {
+	width: 165px;
+}
+
+#phoneCheckDiv {
+	width: 165px;
+}
+
+#reservemodal {
+	width: 400px;
+	position: fixed;
+	top: 65%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+}
+
+/*반응형 끝*/
+
+.btn-success:not(:disabled):not(.disabled).active:focus, .btn-success:not(:disabled):not(.disabled):active:focus,
+	.show>.btn-success.dropdown-toggle:focus {
+	box-shadow: none;
+}
+/*이거로 쉐도우 없애야함*/
+@media screen and (max-width:599px) {
+	#kakaologin {
+		width: 100%;
+		height: 47.2px;
+	}
+}
+
+@media ( min-width : 576px) {
+	#dialog2 {
+		max-width: 430px;
+		margin: 1.75rem auto;
+	}
+}
+
+.b1 {
+	background-color: #6dec47;
+	color: black;
+	padding: 14px 25px;
+	margin: 0 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 5px;
+	border-color: transparent;
+}

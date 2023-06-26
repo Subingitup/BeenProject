@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!-- 	Alias(객체명) 설정 -->
+<!--  typeAlias	여러 개 기술 가능 -->
+	<typeAliases>  
+<!-- 	 alias는	BoardVO board = new BoardVO(); 와 같다 -->
+		<typeAlias type="com.spring.pet.users.UsersVO" alias="users"></typeAlias>
+		<typeAlias type="com.spring.pet.users.UsersVO" alias="user"></typeAlias>
+		<typeAlias type="com.spring.pet.users.AdminUserReserveVO" alias="AdminUserReserve"></typeAlias>
+		<typeAlias type="com.spring.pet.review.ReviewVO" alias="review"></typeAlias>
+		<typeAlias type="com.spring.pet.reserve.ReserveVO" alias="reserve"></typeAlias>
+		<typeAlias type="com.spring.pet.hospital.HospitalVO" alias="hospital"></typeAlias>
+		<typeAlias type="com.spring.pet.hospital.HospitalVO" alias="hos"></typeAlias>
+		<typeAlias type="com.spring.pet.doctor.DoctorVO" alias="doc"></typeAlias>
+		<typeAlias type="com.spring.pet.notice.NoticeVO" alias="notice" />
+		<typeAlias type="com.spring.pet.faq.FaqVO" alias="faq" />
+		<typeAlias type="com.spring.pet.pets.PetsVO" alias='pets'></typeAlias>
+		   <!--20230519 추가 -->
+	    <typeAlias type="com.spring.pet.date.DateVO" alias='caldate'></typeAlias>
+	    <typeAlias type="com.spring.pet.hospital.CategoryVO" alias='cagegory'></typeAlias>
+	</typeAliases>
+	
+<!-- 	sql Mapper 설정 -->
+<!-- mappers의 역할은 mapper들을 연결하는 역할. 왜? sql session 객체로  -->
+	<mappers>
+		<mapper resource="mappings/users-mapper.xml" /> 
+		<mapper resource="mappings/review-mapper.xml" /> 
+		<mapper resource="mappings/hospital-mapper.xml" /> 
+		<mapper resource="mappings/doctor-mapper.xml" /> 
+		<mapper resource="mappings/reserve-mapper.xml"  />
+		<mapper resource="mappings/search-mapper.xml"  />
+		<mapper resource="mappings/notice-mapper.xml" />
+		<mapper resource="mappings/faq-mapper.xml" />
+		<mapper resource="mappings/pets-mapper.xml"/>
+		<!-- 20230519 추가 -->
+		<mapper resource="mappings/date-mapper.xml" />
+		<mapper resource="mappings/cate-mapper.xml" />
+	</mappers>
+</configuration>

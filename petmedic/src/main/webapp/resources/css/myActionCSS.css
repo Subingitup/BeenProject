@@ -1,0 +1,752 @@
+@charset "UTF-8";
+/* 기본버튼 abuttons 클래스 관련 태그는 notice_faq.css 파일에 있슴 */
+
+/* 스마트폰 세로 */    
+
+/* UPDATE 비번확인페이지(update.jsp) */
+div.updateuser { color:#444; font-size: 0.85rem;}
+/* 비밀번호 확인 제목 [반응형 모바일] */
+div.updateuser h4.h4{ padding-top:20px; color:#212529; }
+.updateDescribe {
+    border-bottom: 1px solid #006940ff;
+    margin-bottom: 20px;
+}
+div.updateuser .insertTable{
+	width:100%;
+	margin-top:0;
+	border-top:1px solid #006940ff;
+}
+div.updateuser .insertTable .col {
+	padding: 15px 0;
+	border-bottom:1px solid #006940ff;
+}
+div.updateuser .insertTable .col label {
+    width: 33%;
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+div.updateuser form {
+    width: 100%;
+    margin: 0 auto;
+}
+/******** 등록, 초기화등 하단 버튼부분 ********/
+div.updateUpcenter {
+    text-align: center;
+    margin-top: 20px;
+}
+div.updateUpcenter button.abuttons {
+	display:inline;
+	margin-right:10px;
+}
+
+/* mypage.jsp */
+.updateUserFormDiv {
+    margin: 0 auto;
+    font-size:0.85rem;
+}
+.updateUserFormDiv .row {
+    margin-right: 0;
+    margin-left: 0;
+    border-bottom: 1px solid #006940ff;
+}
+.updateUserFormDiv .col-3 {
+	color:#212529;
+    text-align: center;
+    padding: 10px 0;
+/*     background-color: #006940ff; */
+    max-width: 20%;
+}
+#updateuserinfo .insertTable {
+    width: 100%;
+}
+#updateuserinfo input {
+    width: 100%;
+    line-height: 3.0;
+}
+button.abuttons.abuttons_inline { width:100%; padding: 7px 0;}
+.userInfoDiv div.noticeUpcenter {
+    display: flex;
+    text-align: center;
+    margin-top: 20px;
+    flex-direction: column;
+}
+.userInfoDiv div.noticeUpcenter button.abuttons {
+	margin: 5px auto;
+}
+
+/* 모달메뉴 모바일일때 */
+.modal-dialog.modalRede {
+    margin-top: 200px;
+}
+
+/* 마이액션찜.jsp *//* 마이액션예약.jsp */
+/* 찜, 예약 타이틀 및 한 줄 설명*/
+div.myactionReserve { font-size: 0.85rem; }
+div.myactionReserve > div.zzimtitlerow,
+div.myactionZzim > div.zzimtitlerow {
+   flex-direction:column;
+   display:flex;
+   justify-content:center;
+   padding-top: 25px;
+   padding-bottom:25px;
+}
+
+div.myactionZzim { font-size: 0.85rem; }
+
+/* 찜 들어오는 곳 */
+div#actZzimList {
+   padding:25px 0px;
+   margin-bottom:15px;
+   transition: transform 0.2s ease;
+   width:auto;
+   margin: 15px auto;
+}
+div#actZzimList:hover {
+  transform: translateY(-5px);
+}
+div#actZzimList > div.col-8{
+   align-items: center;
+   justify-content:center;
+   display: inline-flex;
+}
+div#actZzimList button.mobileXbtn { 
+	display:inline;
+    width: auto;
+}
+div#actZzimList button.webXbtn { display:none; }
+div#actZzimList > div.col-8,
+div#actZzimList > div.col-8 a {
+	padding-right:0px;
+}
+div#actZzimList > div.col-8:hover{
+   font-weight:bold;
+   cursor:pointer;
+}
+div#actZzimList > div.col-4{
+   justify-content:end;
+   padding-left:0px;
+}
+div.myactionZzim div.emptyResult {
+    padding-bottom: 30px;
+    box-shadow: none;
+    text-align: center;
+    justify-content: center;
+}
+
+div.myactionReserve > div.zzimtitlerow > div.col,
+div.myactionZzim > div.zzimtitlerow > div.col {
+   display:flex;
+   justify-content:center;
+   padding:5px 0px;
+}
+div.myactionReserve > div.zzimtitlerow > div.col > strong,
+div.myactionZzim > div.zzimtitlerow > div.col > strong {
+   font-size:1.2rem;
+}
+div.myactionReserve > div.zzimtitlerow > div.col > span,
+div.myactionZzim > div.zzimtitlerow > div.col > span {
+   color:#212529;
+}
+
+/* 예약내역 기간검색창 */
+div.search-box-reserve {
+	flex-direction:column;
+	justify-content:end;
+	display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1);
+}
+
+div.myResvSrch input { border:none; width:300px;}
+div.myResvSrch input { text-align:center;}
+div.myResvSrch input:active,
+div.myResvSrch input:focus,
+div.myResvSrch input:hover {
+   outline:none !important;
+   box-shadow:none !important;
+	border:none;
+}
+
+#myResvDateSearchResetButton,
+#myResvDateSearchButton { 
+	margin-right:10px;
+	background-color:#006940ff;
+	color:white;
+	height:45px;
+	padding:0 30px;
+	border-radius:30px;
+	border:4px solid #006940ff;  
+}
+
+#myResvDateSearchResetButton:hover,
+#myResvDateSearchButton:hover, 
+#myResvDateSearchButton:active, 
+#myResvDateSearchResetButton:active, 
+#myResvDateSearchButton:focus 
+#myResvDateSearchResetButton:focus {
+   color:#006940ff;
+   font-weight:bold;
+   background-color:white;
+   box-shadow:none !important;
+}
+.search-box-reserve > .col-4 {
+    justify-content: center;
+   display: flex;
+}
+.search-box-reserve > .col {
+   display:flex;
+   flex-direction:row;
+   justify-content: center;
+}
+
+/* 예약내역 재정리 */
+div.myactionReserve .table thead { display:none; }	
+div.myactionReserve .table td {  border-top: 0px; }
+div.myactionReserve .table th { border-bottom:0px; }
+
+/* 예약내역 정렬 셀렉트 */
+.changeSortReserv {
+    text-align: right;
+}
+
+/* 정렬 셀렉트박스  */
+select#changeSortReserv {
+    padding: 10px 15px 10px 5px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}    
+
+/* 예약내역 들어오는 곳 */
+div#reserveTitle {
+   display:none;
+   padding-top:10px;
+   text-align:center;
+}
+div.mobileActT {
+    padding-right: 0px;
+}
+div.mibileActC {
+/*    font-size:0.8rem; */
+    padding-right: 10px;
+    padding-left: 0px;
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+div.mobileActCt {
+   padding-right: 0px;
+    padding-left: 0px;
+}
+div.mibileActC > button { color:white;}
+
+/* 예약내역 웹사이즈 숨겨져있거라 */
+div#actListweb {display:none;}
+div.webActC { display:none; }
+
+/* 예약내역이 없을 경우 나오는 div */
+div#emptyRes {
+    justify-content: center;
+    margin-top:80px;
+}
+
+div#actList { padding: 15px 0px; margin:10px 0px;}
+div#actList:hover { cursor:pointer; background:#eeeeee85; }
+
+div#actList > div.col-sm { 
+   display:flex;
+   align-items:center;
+   justify-content:center;
+}
+span.canceledResv { padding:6px 0px;}
+
+button#resbtn {
+	background: #e7e7e7;
+	border: 4px solid #e7e7e7;
+	color: #212529;
+}
+
+button#resbtn:hover {
+	color: red;
+	background: white;
+}
+
+/* 마이페이지 정보수정 모바일 > modal */
+div#tel_modal_users,
+div#email_modal_users {
+    margin-top: 200px;
+}
+
+div#tel_modal_users h4#exampleModalLabel,
+div#email_modal_users h4#exampleModalLabel {
+    padding-top: 0px;
+}
+
+div#tel_modal_users input,
+div#email_modal_users input {
+    width: 100%;
+    margin-bottom:5px;
+    line-height: 2.8;
+}
+
+div#email_modal_users select{
+    word-wrap: normal;
+    line-height: 2.8;
+    padding: 12px 0;
+    width: 100%;
+}
+
+div#email_modal_users #mailCheckBttn, div#tel_modal_users #phoneCheckBttn { width:100%; margin-top:15px;}
+
+#email_modal_users input, 
+#tel_modal_users input {
+    width: 100%;
+    line-height: 2.7;
+    padding-left: 15px;
+    border: none;
+    outline:none;
+	box-shadow:none;
+    border-top: 1px solid #006940ff; 
+    border-bottom: 1px solid #006940ff; 
+}
+#email_modal_users input#email2{
+	border-top:none;
+}
+#email_modal_users select {
+	border:none;
+	outline:none;
+	width: 100%;
+    line-height: 2.7;
+    padding:11px 15px;
+	box-shadow:none;
+	border-bottom: 1px solid #006940ff; 
+}
+
+div#tel_modal_users input#phoneNumber {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
+
+/* 모바일사이즈 마이페이지 메뉴 */
+div.mobileMyMenu {display:block;}
+div#menuDiv { display:none; }
+
+/* 껍데기: 컨테이너 */
+div.mobileMyMenu { 
+   background-color: #006940ff;
+    color: white;
+    padding: 25px 50px;
+    border-radius: 15px;
+}
+
+/* 타이틀(~님의 마이페이지) */
+div.mobileMytitle { 
+   flex-direction:column;
+   justify-content: center; 
+   padding-bottom:20px;
+}
+div.mobileMytitle > div.col {
+   display:flex; 
+   justify-content: center;
+}
+
+/* 마이페이지 메뉴 한 줄 */
+div.mobileMy_memu > div.col,
+div.mobileMy_memu > div.col { 
+   padding-left:0px;
+   padding-right:0px;
+   padding:10px 0px;
+   display:flex; 
+   justify-content:center;
+   align-items:center;
+   color:white;
+   font-weight:bold;
+}
+
+/* 마이페이지 메뉴버튼들 */
+div.mobileMy_wrap { 
+    display: grid;
+   align-content: center;
+   justify-content: center;
+    text-align: left;
+   width:80px;
+   height:80px; 
+   border-radius:50%;
+   background-color: #008a41;
+}
+div.mobileMy_wrap:active,
+div.mobileMy_wrap:hover {
+   cursor:pointer;
+   background-color:white; 
+   color:#008a41;
+}
+
+
+div.col.actiontitle.search-button-ump {
+    background-color: #ffffff;
+    color: black;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border:  2px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+	justify-content: space-between;
+}
+      
+
+div.col.actiontitle.search-button-ump:hover {
+	transform: scale(1.03); /* Increase the size by 10% */
+	color: black;
+	border:  2px solid #008a41;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+div.col.actiontitle.search-button-ump:active {
+	transform: scale(0.9); /* Decrease the size by 10% */
+	color: black;
+	border:  2px solid #008a41;
+	border-radius: 10px;
+	padding: 5px 10px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+
+@media screen and (min-width:576px) {
+/* 스마트폰 가로 */
+div.mobileActT, div.mobileActCt { display:none; }
+div.webActC { display:flex; }
+
+div.webActC > div.col {
+   display: flex;
+   justify-content: center;
+   align-content: center;
+    flex-wrap: wrap;
+}
+
+table.reserveMy tr:first-child,
+div.reviewtable tr:first-child {
+   border-bottom:1px solid #ddd;
+}
+
+/* update.jsp [반응형 웹] */
+div.updateuser h4.h4{ padding-top:60px; }
+
+table.insertTable input[type="text"] {
+    width: 70%;
+}
+
+div.userInfoDiv table.insertTable td,
+div#email_modal_users .emailCheckDiv,
+div#tel_modal_users .phoneCheckDiv {
+	padding:0;
+	position: relative; /* 상대 위치 설정 */
+}
+button.abuttons.abuttons_inline { width:25%; padding: 7px 0;}
+div.userInfoDiv table.insertTable button.abuttons_inline,
+div#email_modal_users button.abuttons_inline,
+div#tel_modal_users button.abuttons_inline {
+	padding: 6px 0;
+	height:100%;
+	position: absolute; /* 절대 위치 설정 */
+    right: 0;/* 오른쪽으로 이동 */
+    top: 50%; /* 상단 위치 조정 */
+    transform: translateY(-50%); /* 수직 가운데 정렬 */
+}
+/* mypage.jsp 페이지 */
+#updateuserinfo .insertTable { width:70%; }
+div#email_modal_users button.abuttons_inline,
+div#tel_modal_users button.abuttons_inline {
+	right: 15px;
+}
+div.userInfoDiv table.insertTable td input,
+div.userInfoDiv table.insertTable button.abuttons_inline,
+div#email_modal_users button.abuttons_inline,
+div#tel_modal_users button.abuttons_inline {
+    display: inline-block; /* 인라인 블록 요소로 배치 */
+    vertical-align: middle; /* 수직 정렬 */
+}
+
+/* mypage.jsp 그림자박스만들기 */
+div.userInfoDiv div.blurblur,
+div.mypet.blurblur {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* #email_modal_users input,  */
+/* #tel_modal_users input { */
+/*     width: 100%; */
+/*     line-height: 2.7; */
+/*     padding-left: 15px; */
+/*     border: none; */
+/*     outline:none; */
+/* 	box-shadow:none; */
+/*     border-top: 1px solid #006940ff;  */
+/*     border-bottom: 1px solid #006940ff;  */
+/* } */
+/* #email_modal_users input#email2{ */
+/* 	border-top:none; */
+/* } */
+/* #email_modal_users select { */
+/* 	border:none; */
+/* 	outline:none; */
+/* 	width: 100%; */
+/*     line-height: 2.7; */
+/*     padding:11px 15px; */
+/* 	box-shadow:none; */
+/* 	border-bottom: 1px solid #006940ff;  */
+/* } */
+button#mailCheckBttn,  button#phoneCheckBttn{
+    width: fit-content;
+    margin: 10px auto;
+}
+div.email_tel_modal_btm_btns button { margin: 0 5px; }
+.userInfoDiv div.noticeUpcenter{
+    display: block;
+    text-align: center;
+}
+
+.userInfoDiv div.noticeUpcenter button.abuttons {
+	 margin-right: 10px;
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width:768px) {
+/* 타블렛 */
+
+
+div.updateuser .insertTable{
+	width:70%;
+	margin-top:0;
+	border-top:1px solid #006940ff;
+}
+	
+
+
+/* 모달메뉴 */
+.modalRede { margin-top: 100px; }
+table.myResvDetail th {
+    width: 30%;
+}
+
+
+/* 마이페이지 으아아아 */
+/* div.webConMy { max-width:768px; } */
+
+div.mobilecontr1 {
+   display:flex;
+   flex-direction:row;
+}
+
+
+/* 예약내역 */
+div#reserveTitle {
+   display:flex;
+   padding-left:15px;
+   padding-right:15px;
+}
+div#actListweb {display:flex;}
+div#actListmobile {display:none;}
+div.myactionZzim > hr,
+div.myactionReserve > hr {
+    margin-bottom: 0px;
+}
+
+div.mibileActC{
+   padding-left: 10px;
+}
+div.myactionReserve  div.blurblur { box-shadow:none; }
+div.reservLst .col-9{
+	display: grid;
+	align-content: center;
+}
+
+div.myactionReserve > div.zzimtitlerow {
+   padding-left:15px;
+   padding-right:15px;
+   padding-bottom:15px;
+}
+
+/* 예약내역 기간검색창 */
+div.search-box-reserve {
+	flex-direction:row;
+	justify-content:end;
+	display: flex;
+	align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* div.myResvSrch input { border:none; width:300px;} */
+/* div.myResvSrch input { text-align:center;} */
+/* div.myResvSrch input:active, */
+/* div.myResvSrch input:focus, */
+/* div.myResvSrch input:hover { */
+/*    outline:none !important; */
+/*    box-shadow:none !important; */
+/*    border:1px solid #Fbbc04 !important; */
+/* } */
+
+.search-box-reserve > .col,
+.search-box-reserve > .col-4 {
+	display: flex;
+	justify-content: end;
+}
+.search-box-reserve > .col-4:first-child {
+	justify-content: start;
+}
+
+#myResvDateSearchResetButton,
+#myResvDateSearchButton { 
+	margin-right:10px;
+	background-color:#006940ff;
+	color:white;
+	height:45px;
+	padding:0 30px;
+/* 	padding: 12px 30px; */
+	border-radius:30px;
+/* 	border-radius:8px;    */
+	border:4px solid #006940ff;
+}
+
+#myResvDateSearchResetButton:hover,
+#myResvDateSearchButton:hover, 
+#myResvDateSearchButton:active, 
+#myResvDateSearchResetButton:active, 
+#myResvDateSearchButton:focus 
+#myResvDateSearchResetButton:focus {
+   color:#006940ff;
+   font-weight:bold;
+   background-color:white;
+   box-shadow:none !important;
+}
+
+/* 예약내역 재정리 */
+div#actList {
+    padding: 15px 0px;
+    margin: 0px 0px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 1px solid #006940ff;
+    text-align:center;
+}
+#reserveTitle .col-1,
+#reserveTitle .col-2,
+#reserveTitle .col-5 {
+	font-size:1rem;
+	padding: 15px 0;
+    background-color: #006940ff;
+    color: white;
+}
+
+/* 마이페이지 메뉴버튼들 */
+div.mobileMy_wrap { 
+    display: grid;
+   align-content: center;
+   justify-content: center;
+    text-align: left;
+   width:180px;
+   height:80px; 
+   border-radius:15px;
+   background-color: #008a41;
+}
+
+/* 즐겨찾기 웹사이즈 */
+div#actZzimList button.mobileXbtn {  
+	display:none;
+    width: auto;
+}
+div#actZzimList button.webXbtn { display:inline; }
+
+
+}
+
+/* 찜목록, 예약내역 제목 row */
+div.actiontitle {   
+  padding-top: 2px;
+    padding-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 20px;
+}
+
+
+@media screen and (min-width:992px) {
+/* 데스크탑 */
+/* .structure { width: 768px; } */
+div#actZzimList { width:450px; padding:20px; }
+div#actZzimList > div.col-4{
+   justify-content:end;
+}
+
+/* div.mobileMyMenu, div.myactionZzim, div.myactionReserve { width:768px; } */
+div.myactionReserve {
+   padding-left:0px;
+   padding-right:0px;
+}
+/* div.webConMy { max-width:768px; } */
+div.myActionZzim.emptyResult {
+    padding-bottom: 30px;
+    box-shadow: none;
+    text-align: center;
+    justify-content: center;
+}
+
+.emptyResult {
+    justify-content: center;
+/*     margin-top: 35px; */
+    box-shadow: none;
+    border-radius: 10px;
+}
+
+}
+
+@media screen and (min-width:1200px) {
+/* 큰 데스크탑 */
+/* div.webConMy { max-width:880px; } */
+div.mobileMyMenu { display:none; }
+div#menuDiv { display:flex; }
+
+}

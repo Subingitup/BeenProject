@@ -1,0 +1,413 @@
+@charset "UTF-8";
+
+
+/* ★★★★★★★★★★★★★★★★ 메인이미지 사이즈 임시 ★★★★★★★★★★★★★★★★ */
+img#mainimg {
+    width: 100%;
+}
+
+/* NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOTICE */
+/*  페이지 제목 (공지사항 등) */
+h4.h4 {
+    font-size: 1.5rem;
+    padding: 60px 0 10px 0;
+    margin-bottom:0px;
+}
+div.noticeTitle, div.notice_faq_title{
+	border-bottom: 1px solid #006940ff;
+}
+button.abuttons.abuttons_inline {
+	background-color:#006940ff;
+	border: 4px solid #006940ff;
+    display:inline;
+    font-size:0.85rem;
+    border-radius: 0;
+    padding: 3px 0;
+    margin: 0;
+}
+/* 있는게 좋은지 없는게 좋은지 잘 모르겠는걸? */
+.inlinebuttonslist{
+/* 	margin-top:10px; */
+}
+/* 목록보기 또는 글쓰기 선택된 버튼에 표시해주는 css */
+.inlinebuttonslist button.selected_notfaq_menu {
+	background-color: white;
+    color: #008a41;
+}
+
+/******** 목록테이블 ********/
+/* thead */
+thead { background: #006940ff; }	/* thead의 배경색변경 */
+tr#tab_th_tr th { border-bottom: none; }	/* th태그 border-bottom 없애기 */
+
+/* 모바일에서 작성자, 조회수 표시안함 [반응형 모바일] */
+tr#tab_th_tr th:nth-child(3), tr.tab_data_tr td:nth-child(3),
+tr#tab_th_tr th:nth-child(5), tr.tab_data_tr td:nth-child(5){ display:none; }
+tr#tab_th_tr th:first-child, tr.tab_data_tr td:first-child{ width:18%; }
+
+/* tbody */
+tr.tab_data_tr { text-align: center; color:#444; font-size:0.85rem;}	/* tr태그 가운데정렬 */
+tr.tab_data_tr td{ vertical-align: middle; border-top: none; border-bottom: 1px solid #006940ff;}	/* td border-top없애고 border-bottom 생기게하기*/
+tr.tab_data_tr:hover, tr.tab_data_tr:active, tr.tab_data_tr:focus { cursor: pointer; background-color:#eeeeee85; }	/* tbody의 tr에 마우스오버시 css*/
+
+/******** 페이징 [공지사항, faq 전체] ********/
+div#pageNoticeDiv, div#faq_count_admin { justify-content: center; display: flex; margin: 15px auto; font-size: 0.85rem;}
+div.ntcWebCnt {
+	padding: 0px;
+	width:45px; 
+	height:45px;
+	border-radius: 50%;
+	align-content: center;
+	text-align: center;
+	display: grid;
+    margin-left: 0px;
+}
+div.ntcWebCnt.notpagingNow, .faqpagingNow { background-color:#008a413b; font-weight:bold; } /* 선택중인 페이지수 배경색변경 */
+div.ntcWebCnt a, .faqpagingNow a { text-decoration:none; color:#444; } /* a태그 글씨색 변경 */
+
+
+/******* 게시글 검색창 [공지사항, faq 전체] *******/
+div#catsearch-container {
+    inline: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;	
+    width: 100%;
+/*     width: 500px; */
+    height: 53px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: white;
+    padding: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    border: 3px solid #125c13;
+    position: inherit;
+    margin-bottom: 0;
+}
+div#catsearchDiv { 
+	height: 100%; 
+	margin-bottom:10px;
+}
+form#catsearch {
+	font-size:0.85rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+#noticeSearchKeyword, #faqSearchKeyword{
+	padding-left: 20px;
+	border: none;
+	outline: none;
+	inline: none;
+	width: 500px;
+}
+button#catsearchbtn {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+
+/******* 검색 데이터가 없을 때 *******/
+tr.emptyResult, div.emptyResult {
+	text-align:center;
+}
+tr.emptyResult td, div.emptyResult{
+	padding-top: 50px;
+}
+
+/******* 검색후 전체목록 보는 버튼 *******/
+.resetSearchNoticeforall, .resetSearchFaqforall {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.resetSearchNotice, .resetSearchFaq {
+    margin-bottom: 10px;
+}
+
+
+/******* 게시글 상세보기 *******/
+.noticeDetailTable {
+	width:100%;
+	margin-top:30px;
+	margin-bottom: 0;
+	border: 1px solid #006940ff;
+}
+.noticeDetailTable th{
+	width:25%;
+	background-color: #006940ff;
+	color:white;
+	text-align:center;
+	border-bottom: 1px solid #006940ff;
+}
+.noticeDetailTable th, .noticeDetailTable td {
+    border-top: none; 
+}
+.noticeDetailTable td { border-bottom: 1px solid #999; } 
+
+/* 공지사항 본문 패딩조절 [반응형 모바일] */
+td.notice_cont_box { padding: 20px 10px; }
+
+
+/*******  [관리자] 관리자페이지 목록 *******/
+/* 검색후 전체목록 보는 버튼 */
+.resetSearchNotice, .resetSearchFaq {
+    margin-bottom: 10px;
+}
+
+
+div#catsearchDiv.listSearchDivAdmin {
+	flex-direction: row;
+/*    	justify-content: space-between; /* 선택삭제버튼과 검색창을 양 끝에 배치 */
+   	justify-content: end; /* 검색창을 끝에 배치 */
+   	display: flex;
+} 
+div.goNolist button {
+	margin:0 auto;
+}
+
+button.abuttons { /* [관리자페이지] [공통페이지] 전부 해당되는 기본버튼 - mypage도 */
+	width:150px;
+	Background: #008a41;
+	border: 4px solid #008a41;
+	font-size: 14px;
+	color: #fff;
+	padding: 10px 40px;
+	border-radius: 50px;
+	transition : 500ms;
+	transform: translateY(0);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	text-transform: uppercase;
+	margin-left: auto;
+}
+button.abuttons:focus,
+button.abuttons:active,
+button.abuttons:hover {
+	Background: white;
+	color: #008a41;
+	outline:none;
+}
+
+
+.not_ad_paging {
+	display: flex;
+    justify-content: center;
+}
+.col-3.not_ad_paging_cancel {
+    align-items: center;
+    display: flex;
+    padding-left: 30px;
+}
+div#pagingul {
+    display: inline-flex;
+    justify-content: center;
+}
+
+
+/******* [관리자] insert, updateNotice페이지 *******/
+.insertTable {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 30px;
+	font-size:0.85rem;
+}
+.insertTable input,
+.insertTable textarea {
+	outline: none;
+	border: none;
+	font-size:0.85rem;
+}
+.insertTable textarea {
+ height: 300px; 
+   resize: none;
+   width:100%;
+}
+.insertTable textarea:hover,
+.insertTable textarea:focus,
+.insertTable textarea:active {
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
+.insertTable th{
+	width:25%;
+	text-align:center;
+	vertical-align: middle;
+	line-height: 2.8;
+}
+.insertTable th label {
+	margin-bottom:0px;
+}
+.insertTable tr{
+	border-top: 1px solid #006940ff; 
+	margin-top:10px;
+}
+.insertTable tr:last-child{
+	border-bottom: 1px solid #006940ff; 
+}
+
+/******* 파일선택부분 *******/
+.file_form {
+    position: relative; 
+    font-size: 12px;
+}
+.file_form .text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+}
+.file_form .text:after { /* 버튼형태 구현 */
+    position: absolute;
+    top:0;
+    right:0;
+    width: 150px;
+    height:100%;
+    background-color: #006940ff;
+    line-height:inherit;
+    color: #fff;
+    content:'파일찾기';
+    display: flex; /* 추가 */
+  	align-items: center; /* 추가 */
+  	justify-content: center;
+}
+.file_form input[type='file'] {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 10;
+    width: 100%;
+    opacity: 0;
+}
+
+/******** 등록, 초기화등 하단 버튼부분 ********/
+div.noticeUpcenter {
+    text-align: center;
+    margin-top: 20px;
+}
+div.noticeUpcenter button.abuttons {
+	display:inline;
+	margin-right:10px;
+}
+
+
+
+/* faqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq */
+.not_faq_div select {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    font-size: 0.85rem;
+    width: 100%;
+    padding: 0 12px;
+}
+/* .not_faq_div select:selected, */
+.not_faq_div select:focus {
+	outline:none;
+	border:none;
+	box-shadow:none;
+}
+
+/******* 카테고리 *******/
+/* 카테고리 버튼row */
+.rowCateBtn {
+	display: flex;
+    text-align: center;
+	color:white;
+}
+/* 카테고리버튼의 역할을 하는 버튼div */
+.col.cate_btn {
+    padding: 15px 0;
+    background-color: #006940ff;
+    border: 4px solid #006940ff;
+}
+/* 선택된 카테고리 배경색 변경 */
+.col.cate_btn:hover,
+.col.cate_btn.cate_selected{ cursor:pointer; background-color:white; color:#006940ff; }	
+
+
+/******* faq 본문 *******/
+#faq_list_wrap {
+	font-size:0.8rem;
+	margin-bottom: 1rem;
+}
+.faq_title { font-weight:bold; padding:15px 0; border-bottom:1px solid #006940ff;}
+.faq_title .col-2 { display:flex; justify-content:center;}
+.faq_title:hover { background-color: #eeeeee85; cursor:pointer; }
+.title_selected {  background-color: #eeeeee85; }
+
+.row.faq_cont { padding:25px 15%; border-bottom: 1px solid #006940ff; }
+
+.faq_contents_admin .col-1 {
+	text-align:center;
+}
+
+/******* faq 페이징 버튼 (더보기처리) *******/
+button#next, button#top {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+/******* [관리자] 수정, 삭제등 버튼부분 *******/
+div#modi_del {
+    display: flex;
+    margin-top: 50px;
+    margin-left: auto;
+}
+/******* [관리자] 페이징 부분 *******/
+.row.faq_cntwrap_admin {
+    font-size: 0.85rem;
+}
+
+
+
+
+
+
+
+
+@media screen and (min-width:576px) {
+/* 스마트폰 가로 */
+}
+
+@media screen and (min-width:768px) {
+/* 타블렛 */
+	div#catsearch-container {
+		width: 500px; 
+	}
+	
+	/* 태블릿부터 작성자, 조회수 표시 [반응형 웹] */
+	tr#tab_th_tr th:nth-child(3), tr.tab_data_tr td:nth-child(3),
+	tr#tab_th_tr th:nth-child(5), tr.tab_data_tr td:nth-child(5){ display:table-cell; }
+	tr#tab_th_tr th:first-child, tr.tab_data_tr td:first-child{ width:auto; }
+	
+	/* 공지사항 본문 패딩조절 [반응형 웹] */
+	td.notice_cont_box { padding: 40px 80px; }
+}
+
+@media screen and (max-width:991px) {
+/* 	div#catsearch-container { */
+/* 		width: 500px;  */
+/* 	} */
+}
+
+@media screen and (min-width:992px) {
+	
+}
+
+@media screen and (min-width:1200px) {
+/* 큰 데스크탑 */
+
+/* 	div#catsearch-container { */
+/* 		width: 500px;  */
+/* 	} */
+	
+	
+}

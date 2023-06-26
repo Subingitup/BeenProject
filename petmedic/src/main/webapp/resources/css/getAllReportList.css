@@ -1,0 +1,144 @@
+@charset "UTF-8";
+/*페이징 시작*/
+ul#pagingul {
+	display: inline-flex;
+	text-align: center;
+	border-right: 0;
+	padding-left: 0;
+	padding-top: 40px;
+	border: none;
+}
+
+ul#pagingul>li {
+	text-align: center;
+	float: left;
+	list-style: none;
+	border-radius: 50%;
+}
+
+ul#pagingul>li a{
+	display: block;
+	font-size: 14px;
+	color: black;
+	padding: 9px 15px;
+	box-sizing: border-box;
+	text-decoration-line: none;
+	border: none;
+}
+
+ul#pagingul>li.on {
+	background: #008a413b;
+}
+
+ul#pagingul>li.on a {
+	color: #000;
+	font-weight: bold;
+}
+/*페이징 끝*/
+
+/* 테이블 스타일 */
+#reserveListTableDiv,#reportListTableDiv {
+	text-align: center;
+}
+
+#allcontainer {
+	padding-bottom: 10%;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+.reviewList,.reserveList {
+	font-size: 0.9em;
+}
+
+.reviewContents {
+	font-size: 0.9em;
+}
+
+.reportListTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.reportListTable th, .reserveListTable th {
+	background-color: #006940ff;
+	height: 55px;
+	color: #fff;
+}
+
+.reportListTable, .reserveListTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.reserveListTable th, .reserveListTable td,
+.reportListTable th, .reportListTable td {
+	border-bottom: 1px solid #006940ff;
+	padding: 10px;
+	text-align: center;
+}
+
+.listTr:hover {
+	background-color: #f6f6f6;
+}
+
+/* 검색창 시작*/
+.reserveContents, .reviewContents {
+	border: 2px solid #125c13;
+    padding: 8px 10px;
+    border-radius: 29px;
+    margin-bottom: 20px;
+    width: 310px;
+    margin-left: 55%;
+}
+
+.reservelistserch-input,.reportlistserch-input {
+	border: none;
+    outline: none;
+    width: 175px;
+}
+
+#serch-btn {
+	border: none;
+	background: none;
+}
+/* 검색창 끝 */
+
+/* 검색후 전체목록 보는 버튼 */
+.resetSearchList-btn {
+	Background: #008a41;
+    border: 3px solid #008a41;
+    font-size: 14px;
+    color: #fff;
+    padding: 10px 30px;
+    box-shadow: rgb(0 0 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition: 500ms;
+    transform: translateY(0);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left: 40px;
+}
+
+.resetSearchList-btn:hover {
+	Background: white;
+    color: #008a41;
+    outline: none;
+}
+/* 검색후 전체목록 보는 버튼 끝*/
+
+#reserveh3, #reviewh3 {
+	border-bottom: 2px solid #006940ff;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: left;
+	margin-left: 25px;
+	padding-top: 10px;
+	margin-bottom: 6%;
+	margin-top: 5%;
+	padding-bottom: 10px;
+	font-size: 1.75rem;
+}

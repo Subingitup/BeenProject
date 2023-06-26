@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PetsDAO">
+
+
+	<select id="getPetsList" resultType="pets">
+		SELECT * FROM PET WHERE
+		PET_USERS_ID = #{pet_users_id}
+	</select>
+
+	<insert id="insertPets">
+		INSERT INTO pet
+		(PET_USERS_ID,PET_PIC,PET_NAME,PET_AGE,PET_WEIGHT,PET_CATE,PET_SEX,PET_NEUTER,PET_INFO)
+		VALUES
+		(#{pet_users_id},#{pet_pic},#{pet_name},#{pet_age},#{pet_weight},#{pet_cate},#{pet_sex},#{pet_neuter},#{pet_info})
+	</insert>
+
+
+	<select id="getPetsInfo" resultType="pets">
+      select PET_PIC,PET_NAME,PET_AGE,PET_WEIGHT,PET_SEX,PET_CATE,PET_INFO,PET_NEUTER from
+      pet WHERE PET_USERS_ID=#{pet_users_id} AND PET_NAME=#{pet_name}
+   </select>
+
+	<update id="updatePetsInfo">
+		update pet set
+		PET_PIC=#{pet_pic},PET_AGE=#{pet_age},PET_WEIGHT=#{pet_weight},PET_CATE=#{pet_cate},PET_INFO=#{pet_info}
+		WHERE PET_NAME=#{pet_name}
+	</update>
+	
+	<delete id="deletePetsInfo">
+	delete from pet where PET_USERS_ID=#{pet_users_id} AND PET_NAME=#{pet_name}
+	</delete>
+	
+	
+
+</mapper>

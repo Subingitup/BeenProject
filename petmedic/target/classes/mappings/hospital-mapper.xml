@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hospitalDAO">
+
+	<resultMap type="hos" id="hosMap">
+		<id property="hos_id" column="HOS_ID" /> <!-- PK 있는 컬럼에 쓰임 -->
+		<result property="hos_name" column="HOS_NAME" />
+		<result property="hos_pw" column="HOS_PW" />
+		<result property="hos_addr" column="HOS_ADDR" />
+		<result property="hos_addr2" column="HOS_ADDR2" />
+		<result property="hos_addr3" column="HOS_ADDR3" />
+		<result property="hos_addr4" column="HOS_ADDR4" />
+		<result property="hos_addr5" column="HOS_ADDR5" />
+		<result property="hos_tel" column="HOS_TEL" />
+		<result property="hos_start" column="HOS_START" />
+		<result property="hos_end" column="HOS_END" />
+		<result property="hos_s_lunch" column="HOS_S_LUNCH" />
+		<result property="hos_e_lunch" column="HOS_E_LUNCH" />
+		<result property="hos_hol" column="HOS_HOL" />
+		<result property="hos_cate" column="HOS_CATE" />
+		<result property="hos_role" column="HOS_ROLE" />
+		<result property="hos_star" column="HOS_STAR" />
+		<result property="hos_date" column="HOS_DATE" />
+		<result property="hos_price" column="HOS_PRICE" />
+		<result property="hos_del" column="HOS_DEL" />
+		<result property="hos_url" column="HOS_URL" />
+		<result property="hos_new_date" column="HOS_NEW_DATE" />
+		<result property="hos_file" column="hos_file" />
+		<result property="hos_pic" column="hos_pic" />
+	</resultMap>
+	<!-- 병원 검색목록 -->
+	<select id="searchHospitalList" resultType="hospital">
+		SELECT * FROM hospital WHERE 1=1
+		<if test="searchCondition == 'HOSPITAL' ">AND HOS_CATE LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'LOCATION' ">AND HOS_CATE LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'CATEGORY' ">AND HOS_CATE LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'DOCTOR' ">AND HOS_CATE LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+	</select>
+
+	<select id="getHos" resultMap="hosMap">
+		select * from hospital 
+		where hos_addr2 = #{hos_addr2} 
+		or hos_addr3 = #{hos_addr3} 
+		or hos_tel = #{hos_tel} 
+		or hos_id = #{hos_id}
+	</select>
+	<select id="getHosInfo" resultMap="hosMap">
+		<!-- resultType = 리턴타입. select는 기입 필수. Alias로 지어준 객체명 혹은 BoardVO은 패키지포함클래스까지 
+			적어서 기술 -->
+		<!-- Alias로 지어준 객체명 혹은 BoardVO은 패키지포함클래스까지 적어서 기술 -->
+		SELECT * FROM hospital WHERE HOS_ADDR2 = ${hos_addr2} or HOS_ADDR3 =
+		${hos_addr3}
+	</select>
+
+	<update id="delHos">
+		UPDATE hospital SET HOS_DEL='Y', HOS_ROLE='N', HOS_DEL_DATE=CURDATE()
+		WHERE HOS_ID = #{hos_id}
+	</update>
+
+	<select id="getUserPick" resultType="hos">
+		select *
+		from hospital
+		where
+		1=1
+		AND hos_id
+		in(#{users_pick1},#{users_pick2},#{users_pick3},#{users_pick4},#{users_pick5})
+	</select>
+
+	<!-- 병원검색 결과 필더링 -->
+	<select id="getHosList" resultType="hospital">
+		select * from hospital 
+		where
+		hos_role = 'Y'
+		AND hos_del = 'N'
+		AND(hos_name LIKE CONCAT('%', #{searchKeyword}, '%') or hos_addr2 LIKE CONCAT('%', #{searchKeyword}, '%') or hos_addr3 LIKE CONCAT('%', #{searchKeyword}, '%'))
+		ORDER BY hos_star DESC;
+	</select>
+
+
+	<!-- 병원정보등록 -->
+<insert id="insertHospital">
+		insert into hospital(
+		hos_id,hos_name,hos_pw,hos_addr,hos_addr2,hos_addr3,
+		hos_addr4,hos_addr5, hos_tel, hos_start, hos_end,
+		hos_s_lunch,hos_e_lunch,
+		hos_hol,hos_cate,
+		hos_price,hos_role,hos_del,hos_url,hos_new_date,hos_file,hos_pic,hos_email,hos_email2
+		)
+		values
+		(
+		#{hos_id},#{hos_name},#{hos_pw},#{hos_addr},#{hos_addr2},#{hos_addr3},
+		#{hos_addr4},#{hos_addr5},#{hos_tel},#{hos_start},#{hos_end},#{hos_s_lunch},#{hos_e_lunch},
+		#{hos_hol},#{hos_cate},#{hos_price},'N','N',#{hos_url},curdate(),#{hos_file},#{hos_pic},#{hos_email},#{hos_email2})
+	</insert>
+
+	<!-- 승인요청한 병원 목록 -->
+	<select id="requestHospitalList" resultType="hospital">
+		select * from
+		hospital
+		where
+		hos_role= 'N' and hos_DEL='N'
+		<if test="searchCondition == '아이디' ">AND hos_id LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == '병원명' ">AND hos_name LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		ORDER BY hos_new_date DESC LIMIT #{start},10
+	</select>
+
+	<!-- 승인요청한 병원 목록 갯수 수빈유지보수 -->
+	<select id="requestHospitalListCount" resultType="_int">
+		select count(*) from
+		hospital
+		where
+		hos_role= 'N' and hos_DEL='N'
+	</select>
+
+	<!-- 승인요청한 병원 상세 -->
+	<select id="requestHospital" resultType="hospital">
+		select * from hospital where hos_id = #{hos_id} and HOS_ROLE= 'N' and HOS_DEL='N'
+	</select>
+	
+	<!-- 병원 승인하기 -->
+	<update id="checkHospital" parameterType="String">
+		update hospital
+		set
+		hos_role= 'Y', hos_date=curdate()
+		where
+		hos_id= #{hos_id}
+	</update>
+
+	<!-- 병원정보수정 수빈유지보수-->
+	<update id="updateHospital">
+		update hospital
+		set 
+		hos_addr=#{hos_addr},
+		hos_addr2=#{hos_addr2},
+		hos_addr3=#{hos_addr3},
+		hos_addr4=#{hos_addr4},
+		hos_addr5=#{hos_addr5},
+		hos_tel = #{hos_tel}, 
+		hos_start = #{hos_start}, 
+		hos_end= #{hos_end},
+		hos_s_lunch= #{hos_s_lunch},
+		hos_e_lunch= #{hos_e_lunch}, 
+		hos_hol= #{hos_hol}, 
+		hos_cate= #{hos_cate},
+		hos_price= #{hos_price},
+		hos_pic=#{hos_pic},
+		hos_url=#{hos_url}
+		where hos_id= #{hos_id};
+	</update>
+
+	<!-- 수빈유지보수 -->
+	<update id="deletewaitingHospital">
+		UPDATE hospital SET HOS_DEL='Y', hos_del_date=CURDATE()
+		WHERE HOS_ID = #{hos_id}
+	</update>
+
+
+	<!-- 승인된 병원 상세 -->
+	<select id="getHospital" resultType="hospital">
+		select * from hospital
+		where
+		hos_id= #{hos_id}
+	</select>
+
+	<!-- 삭제된 병원목록 -->
+	<select id="deletedHospitalList" resultType="hospital">
+		select * from
+		hospital
+		where
+		hos_id=#{hos_id} and hos_del='Y'
+	</select>
+
+
+	<!-- 승인된 병원 전체목록 수빈유지보수-->
+	<select id="getHospitalList" resultType="hospital">
+		select * from hospital where hos_role="Y"
+		<if test="searchCondition == '아이디' ">AND hos_id LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == '병원명' ">AND hos_name LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		ORDER BY hos_date DESC LIMIT #{start},10
+	</select>
+
+	<!-- [유저] 병원 전체목록 조회 -->
+<!-- [유저] 병원 전체목록 조회 -->
+	<select id="getHosListUser" resultType="hospital">
+		SELECT *
+		FROM hospital
+		WHERE 1 = 1
+		AND hos_role = 'Y'
+		AND hos_del = 'N'
+		<if test="searchCondition.equals('강아지')">AND HOS_CATE LIKE '%강아지%'</if>
+		<if test="searchCondition.equals('고양이')">AND HOS_CATE LIKE '%고양이%'</if>
+		<if test="searchCondition.equals('새')">AND HOS_CATE LIKE '%새%'</if>
+		<if test="searchCondition.equals('파충류')">AND HOS_CATE LIKE '%파충류%'</if>
+		<if test="searchCondition.equals('기타동물')">AND HOS_CATE LIKE '%기타동물%'</if>
+		<if test="searchCondition.equals('hos_cate')">AND HOS_CATE LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition.equals('hos_addr')">AND (HOS_ADDR2 LIKE CONCAT('%', #{searchKeyword}, '%') OR
+			HOS_ADDR3 LIKE CONCAT('%', #{searchKeyword}, '%'))</if>
+		<if test="searchCondition.equals('hos_name')">AND HOS_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		ORDER BY hos_star DESC;
+	</select>
+
+<!-- 	전체목록 버튼 -->
+	<select id="ListHosUser" resultType="hospital">
+	SELECT *
+		FROM hospital
+		WHERE
+		hos_role = 'Y'
+		AND hos_del = 'N'
+	ORDER BY hos_name DESC;
+	</select>
+
+
+	<select id="revHighStar" resultType="hospital">
+		SELECT * FROM hospital ORDER BY hos_star DESC;
+	</select>
+	
+	<select id="getManyRevHos" resultType="hospital">
+		SELECT h.*, COUNT(r.rev_hos_id) AS review_count
+		FROM hospital h
+		LEFT JOIN review r ON h.hos_id = r.rev_hos_id
+		GROUP BY h.hos_id
+		ORDER BY review_count DESC;
+	</select>
+
+ <select id="getHosInfo1" resultType="hospital">
+    select * from hospital where hos_id = #{hos_id} and hos_role='Y'
+    </select>
+    
+<select id="checkPhone" resultType="hospital">
+select * from hospital where HOS_TEL = #{hos_tel}
+</select>
+	
+<select id="checkId" resultType="hospital">
+		select * from hospital where
+		HOS_ID = #{hos_id}
+	</select>
+
+	
+    <select id="getAllLocations" resultType="hospital">
+        SELECT * FROM hospital 
+        WHERE 
+        hos_name LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_addr LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_addr2 LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_addr3 LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_addr4 LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_cate LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_tel LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_hol LIKE CONCAT('%', #{searchKeyword}, '%')
+        and hos_star LIKE CONCAT('%', #{searchKeyword}, '%')
+        <if test="searchCondition.equals('별점높은순')">order by hos_star desc</if>
+        <if test="searchCondition.equals('가격낮은순')">order by hos_price asc</if>
+    </select>
+
+	<!-- 20230519 - 관리자 메인 최신 병원 가입 현황 -->
+	<select id="adminMainRecentJoinHospital" resultType="hospital">
+		SELECT *
+		FROM HOSPITAL ORDER BY HOS_NEW_DATE DESC LIMIT 5
+	</select>
+
+	<select id="checkPhone1" resultType="hospital">
+		select * from hospital where HOS_TEL = ${hos_tel}
+	</select>
+	
+	<!-- 병원정보가 삭제되면(deletewaitingHospital) 유저테이블의 찜컬럼 5개에 해당하는 병원 아이디가 있을 경우 null로 변경해줌 )-->
+	<update id="delHosZzim">
+	UPDATE users
+	SET 
+	  users_pick1 = CASE WHEN users_pick1 = 'haenhos' THEN NULL ELSE users_pick1 END,
+	  users_pick2 = CASE WHEN users_pick2 = 'haenhos' THEN NULL ELSE users_pick2 END,
+	  users_pick3 = CASE WHEN users_pick3 = 'haenhos' THEN NULL ELSE users_pick3 END,
+	  users_pick4 = CASE WHEN users_pick4 = 'haenhos' THEN NULL ELSE users_pick4 END,
+	  users_pick5 = CASE WHEN users_pick5 = 'haenhos' THEN NULL ELSE users_pick5 END;
+	</update>
+	
+	<!-- 수빈유지보수 병원목록 리스트 갯수 가져오기 -->
+	<select id="adminHosListCount" resultType="_int">
+	SELECT COUNT(*) FROM HOSPITAL WHERE hos_role="Y"
+	<if test="searchCondition == '아이디' ">AND hos_id LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+	<if test="searchCondition == '병원명' ">AND hos_name LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+	</select>
+	
+	<!-- 수빈유지보수 (병원 수정 시 이미지 변경 없을 때 대비 -->
+	<select id="adminHosPic" resultType="hospital">
+	SELECT HOS_PIC FROM HOSPITAL WHERE hos_id=#{hos_id}
+	</select>
+
+<select id="checkEmail" resultType="hospital">
+		select * from hospital where HOS_EMAIL = #{hos_email} and HOS_EMAIL2 = #{hos_email2}
+	</select>	
+
+
+<select id="checkDupEmail1" resultType="hospital">
+		select * from hospital where HOS_EMAIL = #{hos_email} and HOS_EMAIL2 = #{hos_email2}
+	</select>
+	
+<!-- 메인 베스트병원 더보기버튼으로 목록가져오기 (예약 많은 순)  -->
+	<select id="getBestHosList" resultType="hospital">
+		SELECT COALESCE(R.counts, 0) AS counts, H.*
+		FROM HOSPITAL AS H
+		LEFT JOIN (
+			SELECT RES_HOS_ID, COUNT(*) AS counts
+		    FROM reserve
+		    WHERE RES_CANCEL = 'N'
+		    GROUP BY RES_HOS_ID
+		) AS R ON R.RES_HOS_ID = H.HOS_ID
+		WHERE H.HOS_ROLE = 'Y' AND H.HOS_DEL = 'N'
+		ORDER BY counts DESC;
+   </select>
+</mapper>

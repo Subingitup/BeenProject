@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+/* 마이펫 발바닥 선택 시 색 변경 */
+#mypetlist {
+	background-color: white;
+	color:#fbbc04;}
+
+/* 정보 조회 버튼 ,삭제 버튼*/
+.pet-btn {
+	border: solid 4px #008a41;
+/* 	border: solid 2px #008a41; */
+	background-color:#008a41;
+	color: white;
+	border-radius: 24px;
+	padding:10px 16px;
+	width: 80%;
+	}
+	
+.h3 {
+margin:0 auto;
+text-align:center;
+margin-top:50px;}
+
+.pet-btn:hover {
+	background-color:white;
+	color: #008a41;
+	border: solid 4px #008a41;
+/* 	border: solid 2px #008a41; */
+	border-radius: 24px;
+	padding:10px 16px;
+	}
+
+
+/* 등록 버튼 */
+.pet-insert-btn {
+	background-color: #008a41;
+    color: white;
+    border: solid 4px #008a41;
+/*     border: solid 2px #008a41; */
+    width: 70%;
+    padding: 10px 16px;
+    border-radius: 24px;
+}
+
+.pet-insert-btn:hover {
+	background-color: white;
+    color: #008a41;
+    border: solid 4px #008a41;
+/*     border: solid 2px #008a41; */
+    width: 70%;
+    padding: 10px 16px;
+    border-radius: 24px;
+}
+
+
+#row {
+  	display: flex;
+  	align-items: center;
+  	margin-top:50px;
+  	border:none;
+  	background-color:white;
+  	border-radius:25px;
+   	transition: transform 0.3s ease;
+   	text-align:center;
+   	font-family: 'SUIT-Regular';
+    box-shadow: 0 .1rem 2rem rgba(0,0,0,.08) !important;
+}
+
+.div-btn-mypets {
+	text-align:center;
+	margin:50px;
+}
+
+#row:hover {
+  transform: translateY(-5px);
+}
+
+#row > div {
+  display: inline-block;
+  vertical-align: middle;
+  margin:0 auto;
+  width:700px;
+  padding:8px;
+  color:gray;
+}
+
+.pet-btn:active, .pet-btn:focus , .pet-insert-btn:active, .pet-insert-btn:focus {
+	outline:none !important;
+	box-shadow:none !important;}
+
+
+
+/* 기본이미지크기 */
+img {
+
+	width:70px;
+	border-radius:50px;
+	border:1px solid #ededed;
+}
+
+.img {width:80px;}
+
+.petslist {
+
+width:768px;}
+
+.div-petslist {
+display:none;}
+
+.btn-petslist:active, .btn-petslist:focus{
+outline:none !important;
+box-shadow:none !important;}
+
+@media screen and (max-width:599px) {
+/* 스마트폰 세로 */
+
+
+.div-title {
+
+width:250px;
+margin:0 auto;}
+
+.handDivR ,.oneDivR circleDiv ,.twoDivR circleDiv,.threeDivR circleDiv {
+
+background-color: #674ea7;
+color: #674ea7; }
+
+.circleDiv {background-color: #674ea7;
+color: #674ea7; }
+
+.col-md-8 leftDiv {
+margin:0 auto;
+}
+
+.div-petslist {
+display:block;} 
+.col-6.col-xs-6.col-sm-2.col-xs-btn {
+    padding: 10px !important;
+  }
+}

@@ -1,0 +1,226 @@
+@charset "UTF-8";
+
+#reporth3 {
+	border-bottom: 2px solid #006940ff;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: left;
+	margin-left: 444px;
+	padding-top: 50px;
+	margin-bottom: 4%;
+	margin-top: 5%;
+	padding-bottom: 10px;
+	font-size: 1.75rem;
+	width: 46%;
+}
+
+.form-control:disabled, .form-control[readonly] {
+	background-color: #ffff;
+	opacity: 1;
+}
+
+#reportDetailContainer {
+	padding-bottom: 10%;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+button#allrpbtn1 {
+	background-color: #008a41;
+	color: white;
+	border-top-left-radius: 24px;
+	border-bottom-left-radius: 24px;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
+	border: solid 2px #008a41;
+	padding: 5px 10px;
+	display: flex;
+	margin-bottom: 8px;
+	margin-top: 15px;
+	margin-left: 45%;
+	outline: none;
+}
+
+button#allrpbtn1:hover {
+	background-color: white;
+	border: 0;
+	color: #008a41;
+	border-top-left-radius: 24px;
+	border-bottom-left-radius: 24px;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
+	border: solid 2px #008a41;
+	padding: 5px 10px;
+	text-align: left;
+	margin-bottom: 8px;
+	margin-top: 15px;
+	margin-left: 45%;
+	outline: none;
+}
+
+button#allrpbtn2 {
+	background-color: #008a41;
+	color: white;
+	border-top-left-radius: 24px;
+	border-bottom-left-radius: 24px;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
+	border: solid 2px #008a41;
+	padding: 5px 10px;
+	display: flex;
+	margin-bottom: 8px;
+	margin-top: 15px;
+	outline: none;
+}
+
+button#allrpbtn2:hover {
+	background-color: white;
+	color: #008a41;
+	border-top-left-radius: 24px;
+	border-bottom-left-radius: 24px;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
+	border: solid 2px #008a41;
+	padding: 5px 10px;
+	text-align: left;
+	margin-bottom: 8px;
+	margin-top: 15px;
+	outline: none;
+}
+
+.innm {
+	width: 412px;
+	height: auto;
+	border-right: solid 1px #006940ff;
+	border-bottom: solid 1px #006940ff;
+}
+
+/* 모달 스타일 */
+.modal-dialog {
+	z-index: 9999;
+}
+
+.innm1 {
+	width: 412px;
+	height: auto;
+	border-top: solid 1px #006940ff;
+	border-right: solid 1px #006940ff;
+}
+
+.innm2 {
+	width: 412px;
+	height: auto;
+	border-bottom: solid 1px #006940ff;
+	border-right: solid 1px #006940ff;
+}
+
+.rev_pic_text {
+	margin-top: 10px;
+	margin-left: 20px;
+	font-size: 0.9em;
+}
+
+#reportDetailContainer {
+	padding-bottom: 10%;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+#reportDtail {
+	text-align: center;
+	max-width: 70%;
+	margin-right: 20px;
+}
+
+.input-group-text.reportDtail_span {
+	padding: 0.375rem 1.5rem;
+	width: 155px;
+	font-size: 0.9em;
+	font-weight: 400;
+	line-height: 2.5;
+	color: #ffff;
+	background-color: #006940ff;
+	border-bottom: 1px solid #ced4da;
+	border-radius: 0;
+}
+
+.input-group-text.reportDtail_span1 {
+	padding: 0.375rem 1.5rem;
+	width: 155px;
+	font-size: 0.9em;
+	font-weight: 400;
+	line-height: 2.5;
+	color: #ffff;
+	background-color: #006940ff;
+	border-top: solid 1px #006940ff;
+	border-left: solid 1px #006940ff;
+	border-radius: 0;
+}
+
+.input-group-text.reportDtail_span2 {
+	padding: 0.375rem 1.5rem;
+	width: 155px;
+	font-size: 0.9em;
+	font-weight: 400;
+	line-height: 2.5;
+	color: #ffff;
+	background-color: #006940ff;
+	border-bottom: solid 1px #006940ff;
+	border-left: solid 1px #006940ff;
+	border-radius: 0;
+}
+
+.form-control {
+	padding: 0.375rem 0.375rem 0.375rem 1.5rem;
+	width: 50px;
+	height: 50px;
+	font-size: 0.9em;
+	color: #000;
+	background-color: #fff;
+	border-bottom: 1px solid #006940ff;
+	border-radius: 0;
+}
+
+#rev_content {
+	height: 150px;
+	resize: none;
+	width: 283px;
+	margin-top: auto;
+}
+
+#rev_info {
+	height: 150px;
+	resize: none; /* 크기고정 */
+	margin-top: auto;
+}
+
+/* 모달버튼 */
+#rejectReport, #deleteReport, #closeReport,
+#rejectReport:hover, #deleteReport:hover {
+	border-top-left-radius: 24px;
+	border-bottom-left-radius: 24px;
+	border-top-right-radius: 24px;
+	border-bottom-right-radius: 24px;
+	padding: 5px 10px;
+	display: flex;
+	outline: none;
+}
+
+#rejectReport, #deleteReport {
+	background-color: #008a41;
+	color: white;
+	border: solid 2px #008a41;
+}
+
+#rejectReport:hover, #deleteReport:hover {
+	background-color: white;
+	color: #008a41;
+	border: solid 2px #008a41;
+}
+
+#closeReport {
+	background-color: red;
+	color: white;
+	border: solid 2px red;
+}

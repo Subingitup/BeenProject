@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reviewDAO">
+
+	<resultMap type="review" id="reviewMap">
+		<id property="rev_hos_seq" column="REV_HOS_SEQ" /> <!-- PK 있는 컬럼에 쓰임 -->
+		<result property="rev_title" column="REV_TITLE" />
+		<result property="rev_userid" column="REV_USERID" />
+		<result property="rev_content" column="REV_CONTENT" />
+		<result property="rev_date" column="REV_DATE" />
+		<result property="rev_up" column="REV_UP" />
+		<result property="rev_star" column="REV_STAR" />
+		<result property="rev_pic" column="REV_PIC" />
+		<result property="rev_req" column="REV_REQ" />
+		<result property="rev_info" column="REV_INFO" />
+		<result property="rev_res_date" column="REV_RES_DATE" />
+		<result property="rev_res_time" column="REV_RES_TIME" />
+		<result property="rev_res_seq" column="REV_RES_SEQ" />
+		<result property="rev_hos_id" column="REV_HOS_ID" />
+	</resultMap>
+
+
+
+	<insert id="insertReview">
+		INSERT INTO REVIEW (REV_HOS_SEQ, REV_TITLE, REV_USERID, REV_CONTENT,
+		REV_DATE, REV_UP, REV_STAR, REV_PIC, REV_REQ, REV_INFO, REV_RES_DATE,
+		REV_RES_TIME, REV_RES_SEQ, REV_HOS_ID)
+		VALUES (default, #{rev_title}, #{rev_userid}, #{rev_content}, CURDATE(), 0,
+		#{rev_star}, #{rev_pic}, 'B', null,
+		(select RES_DATE from reserve where res_seq = #{res_seq}),
+		(select RES_TIME
+		from reserve where res_seq = #{res_seq}),
+		(select RES_SEQ from reserve
+		where res_seq = #{res_seq}),
+		(select RES_HOS_ID from reserve where
+		res_seq = #{res_seq})
+
+		);
+	</insert>
+
+	<update id="updHosStar">
+		UPDATE hospital
+		SET hos_star = (
+		SELECT AVG(rev_star)
+		FROM review, hospital, reserve
+		WHERE RES_HOS_ID = (
+		SELECT RES_HOS_ID
+		FROM reserve
+		WHERE res_seq = #{res_seq}
+		)
+		)
+		WHERE hos_id = (
+		SELECT RES_HOS_ID
+		FROM reserve
+		WHERE res_seq = #{res_seq}
+		);
+
+	</update>
+
+
+	<update id="updateReview">
+		UPDATE review
+		SET
+		rev_title=#{rev_title},
+		rev_userid=#{rev_userid},
+		rev_content=#{rev_content},
+		rev_star=#{rev_star},
+		rev_pic=#{rev_pic}
+		WHERE
+		rev_hos_seq = #{rev_hos_seq}
+	</update>
+
+	<!-- 마이페이지 리뷰삭제 -->
+	<delete id="deleteReview">
+		DELETE FROM review WHERE rev_hos_seq = #{rev_hos_seq}
+	</delete>
+	<!-- 병원상세페이지 리뷰삭제처리(hidden) -->
+	<update id="updateDelReview">
+		update FROM review set rev_req='Y' WHERE rev_hos_seq
+		= #{rev_hos_seq}
+	</update>
+
+	<!-- 리뷰쓰기 정보불러오기 -->
+	<select id="getReserveInfo" resultType="review">
+		SELECT reserve.*,
+		hospital.hos_name FROM reserve, hospital
+		WHERE NOT EXISTS (SELECT * FROM review WHERE reserve.res_seq =
+		review.REV_RES_SEQ )
+		AND reserve.RES_HOS_ID = hospital.HOS_ID
+		and now() > reserve.res_date
+		AND reserve.RES_USERS_ID = #{rev_userid};
+	</select>
+
+	<!-- 일반회원 리뷰 상세보기 -->
+	<select id="getReview" resultType="review">
+		SELECT review.*, reserve.*, hospital.* from review, reserve,
+		hospital
+		where REVIEW.REV_USERID = RESERVE.RES_USERS_ID and REVIEW.rev_res_date =
+		RESERVE.res_date
+		and REVIEW.rev_res_time = RESERVE.res_time and HOSPITAL.HOS_ID =
+		RESERVE.RES_HOS_ID AND review.rev_hos_seq = #{rev_hos_seq};
+	</select>
+
+	<!-- [전체유저]-리뷰목록조회 -->
+	<select id="getReviewList" resultType="review">
+		SELECT review.*,
+		reserve.*, hospital.hos_name
+		from review, reserve, hospital
+		where RESERVE.RES_USERS_ID = REVIEW.REV_USERID
+		and REVIEW.rev_res_date = RESERVE.res_date
+		and REVIEW.rev_res_time = RESERVE.res_time
+		and HOSPITAL.HOS_ID = RESERVE.RES_HOS_ID
+		and RESERVE.RES_CANCEL = 'N'
+		and (REVIEW.REV_REQ = 'B'
+		or REVIEW.REV_REQ = 'C')
+		ORDER BY
+		REV_HOS_SEQ DESC;
+	</select>
+
+	<!-- [전체유저] 리뷰검색 -->
+	<select id="getMyRevList" resultType="review">
+		SELECT review.*, reserve.*, hospital.hos_name
+		from review, reserve, hospital
+		where RESERVE.RES_USERS_ID = REVIEW.REV_USERID
+		and REVIEW.rev_res_date =
+		RESERVE.res_date
+		and REVIEW.rev_res_time = RESERVE.res_time
+		and HOSPITAL.HOS_ID = RESERVE.RES_HOS_ID
+		AND RESERVE.RES_CANCEL = 'N'
+		and (REVIEW.REV_REQ = 'B'
+		or REVIEW.REV_REQ = 'C')
+		<if test="searchCondition == 'rev_name' ">AND REVIEW.REV_TITLE LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		<if test="searchCondition == 'rev_star' ">AND REVIEW.REV_STAR LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		<if test="searchCondition == 'hos_name' ">AND HOSPITAL.HOS_NAME LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		ORDER BY REV_HOS_SEQ DESC;
+	</select>
+	
+	<!-- [마이페이지] 리뷰검색 -->
+	<select id="searchMyRevList" resultType="review">
+		SELECT review.*, reserve.*, hospital.hos_name
+		from review, reserve, hospital
+		where RESERVE.RES_USERS_ID = #{rev_userid}
+		and review.rev_userid =
+		#{rev_userid}
+		and REVIEW.rev_res_date = RESERVE.res_date
+		and REVIEW.rev_res_time = RESERVE.res_time
+		and HOSPITAL.HOS_ID = RESERVE.RES_HOS_ID
+		AND RESERVE.RES_CANCEL = 'N'
+		and (REVIEW.REV_REQ = 'B'
+		or REVIEW.REV_REQ = 'C')
+		<if test="searchCondition == 'rev_name' ">AND REVIEW.REV_TITLE LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		<if test="searchCondition == 'rev_star' ">AND REVIEW.REV_STAR LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		<if test="searchCondition == 'hos_name' ">AND HOSPITAL.HOS_NAME LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		ORDER BY REV_HOS_SEQ DESC;
+	</select>
+
+	<!-- [병원] 리뷰검색 -->
+	<select id="searchHosRevList" resultType="review">
+		SELECT review.*, reserve.*, hospital.hos_name
+		from review, reserve, hospital
+		where RESERVE.res_hos_id = #{rev_hos_id}
+		and review.rev_hos_id =
+		#{rev_hos_id}
+		and REVIEW.rev_res_date = RESERVE.res_date
+		and REVIEW.rev_res_time = RESERVE.res_time
+		and HOSPITAL.HOS_ID = RESERVE.RES_HOS_ID
+		AND RESERVE.RES_CANCEL = 'N'
+		and (REVIEW.REV_REQ = 'B'
+		or REVIEW.REV_REQ = 'C')
+		<if test="searchCondition == 'rev_name' ">AND REVIEW.REV_TITLE LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		<if test="searchCondition == 'rev_star' ">AND REVIEW.REV_STAR LIKE CONCAT('%', #{searchKeyword},
+			'%')</if>
+		ORDER BY REV_HOS_SEQ DESC;
+	</select>
+
+	<!-- [유저] 마이페이지-리뷰목록조회 -->
+	<select id="getMyReviewPostList" resultType="review">
+		SELECT review.*,
+		reserve.*, hospital.hos_name
+		from review, reserve, hospital
+		where RESERVE.RES_USERS_ID = #{rev_userid}
+		and REVIEW.rev_userid =
+		#{rev_userid}
+		and REVIEW.rev_res_date = RESERVE.res_date
+		and REVIEW.rev_res_time = RESERVE.res_time
+		and HOSPITAL.HOS_ID = RESERVE.RES_HOS_ID
+		AND RESERVE.RES_CANCEL = 'N'
+		ORDER BY REV_HOS_SEQ DESC;
+	</select>
+
+
+	<!-- [관리자] 회원 리뷰 목록 -->
+	<select id="adminUserReview" resultType="review">
+		select * from review where 1=1
+		<if
+			test="searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND REV_DATE BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}</if>
+		AND REV_USERID = #{users_id}
+		ORDER BY REV_HOS_SEQ DESC LIMIT
+		#{start},10
+	</select>
+
+	<!-- [관리자] 회원 리뷰 갯수 -->
+	<select id="adminUserReviewListCount" resultType="_int">
+		select count(*) from review r where 1=1
+		<if
+			test="searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND REV_DATE BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}</if>
+		AND REV_USERID = #{users_id}
+	</select>
+
+
+	<!-- 관리자)신고리뷰접수글 반려 -->
+	<update id="updateReport_reject">
+		update review set rev_req="C" where rev_hos_seq =
+		#{rev_hos_seq};
+	</update>
+
+	<!-- 관리자)신고리뷰 삭제 -->
+	<update id="updateReport_delete">
+		update review set rev_req="Y" where rev_hos_seq =
+		#{rev_hos_seq};
+	</update>
+
+	<!-- 관리자)신고리뷰 상세 조회 -->
+	<select id="getReport" resultType="review">
+		select r.*,
+		h.hos_name
+		from review r, hospital h
+		where r.rev_hos_id =
+		h.hos_id and
+		r.rev_hos_seq =
+		#{rev_hos_seq};
+	</select>
+
+
+	<!-- 230521 소미 수정 -->
+	<!-- 관리자)신고리뷰 조회 -->
+	<select id="getReportReview1" resultType="review">
+		select r.rev_userid,
+		r.rev_hos_seq, r.rev_title, h.hos_name, r.rev_res_date,
+		r.rev_res_time, r.rev_req, r.rev_star, r.rev_info, r.rev_pic
+		from
+		review r, hospital h
+		where r.rev_hos_id = h.hos_id and
+		r.rev_hos_seq=#{rev_hos_seq};
+	</select>
+	<!-- 230521 소미 수정 끝 -->
+
+
+
+	<!-- 관리자)신고리뷰 전체목록 조회 -->
+	<select id="getReportList"
+		resultType="com.spring.pet.review.ReviewVO">
+		select r.rev_hos_seq, h.hos_name, r.rev_date, r.rev_req
+		from review r,
+		hospital h
+		where (r.rev_hos_id = h.hos_id and r.rev_req in ("N", "Y",
+		"C"))
+
+		<if test="searchCondition == 'HOS_NAME' "> AND H.HOS_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+
+	<select id="getRev" resultMap="reviewMap">
+		SELECT * FROM review WHERE rev_hos_id = #{rev_hos_id}
+	</select>
+
+
+	<select id="getRevList" resultMap="reviewMap">
+		SELECT * FROM review WHERE rev_hos_id = #{rev_hos_id}  order by rev_star asc
+	</select>
+
+	<select id="reviewUp" resultType="_int">
+		SELECT count(*) FROM thumbsup WHERE up_users_id = #{users_id} AND
+		up_rev_usersid = #{rev_userid};
+	</select>
+
+	<update id="reviewUpUpdate">
+		update review set rev_up = 1+(select rev_up from
+		review where rev_hos_seq = #{rev_hos_seq}) where rev_hos_seq =
+		#{rev_hos_seq};
+	</update>
+	<insert id="reviewUpInsert">
+		INSERT INTO thumbsup (UP_REV_SEQ, UP_USERS_ID, UP_REV_USERSID) VALUES
+		(#{rev_hos_seq}, #{users_id}, #{rev_userid});
+	</insert>
+	<update id="reviewUpUpdateDel">
+		update review set rev_up = (select rev_up from review
+		where rev_hos_seq = #{rev_hos_seq})-1 where rev_hos_seq =
+		#{rev_hos_seq};
+	</update>
+	<delete id="reviewUpDelete">
+		DELETE FROM thumbsup WHERE up_rev_seq = #{rev_hos_seq} and up_users_id =
+		#{users_id} and up_rev_usersid = #{rev_userid};
+	</delete>
+
+	<update id="reportReviewHos">
+	 	update review set rev_info = #{rev_info}, rev_req = "N" where REV_HOS_SEQ = #{rev_hos_seq}
+	</update>
+
+
+	<!-- 수빈유지보수 -->
+	<select id="hosDetailReviewDetail" resultType="review">
+		select * from review where REV_HOS_SEQ = #{rev_hos_seq}
+	</select>
+
+
+<!-- 병원회원 리뷰 상세보기 -->
+	  <select id="hosGetReviewDetails" resultType="review">
+      SELECT review.*, reserve.*, hospital.* from review, reserve,
+      hospital
+      where REVIEW.REV_USERID = RESERVE.RES_USERS_ID and REVIEW.rev_res_date = RESERVE.res_date
+      and REVIEW.rev_res_time = RESERVE.res_time and HOSPITAL.HOS_ID =  RESERVE.RES_HOS_ID
+      AND review.rev_hos_seq = #{rev_hos_seq};
+   </select>
+</mapper>

@@ -1,0 +1,1042 @@
+@charset "UTF-8";
+
+/* 태블릿에 대한 스타일 정의 시작~ */
+@media all and (max-width:992px) {
+		.main_contentsDiv3 {
+		height: 500px;
+		width: 100%
+	}
+}
+@media all and (max-width:425px) {
+		.main_contentsDiv3 {
+		height: 300px;
+		width: 100%
+	}
+}
+
+@media all and (min-width:768px) and (max-width:1500px) {
+	.visualbox {
+		position: static;
+	}
+	.visualbox .group {
+		width: 50%;
+		height: 220px;
+		margin: 0;
+		padding: 20px 15px 0;
+		border-radius: 0;
+		background-image: none;
+	}
+	.visualbox .reserve-absolute, .visualbox .hospital-absolute {
+		text-align: center;
+	}
+	
+	.layout {
+		position: relative;
+		max-width: 100%;
+		padding: 0 35px;
+	}
+	
+	.main_contentsDiv1, .main_contentsDiv2, .main_contentsDiv3 {
+		padding: 30px 10px 30px 10px;
+	}
+	
+	.main_notice_h4, .main_hospital_h4 {
+		font-weight: bold;
+		width: 100%;
+	}
+	.main_contents {
+		border: none;
+		border-left: none;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	#notice_plus, #hospital_plus, #youtube_plus {
+		display: flex;
+		justify-content: end;
+		text-decoration: none;
+	}
+	.notice_a, .hospital_a {
+		border-right: none;
+		font-size: 15px;
+		color: black;
+		text-decoration: none;
+		margin-left: 15px;
+	}
+	.notice_a:hover, .hospital_a:hover {
+		font-size: 15.5px;
+		color: black;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	.day_span, .h_ranking {
+		font-weight: bold;
+		font-size: 1.3em;
+	}
+	#main_Allcontainer {
+		width: 100%;
+/* 		margin-top: 35%; */
+/* 		margin-bottom: 7%; */
+		text-align: left;
+	}
+	.main_hospital_container {
+		display: flex; /*중앙정렬*/
+		width: 90%;
+		align-items: center; /*중앙정렬*/
+		height: 100px;
+		text-align: left;
+		border-bottom: 1px solid lavender;
+		box-sizing: border-box;
+		margin-left: 8px;
+		align-items: center;
+	}
+	.main_notice_container {
+		display: flex; /*중앙정렬*/
+		width: 90%;
+		align-items: center; /*중앙정렬*/
+		height: 100px;
+		text-align: left;
+		border-bottom: 1px solid lavender;
+		box-sizing: border-box;
+		align-items: center;
+	}
+	em.emm {
+		display: flex;
+		justify-content: end;
+		font-size: 0.7em;
+	}
+	.main_notice_more, .main_hospital_more, .main_youtube_more {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		border-bottom: 3px solid black;
+		padding-bottom: 15px;
+	}
+	.main_notice_p, .main_hospital_p, .main_youtube_p {
+		margin-right: 10px; /* p와 a 태그 사이에 10px의 공백 추가 */
+		font-size: 1.3em;
+		font-weight: bolder;
+	}
+	#notice_plus, #hospital_plus,#youtube_plus {
+		margin-left: auto; /* a 태그를 줄의 맨 오른쪽으로 정렬 */
+		color: #006940ff;
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	/* 메인 캐러셀 시작 */
+	#maincarousel {
+		width: 100%;
+		display: inline-block;
+	}
+	.maincarousel-item {
+		position: relative;
+		opacity: 0;
+		transition: opacity 0ms ease 0s, transform 0ms ease 0s;
+	}
+	.maincarousel-item.active {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	.maincarousel-inner img {
+		width: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+	
+	.maincarousel-control-prev, .maincarousel-control-next {
+		top: calc(50% - 1rem);
+	}
+
+	/* 메인 캐러셀 글씨 */
+	.maincarousel-caption {
+		position: static;
+		width: 100%;
+		padding: 20px;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	.carousel-text {
+		display: inline-block;
+		position: relative;
+		line-height: 3;
+		font-size: 20px;
+		font-family: 'gmarket';
+		font-weight: normal;
+		color: #222222b5;
+	}
+	span.carousel-text1, .carousel-text2 {
+		display: inline-block;
+		position: relative;
+		line-height: 1.4;
+		font-size: 28px;
+		font-family: 'gmarket';
+		font-weight: normal;
+		color: #222;
+		font-weight: 520;
+	}
+
+	/* 중간 text 마커 */
+	span.carousel-text1:before {
+		display: block;
+		position: absolute;
+		left: -5px;
+		right: -5px;
+		bottom: -1px;
+		z-index: -1;
+		content: '';
+		width: auto;
+		height: 18px;
+		background: #e8f2dd;
+	}
+
+	/* 캐러셀 text 애니메이션 시작*/
+	.carousel-item.maincarousel-item {
+		position: relative;
+	}
+	.carousel-text {
+		position: relative;
+		animation: fadeIn 1s ease-in forwards;
+		opacity: 0;
+	}
+	.carousel-text1 {
+		position: relative;
+		animation: fadeIn 1s ease-in forwards;
+		opacity: 0;
+		animation-delay: 1s; /* 애니메이션 시작 지연 시간 설정 */
+	}
+	.carousel-text2 {
+		position: relative;
+		animation: fadeIn 1s ease-in forwards;
+		opacity: 0;
+		animation-delay: 2s; /* 애니메이션 시작 지연 시간 설정 */
+	}
+	@keyframes fadeIn {
+	  0% {
+	    opacity: 0;
+	  }
+	  100% {
+	    opacity: 1;
+	  }
+	}
+	/* 캐러셀 text 애니메이션 끝 */
+
+
+
+	/* 캐러셀 병원등록 */
+	
+	.maincarousel-indicators,.carousel-indicators {
+		display: none;
+	}
+	
+	.carousel-container {
+		position: relative;
+	}
+	
+	.hospital-absolute {
+		float:left;
+		background-color: #016A41;
+	}
+	
+	.hospital-absolute-h4 {
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		font-size: 1.5rem;
+	}
+	
+	.hospital-absolute-btn {
+		text-align: center;
+	}
+	
+	.hospital-absolute-btn1 {
+	    background-color: #00472C;
+	    border: solid 2px #00472C;
+	    color: white;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    padding-left: 80px;
+	    padding-right: 80px;
+	    margin-bottom: 15px;
+	    margin-top: 10px;
+	}
+	
+	.hospital-absolute-btn1:hover {
+		background-color: white;
+		border: solid 2px white;
+		color: #036230;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 80px;
+		padding-right: 80px;
+	}
+	
+	.hospital-absolute-span {
+		color: #96c4b2;
+		text-align: center;
+		font-size: 0.9em;
+	}
+	
+	.hospital-absolute-span:before {
+		border-top: solid 1px #96c4b2;
+		content: "";
+		display: block;
+		margin-bottom: 10px;
+	}
+	
+	
+	/* 캐러셀 예약등록*/
+	.reserve-absolute {
+		float:right;
+		background-color: #7EC243;
+	}
+	
+	.reserve-absolute-h4 {
+	    color: black;
+	    font-weight: bold;
+	    text-align: center;
+	    font-size: 1.5rem;
+	}
+	
+	.reserve-absolute-btn {
+		text-align: center;
+	}
+	
+	#r-btn-img1, #r-btn-img2 {
+		width: 70px;
+		height: auto;
+	}
+	
+	#r-btn-img3 {
+		width: 70px;
+		height: auto;
+	}
+	
+	.r-span1, .r-span2 {
+		font-size: 1em;
+		color: black;
+	}
+	
+	.r-span1 {
+		margin-right: 10px;
+	}
+	
+	
+	.reserve-absolute-span {
+	  display: flex;
+	  align-items: center;
+	}
+	
+	.main-faq-span,.main-faq-span3 {
+		font-size: 0.95em;
+	}
+	
+	.main-faq-span2 {
+		font-size: 1em;
+		font-weight: bold;
+		color: black;
+	}
+	
+	.main-faq-span2:hover {
+		font-size: 1em;
+		font-weight: bold;
+		color: white;
+	}
+	
+		}
+/* ~태블릿에 대한 스타일 정의 끝*/
+
+
+
+/* 모바일에 대한 스타일 정의 시작~*/
+@media all and (max-width:767px) {
+	
+  .visualbox {
+		position: static;
+	}
+	.visualbox .group {
+		height: 140px;
+		margin: 0;
+		padding: 10px 10px 0;
+		border-radius: 0;
+		background-image: none;
+	}
+	.visualbox .reserve-absolute {
+		text-align: center;
+	}
+	.main_contentsDiv1, .main_contentsDiv2, .main_contentsDiv3 {
+		padding: 30px 30px;
+    	text-align: center;
+	}
+	.main_notice_h4, .main_hospital_h4 {
+		font-weight: bold;
+		width: 100%;
+	}
+	.main_contents {
+		border: none;
+		border-left: none;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	#notice_plus, #hospital_plus,#youtube_plus {
+		display: flex;
+		justify-content: end;
+		text-decoration: none;
+	}
+	.notice_a, .hospital_a {
+		border-right: none;
+		font-size: 15px;
+		color: black;
+		text-decoration: none;
+		margin-left: 15px;
+	}
+	.notice_a:hover, .hospital_a:hover {
+		font-size: 15.5px;
+		color: black;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	.day_span, .h_ranking {
+		font-weight: bold;
+		font-size: 1.3em;
+	}
+	#main_Allcontainer {
+		width: 100%;
+		margin-top: 25%;
+		margin-bottom: 7%;
+		text-align: left;
+	}
+	.main_hospital_container {
+		display: flex; /*중앙정렬*/
+		width: 90%;
+		align-items: center; /*중앙정렬*/
+		height: 100px;
+		text-align: left;
+		border-bottom: 1px solid lavender;
+		box-sizing: border-box;
+		margin-left: 8px;
+		align-items: center;
+	}
+	.main_notice_container {
+		display: flex; /*중앙정렬*/
+		width: 90%;
+		align-items: center; /*중앙정렬*/
+		height: 100px;
+		text-align: left;
+		border-bottom: 1px solid lavender;
+		box-sizing: border-box;
+		align-items: center;
+	}
+	em.emm {
+		display: flex;
+		justify-content: end;
+		font-size: 0.7em;
+	}
+	.main_notice_more, .main_hospital_more,.main_youtube_more {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		border-bottom: 3px solid black;
+		padding-bottom: 15px;
+	}
+	.main_notice_p, .main_hospital_p, .main_youtube_p {
+		margin-right: 10px; /* p와 a 태그 사이에 10px의 공백 추가 */
+		font-size: 1.3em;
+		font-weight: bolder;
+	}
+	
+	#notice_plus, #hospital_plus,#youtube_plus {
+		margin-left: auto; /* a 태그를 줄의 맨 오른쪽으로 정렬 */
+		color: #006940ff;
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	/* 메인 캐러셀 시작 */
+	#maincarousel {
+		width: 100%;
+		display: inline-block;
+	}
+	.maincarousel-item {
+		position: relative;
+		opacity: 0;
+		transition: opacity 0ms ease 0s, transform 0ms ease 0s;
+	}
+	.maincarousel-item.active {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	.maincarousel-inner img {
+		margin: 0; 
+		height: 190px;
+		width: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+	.maincarousel-indicators {
+		bottom: 0;
+	}
+	.maincarousel-control-prev, .maincarousel-control-next {
+		top: calc(50% - 1rem);
+	}
+
+	/* 메인 캐러셀 글씨 */
+	.maincarousel-caption {
+		position: static;
+		width: 100%;
+		padding: 20px;
+		text-align: center;
+	}
+	.carousel-text {
+		display: inline-block;
+		position: relative;
+		line-height: 3;
+		font-size: 16px;
+		font-family: 'gmarket';
+		font-weight: normal;
+		color: #222222b5;
+	}
+	span.carousel-text1, .carousel-text2 {
+		display: inline-block;
+		position: relative;
+		line-height: 1.4;
+		font-size: 21px;
+		font-family: 'gmarket';
+		font-weight: normal;
+		color: #222;
+		font-weight: 520;
+	}
+
+	/* 중간 text 마커 */
+	span.carousel-text1:before {
+		display: block;
+		position: absolute;
+		left: -5px;
+		right: -5px;
+		bottom: -1px;
+		z-index: -1;
+		content: '';
+		width: auto;
+		height: 18px;
+		background: #e8f2dd;
+	}
+
+	/* 캐러셀 text 애니메이션 시작*/
+	.carousel-item.maincarousel-item {
+		position: relative;
+	}
+	.carousel-text {
+		position: relative;
+		animation: fadeIn 1s ease-in forwards;
+		opacity: 0;
+	}
+	.carousel-text1 {
+		position: relative;
+		animation: fadeIn 1s ease-in forwards;
+		opacity: 0;
+		animation-delay: 1s; /* 애니메이션 시작 지연 시간 설정 */
+	}
+	.carousel-text2 {
+		position: relative;
+		animation: fadeIn 1s ease-in forwards;
+		opacity: 0;
+		animation-delay: 2s; /* 애니메이션 시작 지연 시간 설정 */
+	}
+	@keyframes fadeIn {
+	  0% {
+	    opacity: 0;
+	  }
+	  100% {
+	    opacity: 1;
+	  }
+	}
+	/* 캐러셀 text 애니메이션 끝 */
+
+
+
+	/* 캐러셀 병원등록 */
+	
+	.hospital-absolute-h4, .reserve-absolute-h4, .hospital-absolute,
+	.hospital-absolute-span, .maincarousel-indicators, .carousel-indicators {
+	display: none;
+}
+
+.carousel-container {
+		position: relative;
+	}
+	
+	
+	/* 캐러셀 예약등록*/
+	.reserve-absolute {
+		float:right;
+		background-color: #7EC243;
+		width: 100%;
+	}
+	
+	.reserve-absolute-btn {
+		text-align: center;
+	}
+	
+	#r-btn-img1, #r-btn-img2 {
+		width: 50px;
+		height: auto;
+	}
+	
+	#r-btn-img3 {
+		width: 70px;
+		height: auto;
+	}
+	
+	.r-span1, .r-span2 {
+		font-size: 1em;
+		color: black;
+		font-weight: bold;
+	}
+	
+	.r-span1 {
+		margin-right: 50px;
+	}
+	
+	
+	.reserve-absolute-span {
+	  display: flex;
+	  align-items: center;
+	}
+	
+	.reserve-absolute-span2 {
+	  display: flex;
+	  align-items: center;
+	  margin-left: 10px; 
+	}
+
+	
+	.main-faq-span,.main-faq-span3 {
+		font-size: 0.95em;
+	}
+	
+	.main-faq-span2 {
+		font-size: 1.1em;
+		font-weight: bold;
+		color: black;
+	}
+	
+	.main-faq-span2:hover {
+		font-size: 1.1em;
+		font-weight: bold;
+		color: white;
+	}
+	
+}
+/* ~모바일에 대한 스타일 정의 끝*/
+
+/* 웹에 대한 스타일 정의 시작~*/
+@media all and (min-width:1500px) {
+	.carousel-control-next-icon .maincarousel-control-next-icon, .carousel-control-prev-icon, .maincarousel-control-prev-icon{
+	display: none;
+	}
+	
+	.visualbox .group {
+		padding: 40px 15px 0 15px;
+	}
+	.visualbox .reserve-absolute, .visualbox .hospital-absolute {
+		text-align: center;
+	}
+	
+	
+.main_contentsDiv1, .main_contentsDiv2, .main_contentsDiv3 {
+	margin-left: 30px;
+}
+
+.main_notice_h4, .main_hospital_h4 {
+	font-weight: bold;
+	width: 100%;
+}
+
+.main_contents {
+	border: none;
+	border-left: none;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#notice_plus, #hospital_plus, #youtube_plus {
+	display: flex;
+	justify-content: end;
+	text-decoration: none;
+}
+
+.notice_a, .hospital_a {
+	border-right: none;
+	font-size: 15px;
+	color: black;
+	text-decoration: none;
+	margin-left: 15px;
+}
+
+.notice_a:hover, .hospital_a:hover {
+	font-size: 15.5px;
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.day_span, .h_ranking {
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+#main_Allcontainer {
+	width: 100%;
+	margin-top: 5%;
+	margin-bottom: 7%;
+	text-align: left;
+}
+
+.main_hospital_container {
+	display: flex; /*중앙정렬*/
+	width: 90%;
+	align-items: center; /*중앙정렬*/
+	height: 100px;
+	text-align: left;
+	border-bottom: 1px solid lavender;
+	box-sizing: border-box;
+	margin-left: 8px;
+	align-items: center;
+}
+
+.main_notice_container {
+	display: flex; /*중앙정렬*/
+	width: 90%;
+	align-items: center; /*중앙정렬*/
+	height: 100px;
+	text-align: left;
+	border-bottom: 1px solid lavender;
+	box-sizing: border-box;
+	align-items: center;
+}
+
+em.emm {
+	display: flex;
+	justify-content: end;
+	font-size: 0.7em;
+}
+
+.main_notice_more, .main_hospital_more, .main_youtube_more {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	border-bottom: 3px solid black;
+	padding-bottom: 15px;
+}
+
+.main_notice_p, .main_hospital_p,.main_youtube_p {
+	margin-right: 10px; /* p와 a 태그 사이에 10px의 공백 추가 */
+	font-size: 1.3em;
+	font-weight: bolder;
+}
+
+
+#notice_plus, #hospital_plus, #youtube_plus {
+	margin-left: auto; /* a 태그를 줄의 맨 오른쪽으로 정렬 */
+	color: #006940ff;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+/* 메인 캐러셀 시작 */
+#maincarousel {
+	width: 100%;
+	display: inline-block;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.maincarousel-item {
+	position: relative;
+	opacity: 0;
+	transition: opacity 0ms ease 0s, transform 0ms ease 0s;
+}
+
+.maincarousel-item.active {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.maincarousel-inner img {
+	width: 100%;
+	height: 50vh;
+	margin-top: 20%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.maincarousel-indicators {
+	bottom: 0;
+}
+
+
+
+/* 메인 캐러셀 글씨 */
+.maincarousel-caption {
+	position: absolute;
+	top: 5%;
+	width: 100%;
+	padding: 20px;
+	text-align: center;
+}
+
+.carousel-text {
+	display: inline-block;
+	position: relative;
+	line-height: 3;
+	font-size: 20px;
+	font-family: 'gmarket';
+	font-weight: normal;
+	color: #222222b5;
+}
+
+span.carousel-text1, .carousel-text2 {
+	display: inline-block;
+	position: relative;
+	line-height: 1.4;
+	font-size: 36px;
+	font-family: 'gmarket';
+	font-weight: normal;
+	color: #222;
+	font-weight: 520;
+}
+
+/* 중간 text 마커 */
+span.carousel-text1:before {
+	display: block;
+	position: absolute;
+	left: -5px;
+	right: -5px;
+	bottom: -1px;
+	z-index: -1;
+	content: '';
+	width: auto;
+	height: 18px;
+	background: #e8f2dd;
+}
+
+/* 캐러셀 text 애니메이션 시작*/
+.carousel-item.maincarousel-item {
+	position: relative;
+}
+
+.carousel-text {
+	position: relative;
+	animation: fadeIn 1s ease-in forwards;
+	opacity: 0;
+}
+
+.carousel-text1 {
+	position: relative;
+	animation: fadeIn 1s ease-in forwards;
+	opacity: 0;
+	animation-delay: 1s; /* 애니메이션 시작 지연 시간 설정 */
+}
+
+.carousel-text2 {
+	position: relative;
+	animation: fadeIn 1s ease-in forwards;
+	opacity: 0;
+	animation-delay: 2s; /* 애니메이션 시작 지연 시간 설정 */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* 캐러셀 text 애니메이션 끝 */
+
+
+
+/* 캐러셀 병원등록 */
+
+.carousel-control-prev,
+	.maincarousel-control-prev, .carousel-control-next,
+	.maincarousel-control-next {
+	display: none;
+}
+
+.carousel-container {
+	position: relative;
+}
+
+.hospital-absolute {
+	position: absolute;
+	top: 160px;
+	right: 350px;
+	width: 270px;
+	height: 280px;
+	border-radius: 15px 15px 0 15px;
+	background-color: #016A41;
+}
+
+.hospital-absolute-h4 {
+	color: white;
+	font-weight: bold;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.hospital-absolute-btn {
+	margin-top: 10%;
+	margin-bottom: 10%;
+	text-align: center;
+}
+
+.hospital-absolute-btn1 {
+	background-color: #00472C;
+	border: solid 2px #00472C;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+.hospital-absolute-btn1:hover {
+	background-color: white;
+	border: solid 2px white;
+	color: #036230;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+.hospital-absolute-span {
+	text-align: center;
+}
+
+.main-hos-span {
+	color: #96c4b2;
+	text-align: center;
+	font-size: 0.85em;
+}
+
+.hospital-absolute-span:before {
+	border-top: solid 1px #96c4b2;
+	content: "";
+	display: block;
+	width: 245px;
+	margin-bottom: 15px;
+}
+
+/* 캐러셀 예약등록*/
+.reserve-absolute {
+	position: absolute;
+	top: 225px;
+	right: 80px;
+	width: 270px;
+	height: 280px;
+	border-radius: 0 15px 15px 15px;
+	background-color: #7EC243;
+}
+
+.reserve-absolute-h4 {
+	color: black;
+	font-weight: bold;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+#r-btn-img1, #r-btn-img2 {
+	width: 60px;
+	height: auto;
+	margin-top: 10px;
+}
+
+#r-btn-img1,.r-span1 {
+	margin-right: 50px;
+}
+
+
+#r-btn-img3 {
+	width: 60px;
+	height: auto;
+	margin-top: 7px;
+}
+
+.r-span1, .r-span2 {
+	font-size: 0.85em;
+	color: black;
+	display: block;
+	margin-top: 5px;
+	text-align: center;
+}
+
+.reserve-absolute-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.r-layout {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	}
+
+.reserve-absolute-span {
+	border-top: solid 1px lightslategray;
+}
+
+.reserve-absolute-span:before {
+	content: "";
+	display: block;
+	width: 230px;
+}
+.reserve-absolute-span2 {
+	margin-top: 10px;
+	text-align: left;
+}
+.main-faq-span3:after {
+  content: "\A";
+  white-space: pre;
+}
+
+.main-faq-span2 {
+  display: inline-block;
+}
+.main-faq-span,.main-faq-span3 {
+	font-size: 0.8em;
+}
+
+.main-faq-span2 {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: black;
+}
+
+.main-faq-span2:hover {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: white;
+}
+
+/* 유튜브 캐러셀 */
+
+}
+
+/* ~웹에 대한 스타일 정의 끝*/

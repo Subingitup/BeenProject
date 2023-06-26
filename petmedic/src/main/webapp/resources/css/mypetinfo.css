@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+div.petInfoDiv {
+	width: 768px;
+/* 	max-width: 100%; */
+/* 	margin-top: 30px; */
+/* 	padding-top: 50px; */
+/* 	border-radius: 5px; */
+/* 	box-shadow: 0 .1rem 2rem rgba(0, 0, 0, .08) !important; */
+}
+
+.input-input {
+	width: 100%;
+	padding: 6px 10px;
+	border-radius: 8px;
+	border: none;
+/* 	border: 1px solid #e3e3e3; */
+	outline: none;
+}
+
+#imgContainer {
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	padding: 0px;
+	border-radius: 50%;
+	border: 1px solid #ddd;
+	overflow: hidden;
+	background-color: #e3e3e3;
+	text-align: center;
+}
+
+.previewImg {
+	text-align: center;
+}
+
+.selectClass {
+	width: 100%;
+	padding: 6px 10px;
+	border-radius: 10px;
+	border: none;
+/* 	border: 1px solid #e3e3e3; */
+}
+
+.div-col {
+	margin-top: 10px;
+}
+
+#petfix {
+	width: 100%;
+	background-color: #008a41;
+	border-radius: 24px;
+	border: solid 4px #008a41;
+/* 	border: solid 2px #008a41; */
+	padding: 10px 10px;
+	margin: 20px auto 20px auto;
+	color: white;
+}
+
+#petfix:hover {
+	background-color: white;
+	border-radius: 24px;
+	border: solid 4px #008a41;
+/* 	border: solid 2px #008a41; */
+	color: #008a41;
+}
+
+.div-btn {
+	padding: 0px;
+	margin: 0 auto;
+	width: 150px;
+}
+
+.div-updatepetsinfo {
+	width: 80%;
+	margin: 10px auto 10px auto;
+}
+
+.span-info {
+	font-size: 12px;
+	color: gray;
+}
+
+/* 파일 미리보기 문구 */
+.span-file {
+	font-size: 14px;
+	display: block;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+/* 이미지 나오는 곳 */
+div#image_container {
+	text-align: center;
+	padding: 20px 250px;
+}
+
+.imgDivBox {
+    /* margin-top: 50px; */
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* .imgDivBox { */
+/* 	margin-top: 50px; */
+/* 	text-align: center; */
+/* } */
+
+#previewImg {
+	height: 100%;
+	max-width: 100%;
+}
+
+@media screen and (max-width: 576px) {
+	div.petInfoDiv { width:100%; }
+/* 	div.petInfoDiv table.insertTable th, */
+/* 	div.petInfoDiv table.insertTable td { display:block; } */
+	div.petInfoDiv table.insertTable th { width: 30%; }
+	div.petInfoDiv table.insertTable { width:100%; margin:auto; }
+	
+	.img-img {
+		border-radius: 100%;
+		border: 1px solid #fbbc04;
+		padding: 20px;
+		text-align: center;
+		width: 70%;
+	}
+
+	/* 파일 미리보기 문구 */
+	.span-file {
+		text-align: center;
+		margin-top: 30px;
+	}
+	
+	#imgContainer {
+		width: 230px;
+		height: 230px;
+		margin: 0 auto;
+		padding: 0px;
+		border-radius: 50%;
+		border: 1px solid #ddd;
+		overflow: hidden;
+		background-color: #e3e3e3;
+	}
+}

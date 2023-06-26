@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+/* 컨테이너가 감싼 div */
+.insertPets {
+/* 	width: 80%; */
+	margin: 10px auto 10px auto;
+}
+
+/* 컨테이너를 감싼 div */
+div.insertPetsDiv {
+	width: 768px;
+/* 	max-width: 100%; */
+/* 	margin-top: 30px; */
+/* 	padding-top: 50px; */
+/* 	border-radius: 5px; */
+/* 	box-shadow: 0 .1rem 2rem rgba(0, 0, 0, .08) !important; */
+/* 	margin: 0 auto; */
+}
+
+.div-col {
+	margin-bottom: 10px;
+}
+
+/* 인풋 */
+.input-input {
+	width: 100%;
+	padding: 6px 10px;
+	border-radius: 5px;
+	border: none;
+/* 	border: 1px solid #e3e3e3; */
+	outline: none;
+}
+
+.input-input:focus, .input-input:active {
+	border: 1px solid #ffe100;
+	outline: none;
+}
+
+/* 등록버튼 */
+.btn-submit {
+	width: 110px;
+	background-color: #008a41;
+	border-radius: 24px;
+	border: solid 4px #008a41;
+/* 	border: solid 2px #008a41; */
+	padding: 8px;
+	margin: 20px auto;
+	color: white;
+}
+
+.btn-submit:hover {
+	background-color: white;
+	border-radius: 24px;
+	border: solid 4px #008a41;
+/* 	border: solid 2px #008a41; */
+	color: #008a41;
+}
+
+.btn-submit:action, .btn-submit:focus {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.div-btn {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.petimg {
+	width: 50px;
+	border-radius: 50px;
+}
+
+/* 파일 미리보기 문구 */
+.span-file {
+	font-size: 14px;
+	display: block;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+/* 이미지 나오는 곳 */
+div#image_container {
+	padding: 20px 150px;
+	text-align: center;
+}
+
+#imgContainer {
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	padding: 0px;
+	border-radius: 50%;
+	border: 1px solid #ddd;
+	overflow: hidden;
+	background-color: #e3e3e3;
+}
+
+#previewImg {
+	height: 100%;
+	max-width: 100%;
+}
+
+.previewImg {
+	text-align: center;
+}
+
+.imgDivBox {
+    /* margin-top: 50px; */
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* .imgDivBox { */
+/* 	margin-top: 50px; */
+/* 	text-align: center; */
+/* } */
+
+div.insertPetsDiv table.insertTable input[type="text"] {
+    /* width: 70%; */
+    width: 100%;
+}
+
+@media screen and (max-width: 576px) {
+	div.insertPetsDiv { width:100%; }
+/* 	div.insertPetsDiv table.insertTable th, */
+/* 	div.insertPetsDiv table.insertTable td { display:block; } */
+/* 	div.insertPetsDiv table.insertTable th {width:30%; } */
+	div.insertPetsDiv table.insertTable { width:100%; margin:auto; }
+	div.insertPetsDiv table.insertTable th {
+    width: 30%;
+    text-align: left; }
+    
+	/* 파일 미리보기 문구 */
+	.span-file {
+		text-align: center;
+		margin-top: 30px;
+	}
+	#imgContainer {
+		width: 230px;
+		height: 230px;
+		margin: 0 auto;
+		padding: 0px;
+		border-radius: 50%;
+		border: 1px solid #ddd;
+		overflow: hidden;
+		background-color: #e3e3e3;
+	}
+}

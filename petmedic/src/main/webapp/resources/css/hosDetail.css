@@ -1,0 +1,303 @@
+@charset "UTF-8";
+
+
+/* 768px 보다 큰 장치 크기에 대한 스타일 조정 */
+/* @media (min-width: 769px) { */
+/*병원 대표이미지*/
+#hosDetailDiv{
+text-align:center;
+}
+
+#hosDetailDiv >div:first-child{
+	/*병원명+뒤로가기+홈버튼 있는 곳*/
+display:flex;
+justify-content: space-between;
+margin: 15px 0;
+}
+
+#hosDetailDiv >div:first-child a{
+	/*병원명+홈버튼+뒤로가기 css*/
+font-size:24px;
+color:black;
+cursor:pointer;
+}
+
+#hosDetailDiv >div:first-child a:hover{
+text-decoration: none;
+}
+
+#hosDetailDiv >div:first-child a:first-child{
+	/*홈버튼과 뒤로가기 사이 간격*/
+margin-right: 20px;
+}
+
+
+div.midBar{
+height:100%;
+display: flex;
+flex-direction: column;
+}
+
+.hosdetail >div >div:first-child{
+padding:0;
+}
+
+.hosdetail >div >div:last-child{
+padding-right:0;
+}
+
+
+
+/*병원 이미지*/	
+#hosDetailDiv img#hosIMG{
+width: 100%;
+max-height: 260px;
+}
+
+/*병원 위치, 등등 + 예약버튼 디브*/
+#hosDetailTableDiv{
+height:100%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+#hosDetailTableDiv button{
+display:block;
+background-color: #008a41;
+border-radius: 40px;
+border:3px solid #008a41;
+color: white;
+padding: 15px;
+font-size: 13pt;
+}
+
+
+#disabledReserve{
+background-color:#dcdcdc;
+color:#008a41;
+}
+
+
+#hosDetailTableDiv table{
+font-size: 0.85rem;
+height: 100%;
+margin: auto 0;
+margin-bottom: 15px;
+text-align:center;
+}
+
+
+#hosDetailTableDiv table th{
+text-align: center;
+background-color:#006940ff;
+padding: 3px 25px;
+color:white;
+}
+
+#hosDetailTableDiv table th:first-child{
+border-top: 1px solid #006940ff;
+}
+
+#hosDetailTableDiv table th:last-child{
+border-bottom: 1px solid #006940ff;
+}
+
+#hosDetailTableDiv table td{
+/* border-top:1px solid #006940ff; */
+/* border-bottom:1px solid #006940ff; */
+border:1px solid #006940ff;
+padding: 10px 10px;
+}
+
+
+/*병원정보 삼총사*/
+div.ajaxBar:hover, div.ajaxBar:active{
+text-align:center;
+padding:0;
+cursor:pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/*찾아오시는길*/
+#hosDetailCome{
+margin-top:50px;
+padding:30px 10px;
+}
+
+#hosDetailLocation{
+margin:0;
+font-size: 14pt;
+font-weight: bold;
+padding-top:10px;
+}
+
+#hosDetailCome >#map{
+margin-top:20px;
+}
+
+#hosDetailDiv .hosNameTitle svg{
+position: absolute;
+top: 3px;
+}
+
+#hosDetailCome p.hosComContent{
+font-weight: 400;
+font-size: 0.9rem;
+margin: 20px 0;
+text-align: center;
+padding: 10px;
+}
+
+/*오시는길 아이콘*/
+#hosDetailCome svg{
+position: relative;
+left: -80px;
+top: 38px;
+}
+
+.ajaxBar{
+cursor:pointer;
+}
+
+/* } */
+
+
+
+
+/*작은거===========================*/
+@media (max-width: 768px){
+#hosDetailDiv{
+text-align:center;
+margin-top: 30px;
+}	
+
+.hosdetail >div >div:last-child {
+padding:0;
+}
+
+#hosDetailDiv img#hosIMG{
+width: 100%;
+height:100%;
+}
+
+div.hosNameTitle >p{
+margin:0;
+font-size: 18pt;
+position: relative;
+top: 3px;
+padding-left: 34%;
+}
+
+div.midBar >div:first-child{
+margin-top:15px;
+}
+
+#hosDetailTableDiv{
+height:100%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+margin-top:25px;
+}
+
+#hosDetailCome{
+margin-top: 50px;
+padding:0px 10px 30px 10px;
+}
+	
+#hosDetailCome p{
+margin: 0;
+font-size: 18pt;
+font-weight: bold;
+padding: 10px;
+}
+
+#hosDetailCome p.hosComContent{
+font-weight:400;
+font-size:0.9em;
+margin:10px 0;
+}
+
+/*별모양 찜*/
+#hosDetailDiv .hosNameTitle svg{
+position: absolute;
+top: 6px;
+}
+
+
+}
+
+
+/*========hosDetailReviewDetail.jsp========*/
+#hosReviewDetail{
+text-align:center;
+}
+
+#hosReviewDetail input,
+#hosReviewDetail textarea{
+border:none;
+}
+
+#hosReviewDetail textarea{
+width:100%;
+padding:10px;
+resize: none;
+}
+
+#hosReviewDetail >div:first-child{
+	/*제목+별점*/
+display: flex;
+justify-content: space-between;
+border-bottom: 3px solid #006940ff;
+padding-bottom: 15px;
+font-size: 15pt;
+}
+
+#hosReviewDetail >div:first-child >div:last-child >input{
+	/*별점색*/
+color:#006940ff; 
+}
+
+#hosReviewDetail img{
+	/*리뷰사진*/
+width:100%;
+height:500px;
+margin-top:15px;
+object-fit: cover;
+}
+
+#hosDetailReviewInfo{
+border-bottom: 3px solid #006940ff;
+}
+
+.hosReviewInfoBtn{
+border: 3px solid #008a41;
+background-color: #008a41;
+color: white;
+width:160px;
+height:50px;
+border-radius: 30px;
+margin:25px 10px 10px 10px;
+}
+
+.hosReviewInfoBtn:hover{
+color: #008a41;
+background-color: white;
+}
+
+#hosReviewReport >div{
+/*리뷰신고사유작성하는곳*/	
+text-align:center;
+}
+
+#reveiwReport{
+background-color:#f14331;
+border:3px solid #f14331;
+}
+
+#reveiwReport:hover{
+color:#f14331;
+background-color:white;
+}
+

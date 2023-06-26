@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+.yellowbtn {
+	border: none;
+	background-color: #fbbc04;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.reviewPadding {
+	padding: 10px;
+}
+
+.revshadow {
+	border: none;
+	box-shadow: 0 .1rem 2rem rgba(0,0,0,.08) !important;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+.revaround {
+	border: none; 
+	border-radius : 10px;
+
+}
+.revInsBtn {
+	border: none; 
+	border-radius : 10px;
+	background-color:#fbbc04;
+}
+
+
+
+
+/* 리뷰상세보기 */
+.upper-box-rev{
+        border:  3px solid #006940ff;
+}
+
+.text-rev-box-left{
+	        border-right:  3px solid #006940ff;	
+	        padding: 0;        
+}
+
+.text-rev-box-right{
+		        padding: 0;  
+}
+.text-rev-box-right-inner{
+padding: 5px 5px 5px 10px;  
+}
+.text-rev-box-right-inner-hos{
+		        padding: 5px 0 5px 10px;  
+		        height: 34%;
+}
+
+.content-box-rev{
+	        border-right:  3px solid #006940ff;	        
+	        border-bottom:  3px solid #006940ff;	        
+	        border-left:  3px solid #006940ff;	  
+	        padding: 10px;    
+}
+
+.text-rev-box-inside{
+	background-color: #006940ff;
+	color: white;
+	height: 25%;
+    padding: 5px 0 5px 10px;  
+		
+}
+.text-rev-box-inside-hos{
+	background-color: #006940ff;
+	color: white;
+	height: 34%;
+    padding: 5px 0 5px 10px;  
+		
+}
+
+.text-rev-box-right-inside{
+	  border-top:  3px solid #006940ff;	
+	  border-bottom:  3px solid #006940ff;	
+	  		        padding: 0 0 0 10px; 
+}
+.text-rev-box-right-inside2{
+	  border-bottom:  3px solid #006940ff;	
+	  		        padding: 0 0 0 10px; 
+}
+
+.textareabordergray {
+border: 1px solid lightgray;
+}
+
+.img-box-rev {
+	padding: 5%;
+	
+}
+
+.th-rev-ins{
+	background-color: #006940ff;
+	color: white;
+	padding: 10px;
+}
+
+.th-rev-ins-border{
+	border:  1px solid #006940ff;
+	margin: 0;
+	padding: 10px;
+}
+
+/*병원리뷰상세보기*/
+.hos-rev-profilepic{
+	   border-radius: 10px;
+    width: 113px;
+    height: 180px;
+    margin: 11px -10px 15px -29px;
+	
+}
+
+/* 병원상세의 리뷰 */
+.profilepic-hos-det-rev{
+		    border-radius: 10px;
+    width: 113px;
+    height: 114px;
+    margin: 11px -10px 15px -41px;
+}

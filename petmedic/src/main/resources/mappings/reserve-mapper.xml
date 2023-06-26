@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reserveDAO">
+
+<resultMap type="reserve" id="reserveMap">
+      <id property="res_seq" column="RES_SEQ" /> <!-- PK 있는 컬럼에 쓰임 -->
+      <result property="res_users_id" column="RES_USERS_ID" />
+<!--       <result property="users_name" column="USERS_NAME" /> -->
+<!--       <result property="users_tel" column="USERS_TEL" /> -->
+      <result property="res_hos_id" column="RES_HOS_ID" />
+<!--       <result property="hos_name" column="HOS_NAME" /> -->
+      <result property="res_date" column="RES_DATE" />
+      <result property="res_time" column="RES_TIME" />
+      <result property="res_cashdate" column="RES_CASHDATE" />
+      <result property="res_cancel" column="RES_CANCEL" />
+      <result property="res_name" column="RES_NAME" />
+      <result property="counts" column="COUNTS" />
+      <result property="besthosname" column="best" />
+      <result property="reshosname" column="reshosname" />
+      <result property="res_hos_price" column="hos_price" />
+   </resultMap>
+
+	<!-- [관리자] 회원 상세 들어갈 때 예약 3개 가져오기 (※2차 통합 후 수정) -->
+	<select id="getAdminUserDetailThree" resultType="reserve">
+		select
+		r.res_date, h.hos_name, r.res_cancel from reserve r, hospital h
+		where
+		r.res_users_id=#{users_id} AND r.res_hos_id = h.hos_id
+		order by
+		r.res_cashdate DESC limit 3
+	</select>
+
+	<!-- [관리자]특정 회원 예약 리스트 (※2차 통합 후 수정) (※0508추가)-->
+	<select id="getAdminUserReserve" resultType="reserve">
+		select r.*,h.hos_name as hos_name from reserve r, hospital h
+		where 1=1
+		AND r.RES_USERS_ID = #{users_id} and h.hos_id = r.res_hos_id
+		<if
+			test="searchCondition == '예약일' and searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND r.RES_DATE BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}</if>
+		<if
+			test="searchCondition == '결제일' and searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND r.RES_CASHDATE BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}</if>
+			
+		 <if test="res_cancel != null and res_cancel != ''">and res_cancel='y'</if>
+		ORDER BY r.RES_SEQ DESC LIMIT #{start},5
+	</select>
+
+	<!-- [관리자]취소한 예약 리스트 수 (※2차 통합 후 수정) -->
+	<select id="adminUserReserveCancelListCount" resultType="_int">
+		select
+		count(*) from reserve
+		where RES_USERS_ID = #{users_id} and
+		res_cancel='Y'
+	</select>
+
+	<!-- [관리자]페이징 처리 할 리스트 수 카운트 (※0508추가) -->
+	<select id="adminUserReserveListCount" resultType="_int">
+		select count(*) from reserve r where 1=1
+		<if
+			test="searchCondition == '예약일' and searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND r.RES_DATE BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}</if>
+		<if
+			test="searchCondition == '결제일' and searchInsertDate1 != '' and searchInsertDate1 != null and searchInsertDate2 != null and searchInsertDate2 != ''">AND r.RES_CASHDATE BETWEEN #{searchInsertDate1} AND
+			#{searchInsertDate2}</if>
+		 <if test="res_cancel != null and res_cancel != ''">and res_cancel='y'</if>
+		AND RES_USERS_ID = #{users_id}
+	</select>
+
+
+	<!-- [관리자] 회원 찜목록 리스트 가져오기(※2-2차 통합 후 수정) 예약 없어도 가져옴다 -->
+	<select id="getUserZzim" resultType="AdminUserReserve">
+		SELECT h.hos_id,h.HOS_NAME,
+		h.hos_addr2, MAX(r.RES_DATE) AS lately_reserve
+		FROM hospital h
+		LEFT JOIN
+		reserve r ON h.HOS_ID = r.RES_HOS_ID AND r.RES_USERS_ID = #{users_id}
+		WHERE h.HOS_ID IN (
+		#{users_pick1},#{users_pick2},#{users_pick3},#{users_pick4},#{users_pick5}
+		)
+		GROUP BY h.HOS_ID;
+	</select>
+
+	<!-- 예약 취소 -->
+	<update id="updateReserve_rcc">
+		update reserve set res_cancel="Y" where res_seq =
+		#{res_seq};
+	</update>
+
+	<!-- 예약 상세보기 -->
+	<select id="getReserve" resultType="reserve">
+		select r.res_seq,
+		r.res_users_id, r.res_hos_id, u.users_name, u.users_tel, h.hos_name,
+		r.res_date,
+		r.res_time, r.res_cashdate, r.res_cancel
+		from reserve r,
+		users u,
+		hospital h
+		where r.res_users_id = u.users_id and r.res_hos_id =
+		h.hos_id and r.res_seq = #{res_seq};
+	</select>
+
+
+	<!-- 예약 목록 -->
+	<select id="getReserveList"
+		resultType="com.spring.pet.reserve.ReserveVO">
+		select r.res_seq, r.res_users_id, u.users_name, u.users_tel,
+		h.hos_name, r.res_date, r.res_time, r.res_cashdate, r.res_cancel
+		from
+		reserve r, users u, hospital h where (r.res_users_id = u.users_id and
+		r.res_hos_id = h.hos_id)
+
+		<if test="searchCondition == 'RES_USERS_ID' "> AND R.RES_USERS_ID LIKE CONCAT('%', #{searchKeyword},'%')
+		</if>
+		<if test="searchCondition == 'USERS_NAME' "> AND U.USERS_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'USERS_TEL' "> AND U.USERS_TEL LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'HOS_NAME' "> AND H.HOS_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+
+<!-- [회원] 자신의 예약목록 전체 가져오기 (나의활동 예약목록 조회) -->
+	<select id="myReserveList" resultType="reserve">
+		SELECT reserve.*,hospital.*
+		FROM reserve, hospital
+		WHERE res_users_id = #{res_users_id}
+		and res_hos_id = hospital.hos_id
+		<if test="rev_sortKeyword == null || rev_sortKeyword == 'resdate'">
+		  ORDER BY RES_DATE DESC, RES_TIME DESC
+		</if>
+		<if test="rev_sortKeyword == 'cashdate'">
+		  ORDER BY RES_CASHDATE DESC
+		</if>
+	</select>
+	
+	<!-- [회원] 자신의 예약목록 리뷰있는것만 가져오기 (나의활동 예약목록 조회) -->
+	<select id="reserveFilter" resultType="reserve">
+		SELECT reserve.*, review.*, hospital.*
+		FROM reserve, review, hospital
+		WHERE res_hos_id = hospital.hos_id
+		AND review.REV_userID = #{res_users_id}
+		AND reserve.res_seq = review.REV_RES_SEQ
+		AND res_cancel = 'N'
+		ORDER BY RES_DATE DESC;
+	</select>
+
+	<!-- [회원] 자신의 예약목록 취소하기 (나의활동 예약목록 취소) -->
+	<update id="cancelMyReserve">
+		UPDATE reserve
+		SET res_cancel = 'Y'
+		WHERE RES_SEQ =
+		${res_seq};
+	</update>
+
+
+	<!-- 예약하기 -->
+	<insert id="insertReserve">
+		INSERT INTO RESERVE (RES_USERS_ID, RES_HOS_ID,
+		RES_DATE, RES_TIME, RES_CANCEL, RES_NAME, RES_CASHDATE)
+		VALUES(#{res_users_id}, #{res_hos_id}, #{res_date}, #{res_time}, 'N',
+		#{res_name}, CURDATE())
+	</insert>
+
+	<select id="getResList" resultType="reserve"> 
+		SELECT * FROM reserve WHERE res_hos_id = #{res_hos_id} ORDER BY res_date asc
+	</select>
+
+<select id="getBestHospital" resultMap="reserveMap">
+      SELECT R.RES_HOS_ID, H.HOS_NAME, R.counts 
+      FROM (SELECT RES_HOS_ID, COUNT(*) AS counts 
+         FROM RESERVE 
+         WHERE RES_CANCEL = 'N' 
+         GROUP BY RES_HOS_ID 
+         ORDER BY COUNT(*) DESC LIMIT 3) AS R 
+      JOIN HOSPITAL AS H 
+      ON R.RES_HOS_ID = H.HOS_ID 
+      WHERE H.HOS_ROLE='Y' AND H.HOS_DEL='N'
+      ORDER BY R.counts DESC;
+   </select>
+   
+   <!-- 20230519 - 관리자 메인페이지 최근 병원 예약 현황 -->
+	<select id="adminRecentReserveHospital" resultType="reserve">
+		SELECT
+		R.*,
+		H.HOS_NAME, U.USERS_NAME
+		FROM RESERVE R
+		JOIN HOSPITAL H
+		JOIN USERS U
+		ON R.RES_HOS_ID
+		= H.HOS_ID
+		WHERE R.RES_USERS_ID = U.USERS_ID
+		ORDER BY RES_DATE DESC
+		LIMIT 5
+	</select>
+	
+   <!-- [회원] 자신의 기간으로 예약목록 가져오기 -->
+   <select id="myReserveDATE" resultMap="reserveMap">
+        SELECT reserve.*, hospital.hos_name
+      FROM reserve
+      JOIN hospital ON reserve.res_hos_id = hospital.hos_id
+      WHERE reserve.res_users_id = #{res_users_id} 
+      AND reserve.res_cashdate BETWEEN #{searchInsertDate1 } AND #{searchInsertDate2}
+      ORDER BY reserve.res_seq DESC;
+   </select>
+   
+   <!-- [회원] 자신의 예약목록 전체 가져오기 (나의활동 예약목록 조회) -->
+   <select id="myReserveDOne" resultMap="reserveMap">
+      SELECT reserve.*, hospital.hos_id, hospital.hos_name AS reshosname, hospital.hos_price
+      FROM reserve, hospital
+      WHERE res_users_id = #{res_users_id}
+      and res_hos_id = hospital.hos_id
+      AND res_seq = #{res_seq}
+      ORDER BY RES_DATE DESC;
+   </select>
+   
+</mapper>

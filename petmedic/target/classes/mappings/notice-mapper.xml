@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="noticeDAO">
+
+	<select id="getNoticeList" resultType="notice">
+		SELECT * FROM notice
+		WHERE notice_del='N'
+		ORDER BY notice_pin DESC, notice_int DESC;
+	</select>
+
+	<select id="getNoticeList4Index" resultType="notice">
+		SELECT * FROM NOTICE
+		WHERE NOTICE_DEL ='N'
+		ORDER BY NOTICE_INT DESC;
+	</select>
+
+	<select id="searchNoticeList" resultType="notice">
+		SELECT * FROM NOTICE WHERE 1=1
+		<if test="noticeSearch == 'title_keyword' ">AND NOTICE_TITLE LIKE CONCAT('%', #{noticeSearchKeyword},
+			'%')</if>
+		<if test="noticeSearch == 'cont_keyword' ">AND NOTICE_CONT LIKE CONCAT('%', #{noticeSearchKeyword},
+			'%')</if>
+		AND NOTICE_DEL = 'N' ORDER BY NOTICE_PIN DESC, NOTICE_INT DESC
+	</select>
+
+	<select id="getNoticeDetail" resultType="notice">
+		SELECT * FROM NOTICE WHERE NOTICE_INT = #{notice_int}
+	</select>
+
+	<insert id="insertNotice">
+		INSERT INTO notice(NOTICE_ADMIN, notice_TITLE, NOTICE_CONT, NOTICE_DATE,
+		NOTICE_PIN, NOTICE_REALFILE, NOTICE_DEL)
+		VALUES (#{notice_admin}, #{notice_title}, #{notice_cont}, now(),
+		#{notice_pin}, #{notice_realfile},'N')
+	</insert>
+
+	<update id="updateNotice">
+		UPDATE NOTICE
+		SET NOTICE_TITLE = #{notice_title}, NOTICE_CONT = #{notice_cont},
+		NOTICE_REALFILE = #{notice_realfile}, NOTICE_PIN = #{notice_pin}
+		WHERE NOTICE_INT = #{notice_int}
+	</update>
+
+	<update id="noticeCnt">
+		UPDATE NOTICE
+		SET NOTICE_READCOUNT = NOTICE_READCOUNT + 1
+		WHERE NOTICE_INT = #{notice_int}
+	</update>
+
+	<update id="deleteNotice">
+		UPDATE NOTICE
+		SET NOTICE_DEL = 'Y'
+		WHERE NOTICE_INT = #{notice_int}
+	</update>
+
+
+</mapper>

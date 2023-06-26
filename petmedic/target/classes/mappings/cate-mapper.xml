@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="categoryDAO">
+
+	<select id="hosChartCate" resultType="cagegory">
+<!-- 		SELECT COUNT(*) AS hos_cate_cnt -->
+<!-- 		FROM hospital  -->
+<!-- 		WHERE hos_cate LIKE #{cateOption}  -->
+<!-- 		AND hos_del='N'; -->
+		SELECT
+			COUNT(*) AS HOS_CATE_CNT,
+			SUM(CASE WHEN HOS_CATE LIKE '%강아지%' THEN 1 ELSE 0 END) AS dog_hos,
+			SUM(CASE WHEN HOS_CATE LIKE '%고양이%' THEN 1 ELSE 0 END) AS cat_hos,
+			SUM(CASE WHEN HOS_CATE LIKE '%새%' THEN 1 ELSE 0 END) AS bird_hos,
+			SUM(CASE WHEN HOS_CATE LIKE '%파충류%' THEN 1 ELSE 0 END) AS rept_hos,
+			SUM(CASE WHEN HOS_CATE LIKE '%기타%' THEN 1 ELSE 0 END) AS etc_hos
+		FROM hospital
+		WHERE HOS_DEL = 'N';
+	</select>
+
+</mapper>

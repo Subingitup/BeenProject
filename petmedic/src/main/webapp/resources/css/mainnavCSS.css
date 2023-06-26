@@ -1,0 +1,411 @@
+@charset "UTF-8";
+
+
+/*================큼==================*/
+/* @media (min-width: 840px){ */
+/*햄버거버튼 숨기기*/
+a.navbarHamBtn{
+display:none;
+}
+
+#petmedicnavbar{
+display:flex;
+align-items: center;
+justify-content: space-around;
+border-bottom: 1px solid #006940ff;
+}
+
+/*로고랑 메뉴있는거 (검색제외)*/
+#logoNmianMenu{
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+/*로고사진*/
+#logoNHam{
+display:inline-block;
+}
+#logoNHam img{
+position: relative;
+}
+
+/*메인 메뉴들*/
+#mainMenuListUlDiv{
+z-index: 50;
+display: flex;
+justify-content: center;
+padding:10px;
+}
+
+#mainMenuListUlDiv >li{
+display: flex;
+align-items: flex-end;
+}
+
+/*로그인등 있는곳 위치 지정만*/
+#navlogin {
+position: absolute;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+margin-right: 30px;
+top:0;
+right: 0;
+}
+
+/*드롭다운 누르기 전 메뉴들 안보이게*/
+#petMedicDropMenu{
+display:none;
+visibility: hidden;
+opacity: 0;
+overflow: hidden;
+transition: visibility 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
+}
+
+
+/*드롭다운되는 메뉴들 navbar 아래로 나오도록*/
+.dropdown-container {
+position: absolute;
+top: 100%;
+z-index: 61;
+width: 100%;
+}
+
+/*드롭다운 누르고*/
+#petMedicDropMenu.active{
+visibility: visible;
+opacity: 1;
+overflow: hidden;
+display:flex;
+flex-direction: column;
+text-align: center;
+border:1px solid #ccc;
+}
+
+#petMedicDropMenu >a {
+  opacity: 0;
+}
+
+#petMedicDropMenu.active >a{
+display:block;
+position: relative;
+padding: 10px 0;
+background: white;
+font-size: 0.95em;
+font-weight: 600;
+
+opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+#petMedicDropMenu.active >a:first-child{
+padding-top:20px;
+}
+
+#petMedicDropMenu.active >a:last-child{
+padding-bottom:20px;
+}
+
+
+
+/* #petMedicDropMenu .dropdown-item span:hover::before { */
+span.dropHover::before {
+  content: "•";
+  position: absolute;
+  top: -12px;
+  left: 40px;
+  font-size: 30px;
+  color: #0097A7;
+}
+
+
+span#dNc.dropHover::before {
+  content: "•";
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  font-size: 30px;
+  color: #0097A7;
+}
+
+
+span.dropHover{
+text-decoration:underline;
+color: #878ECD;
+}
+
+.mainMenuList{
+display:flex;
+}
+
+.mainMenuList.active{
+display:flex;
+}
+
+/*여러 메뉴들 ul*/
+.petmedicnav-link{
+position: relative;
+color:black;
+font-size: 18px;
+}
+
+.petmedicnav-link:hover{
+color: #3e7c17;
+}
+
+.petmedicnav-link:hover::before {
+ content: "•";
+ position: absolute;
+ top: -20px;
+ right: -5px;
+ font-size: 30px;
+ color: #F99417;
+}
+
+/*로그인아웃,닉네임보이는ㄷ 곳*/
+.loginOKBack a{
+background-color:#008a41;
+color: white;
+font-size:0.8rem;
+}
+
+.loginOKBack a:hover{
+font-weight: bold;
+}
+
+.loginOKBackLogOut a{
+background-color:#e7e7e7e7;
+color:black;
+font-size:0.8rem;
+}
+
+.loginOKBackLogOut a:hover{
+font-weight: bold;
+color:red;
+}
+
+.loginNOBack a{
+color:black;
+font-size:0.8rem;
+}
+.loginNOBack a:hover{
+font-weight:bold;
+color:#008a41;
+}
+
+/*검색*/
+#NavBarSearchDiv{
+border: 2px solid #125c13;
+padding: 5px;
+border-radius: 29px;
+}
+
+#NavBarSearchDiv input{
+border:none;
+width: 210px;	
+}
+
+#NavBarSearchDiv button{
+border: none;
+background: none;
+}
+
+
+
+/* } */
+
+
+
+
+
+/*===================*/
+@media (max-width: 839px){
+#petmedicnavbar {
+border-bottom:none;
+display:block;
+padding:0;
+position: sticky;
+top: 0;
+z-index: 1500;
+background-color: white;
+}
+
+#logoNmianMenu{
+display:block;
+}
+
+/*로고 이미지*/
+#logoNHam{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom: 1px solid #006940ff;
+padding: 0 20px;
+}
+
+/*햄버거버튼*/
+a.navbarHamBtn{
+display: block;
+}
+
+
+/*메뉴애들*/
+#petmedicnav-link{
+color:black;
+}
+
+
+ #mainMenuListUlDiv{
+display:block;
+position: sticky;
+top: 184px;
+z-index: 150;
+background-color:white;
+padding:0;
+}
+
+
+
+/*햄버거 안눌렀을때*/
+.mainMenuList{
+display:none;
+}
+
+.mainMenuList >li{
+border-bottom: 1px solid lightgray;
+text-align: center;
+}
+
+.mainMenuList >li a{
+padding: 25px 0;
+display:block;
+}
+
+
+/*햄버거 눌렀을때*/
+.mainMenuList.active{
+display:flex;
+flex-direction: column;
+}
+
+
+
+
+/*드롭다운 누르면 나오는 메뉴들 */
+/*햄 안누름*/
+#petMedicDropMenu{
+display:none;
+visibility: hidden;
+opacity: 0;
+overflow: hidden;
+transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+#petMedicDropMenu:not(.active) {
+/* 드롭다운 박스가 사라지는 동안의 스타일 */
+display:none;
+visibility: hidden;
+opacity: 0;
+max-height: 0;
+}
+/*메뉴 a태그들*/
+.petmedicnav-link {
+margin: 10px 0;
+color: black !important;
+border-right: none;
+margin-right: 15px;
+font-size: 1.1em;
+}
+
+.petmedicnav-link:hover {
+color: #3e7c17 !important;
+border-right: none;
+transform: scale(1.1);
+}
+
+/*햄 누름*/
+#petMedicDropMenu.active{
+position:static;
+display:flex;
+flex-direction: column;
+text-align: center;
+
+visibility: visible;
+opacity: 1;
+overflow: hidden;
+}
+
+#petMedicDropMenu.active >a{
+display:block;
+padding: 20px 0;
+background: #f8f9fa;
+font-size: 0.95em;
+font-weight: 600;
+}
+
+#petMedicDropMenu.active >a:hover{
+background: #e9ecefbd;
+font-size: 1em;
+}
+
+.dropdown-container {
+position:static;
+z-index: 70;
+width: 100%;
+}
+
+/*로그인 회원가입 있는거*/
+/*햄 안누름*/
+#navlogin{
+display:none;
+}
+
+/*햄누름*/
+#navlogin.active{
+position:sticky;
+top:123px;
+z-index:150;
+display: flex;
+justify-content: end;
+align-items: center;
+margin: 0;
+padding: 10px 0;
+background-color: #008a41;
+}
+
+#navlogin.active >ul{
+margin: 0;
+padding: 0;
+display: flex;
+}
+
+
+/*로그인,회원가입,로그아웃,~~님*/
+#navlogin.active >ul a{
+display:block;
+font-weight: 500;
+font-size: 1.05rem;
+color: white;
+margin: 0 15px;
+}
+
+#navlogin.active >ul a:hover{
+color:#ffe200;;
+text-decoration:none;
+font-weight:bold;
+}
+
+/*반응일때 아이디는 안보여주기로*/
+#navlogin.active >.loginOK:first-child{
+display: none;
+}
+
+} 
+
+
+@media (max-width: 1199px){
+#NavBarSearchDiv{
+display:none;
+}
+	}

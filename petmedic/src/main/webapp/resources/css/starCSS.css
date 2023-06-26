@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+/* component */
+
+.star-rating {
+  display:flex;
+/* 	flex-direction: row-reverse; */
+  font-size:1.5em;
+  justify-content:space-around;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+/* .star-rating label { */
+/*   color:#ccc; */
+/* } */
+
+.starChk {
+  color:#09d217;
+}
+
+
+.star-rate-past {
+  display:flex;
+/*   flex-direction: row-reverse; */
+  font-size:1em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+.star-rate-past input {
+  display:none;
+}
+
+
+/*reviewList star*/
+.give-star {
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.give-star input {
+  display:none;
+}
+
+.give-star label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.give-star :checked ~ label {
+  color:#09d217;
+}
+
+.give-star label:hover,
+.give-star label:hover ~ label {
+  color:#09d217;
+}
+  
