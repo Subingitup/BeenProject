@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../../header.jsp"%>
+	pageEncoding="UTF-8"%>
+	<%@ page import="com.spring.pet.hospital.HospitalVO" %>
+	<%@ include file="../../header.jsp"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ page import="java.text.SimpleDateFormat" %>
+	<%@ page import="java.util.Date" %>
+<%
+	HospitalVO hospital = (HospitalVO) request.getAttribute("hos");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -12,6 +19,11 @@
 <title>Insert title here</title>
 
 <script>
+
+function hosDetail(hosId) {
+    location.href = "/getHos?hos_id=" + hosId;
+}
+
 //       리뷰보이기 글자제한
       document.addEventListener("DOMContentLoaded", function () {
         var reviewElements = document.getElementsByClassName("review");
@@ -28,6 +40,7 @@
         var showMoreButton = document.getElementById("showMoreButton");
 
         showMoreButton.addEventListener("click", function () {
+          console.log("더보기 실행");
           reviewContainer.classList.remove("d-none"); // Remove the "d-none" class to show the review container
           showMoreButton.classList.add("d-none"); // Add the "d-none" class to hide the "Show More" button
         });
@@ -79,7 +92,7 @@ String sessionValue = (String)session.getAttribute("sessionName");
 			<div class="col-md-8 leftDiv"><h1><strong>리뷰 조회</strong></h1></div>
 			<div class="col-md-4 rightDiv">
 				<div class="wrapDiv">
-					<div class="handDivR" onclick="location.href='getHos'" style="padding:15px;"><b>내<br>병원</b></div>
+					<div class="handDivR" onclick="hosDetail('<%= hospital.getHos_id() %>')" style="padding:15px;"><b>내<br>병원</b></div>
 					<div class="oneDivR circleDiv"></div>
 					<div class="twoDivR circleDiv"></div>
 					<div class="threeDivR circleDiv"></div>
@@ -120,7 +133,7 @@ String sessionValue = (String)session.getAttribute("sessionName");
          </div>
          <div class="row mobileMy_memu mobileMymemu1">
             <div class="col">
-               <div class="mobileMy_wrap" onclick="location.href='getHos'">
+               <div class="mobileMy_wrap" onclick="hosDetail('<%= hospital.getHos_id() %>')">
                <b>내 병원</b>
                </div>
             </div>
@@ -232,6 +245,7 @@ String sessionValue = (String)session.getAttribute("sessionName");
 			<script>
 								//이전별점
 						          function generateStarRating(idx, starValue) {
+						        	  	console.log('starValue', starValue);
 						            for (var i = 1; i <= 5; i++) {
 						            var starHtml = '';
 						              starHtml += '<input type="radio" id="' + i + '-stars" name="rev_star" value="' + i + '"';

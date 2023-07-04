@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../../header.jsp"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+	<%@ page import="com.spring.pet.hospital.HospitalVO" %>
+	<%@ include file="../../header.jsp"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ page import="java.text.SimpleDateFormat" %>
+	<%@ page import="java.util.Date" %>
+<%
+	HospitalVO hospital = (HospitalVO) request.getAttribute("hos");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +29,7 @@ width:100%;
 
 width:120px; 
 height:50px; 
-background-color:#fbbc04; 
+background-color:#008a41; 
 color:white; 
 border:0; 
 border-radius:5px;
@@ -30,7 +37,9 @@ margin-top: 5px;
 }
 
 .submitbutton:hover{
-background-color:#674ea7;
+background-color: #ffffff;
+border: 4px solid #008a41;
+color: #008a41;
 }
 </style>
 </head>
@@ -44,7 +53,7 @@ background-color:#674ea7;
 			<div class="col-md-8 leftDiv"><h3><strong>의사 등록</strong></h3></div>
 			<div class="col-md-4 rightDiv">
 				<div class="wrapDiv">
-					<div class="handDivR" onclick="location.href='getHos'" style="padding:15px;"><b>내<br>병원</b></div>
+					<div class="handDivR" onclick="hosDetail('<%= hospital.getHos_id() %>')" style="padding:15px;"><b>내<br>병원</b></div>
 					<div class="oneDivR circleDiv"></div>
 					<div class="twoDivR circleDiv"></div>
 					<div class="threeDivR circleDiv"></div>
@@ -84,7 +93,7 @@ background-color:#674ea7;
          </div>
          <div class="row mobileMy_memu mobileMymemu1">
             <div class="col">
-               <div class="mobileMy_wrap" onclick="location.href='getHos'">
+               <div class="mobileMy_wrap" onclick="hosDetail('<%= hospital.getHos_id() %>')">
                <b>내 병원</b>
                </div>
             </div>
@@ -136,6 +145,10 @@ background-color:#674ea7;
 			
 	<%@ include file="../../footer.jsp"%>
 <script>
+function hosDetail(hosId) {
+    location.href = "/getHos?hos_id=" + hosId;
+}
+
 //의사사진 미리보기
 function docPreviewImage(event) {
 	  var input = event.target;

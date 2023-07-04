@@ -145,7 +145,23 @@
 			<div class="form-group">
 			<label for="hos_start">진료시각</label>
 				<div class="input-group">
-						<select class="custom-select stime" name="hos_start" id="hos_start">
+						<select class="custom6-select stime" name="hos_start" id="hos_start">
+						    <option>00:00</option>
+							<option>00:30</option>
+							<option>01:00</option>
+							<option>01:30</option>
+							<option>02:00</option>
+							<option>02:30</option>
+							<option>03:00</option>
+							<option>03:30</option>
+							<option>04:00</option>
+							<option>04:30</option>
+							<option>05:00</option>
+							<option>05:30</option>
+							<option>06:00</option>
+							<option>06:30</option>
+							<option>07:00</option>
+							<option>07:30</option>
 							<option>07:00</option>
 							<option>07:30</option>
 							<option>08:00</option>
@@ -177,8 +193,28 @@
 							<option>21:00</option>
 							<option>21:30</option>
 							<option>22:00</option>
+							<option>22:30</option>
+							<option>23:00</option>
+							<option>23:30</option>
+							<option>24:00</option>
 						</select> 
 						<select class="custom-select stime" name="hos_end">
+							    <option>00:00</option>
+							<option>00:30</option>
+							<option>01:00</option>
+							<option>01:30</option>
+							<option>02:00</option>
+							<option>02:30</option>
+							<option>03:00</option>
+							<option>03:30</option>
+							<option>04:00</option>
+							<option>04:30</option>
+							<option>05:00</option>
+							<option>05:30</option>
+							<option>06:00</option>
+							<option>06:30</option>
+							<option>07:00</option>
+							<option>07:30</option>
 							<option>07:00</option>
 							<option>07:30</option>
 							<option>08:00</option>
@@ -210,7 +246,10 @@
 							<option>21:00</option>
 							<option>21:30</option>
 							<option>22:00</option>
-						</select>
+							<option>22:30</option>
+							<option>23:00</option>
+							<option>23:30</option>
+							<option>24:00</option>
 				</div>
 			</div>
 			<div class="form-group">

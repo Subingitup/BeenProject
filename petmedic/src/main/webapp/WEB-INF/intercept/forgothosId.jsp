@@ -15,7 +15,7 @@
         }
     }
 </style>
-<body>
+<body style="min-width:600px;">
 	<%@ include file="../../petmedic_navbar.jsp"%>
     <div class="container" align="center" style="max-width:768px;">
     <div class="forgothosIdDiv">
