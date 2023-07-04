@@ -2,7 +2,6 @@
 
 
 /*================큼==================*/
-/* @media (min-width: 840px){ */
 /*햄버거버튼 숨기기*/
 a.navbarHamBtn{
 display:none;
@@ -56,11 +55,10 @@ right: 0;
 
 /*드롭다운 누르기 전 메뉴들 안보이게*/
 #petMedicDropMenu{
-display:none;
 visibility: hidden;
 opacity: 0;
 overflow: hidden;
-transition: visibility 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
+transition: visibility 0.7s ease, opacity 0.7s ease;
 }
 
 
@@ -213,7 +211,6 @@ background: none;
 
 
 
-/* } */
 
 
 
@@ -347,6 +344,10 @@ font-weight: 600;
 #petMedicDropMenu.active >a:hover{
 background: #e9ecefbd;
 font-size: 1em;
+}
+
+span.dropHover::before {
+ content: none!important;
 }
 
 .dropdown-container {

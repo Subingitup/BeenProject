@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../../header.jsp"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+	<%@ page import="com.spring.pet.hospital.HospitalVO" %>
+	<%@ include file="../../header.jsp"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ page import="java.text.SimpleDateFormat" %>
+	<%@ page import="java.util.Date" %>
+<%
+	HospitalVO hospital = (HospitalVO) request.getAttribute("hos");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>의사 수정</title>
 <style>
 .input-group-text {
 	width:125px;
@@ -36,6 +43,11 @@ border: 4px solid #008a41;
 color: #008a41;
 }
 </style>
+<script>
+function hosDetail(hosId) {
+    location.href = "/getHos?hos_id=" + hosId;
+}
+</script>
 </head>
 <body>
 	<%@ include file="../../petmedic_navbar.jsp"%>
@@ -47,7 +59,7 @@ color: #008a41;
 			<div class="col-md-8 leftDiv"><h2>의사등록</h2></div>
 			<div class="col-md-4 rightDiv">
 				<div class="wrapDiv">
-					<div class="handDivR" onclick="location.href='getHos'" style="padding:15px;"><b>내<br>병원</b></div>
+					<div class="handDivR" onclick="hosDetail('<%= hospital.getHos_id() %>')" style="padding:15px;"><b>내<br>병원</b></div>
 					<div class="oneDivR circleDiv"></div>
 					<div class="twoDivR circleDiv"></div>
 					<div class="threeDivR circleDiv"></div>
@@ -87,7 +99,7 @@ color: #008a41;
          </div>
          <div class="row mobileMy_memu mobileMymemu1">
             <div class="col">
-               <div class="mobileMy_wrap" onclick="location.href='getHos'">
+               <div class="mobileMy_wrap" onclick="hosDetail('<%= hospital.getHos_id() %>')">
                <b>내 병원</b>
                </div>
             </div>
@@ -135,7 +147,7 @@ color: #008a41;
 			</div>
 			<label>사진</label>
 			<div class="input-group mb-3"	>
-				<input type="file" class="form-control" name="uploadFile">
+				<input type="file" class="form-control" name="uploadFile" value="${doc.doc_filename}">
 			</div>
 			<label>이름</label>
 			<div class="input-group mb-3"	>
@@ -154,50 +166,6 @@ color: #008a41;
 			<input class="submitbutton" type="submit" value="수정하기">
 			</div>
 			</form>
-			</div>
-			
-			
-			<!-- 모바일 부분 -->
-		<div class="container mobileinputbox">
-		<form action="updDoc" method="POST" enctype="multipart/form-data">
-		<label>병원 아이디</label>
-			<div class="input-group mb-3"	>
-				<div class="mobileinputboxinsertdoc">
-				<input type="text" class="form-control innm" name="doc_hos_id" value="${doc.doc_hos_id}" readonly required>
-				</div>
-			</div>
-			<label>의사 아이디</label>
-			<div class="input-group mb-3"	>
-			<div class="mobileinputboxinsertdoc">
-				<input type="text" class="form-control innm" name="doc_id" value="${doc.doc_name}" readonly required>
-				</div>
-			</div>
-			<label>사진</label>
-			<div class="input-group mb-3"	>
-			<div class="mobileinputboxinsertdoc">
-				<input type="file" class="form-control" name="uploadFile">
-				</div>
-			</div>
-			<label>이름</label>
-			<div class="input-group mb-3"	>
-				<div class="mobileinputboxinsertdoc">
-				<input type="text" class="form-control innm" name="doc_name" value="${doc.doc_name}" required>
-				</div>
-			</div>
-			<label>의사 소개</label>
-			<div class="input-group mb-3"	>
-				<div class="mobileinputboxinsertdoc">
-				<textarea style="margin:0; resize: none;" class="form-control innm" name = "doc_info"  required >${doc.doc_info}</textarea>
-				</div>
-			</div>
-			
-			<br>
-			
-			<!-- 	<input type="text" style ="height:100%" value = ${doc.doc_info}> -->
-			<div style="text-align: center;">
-			<input class="submitbutton" type="submit" value="수정하기">
-			</div>
-		</form>
 			</div>
 	</div>
 </div>

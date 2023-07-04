@@ -117,13 +117,14 @@ public class HospitalController {
 	   }
 
 	// 병원 상세페이지 메인
-	@RequestMapping("/getHos")
-	public String getHos(HospitalVO vo,UsersVO uvo, Model model, HttpSession session) {
-		uvo.setUsers_id((String)session.getAttribute("users_id"));
-		model.addAttribute("hos", hospitalService.getHos(vo));
-		model.addAttribute("users",userService.getUserInfo(uvo));
-		return "/hospital/hosDetail";
-	}
+   @RequestMapping("/getHos")
+   public String getHos(@RequestParam("hos_id") String hosId, Model model) {
+       HospitalVO vo = new HospitalVO();
+       vo.setHos_id(hosId);
+       model.addAttribute("hos", hospitalService.getHos(vo));
+
+       return "/hospital/hosDetail";
+   }
 
 	// 검색에서 병원상세로
 	@RequestMapping("/getHosInfo")
@@ -298,11 +299,12 @@ public class HospitalController {
 	      }
 
 		//병원회원 탈퇴
-		@RequestMapping("/toDelHos")
-		public String delHos(HospitalVO vo, Model model) {
-			model.addAttribute("hos", hospitalService.getHos(vo));
-			return "hosMyPage/deleteHos";
-		}
+	@RequestMapping("/toDelHos")
+	public String delHos(HospitalVO vo, Model model, HttpSession session) {
+		vo.setHos_id((String)session.getAttribute("hos_id"));
+		model.addAttribute("hos", hospitalService.getHos(vo));
+		return "hosMyPage/deleteHos";
+	}
 
 		@RequestMapping("/toHosMyPage")
 		public String toHosMyPage(HospitalVO hvo, DoctorVO dvo, ReviewVO revvo, ReserveVO resvo, Model model, HttpSession session) {

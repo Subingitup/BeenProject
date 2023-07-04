@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="com.spring.pet.hospital.HospitalVO" %>
 	<%@ include file="../../header.jsp"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-	<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="com.spring.pet.hospital.HospitalVO" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ page import="java.text.SimpleDateFormat" %>
+	<%@ page import="java.util.Date" %>
 <%
 	HospitalVO hospital = (HospitalVO) request.getAttribute("hos");
-%>		
+%>
+		
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +32,6 @@ margin: 0;
 
 #delhosbutton{
 	cursor:pointer;
-	padding-right:15px;
 }
 
 #delhosbutton:hover{
@@ -38,41 +40,12 @@ margin: 0;
 
 #titlebutton{
 	cursor:pointer;
-	padding-right:15px;
+	color:#008a41;
 }
 
-#titlebutton:hover{
-	color:#Fbbc04;
-}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script>
-	var res_date = new Date(val[i].res_date); 
-	moment(res_date).format('YYYY-MM-DD');
-	$('.dateview1').html(moment(res_date));
-	
-	
-	
-	function resCancel(val){
-		if (confirm('예약을 취소하시겠습니까? 취소후에는 되돌릴 수 없습니다.' )){
 
-		   $.ajax({
-		      method: "post",
-		      url: "/cancelHosReserve",
-		      data: {"res_seq": val },
-		      cache: false,
-		      success: function(res){
-		         location.href="/toHosMyPage";
-		      },
-		      error: function(request, status){
-		         console.log('취소에러');
-		      }
-		   });
-
-		}
-		}
-	
-</script>
 </head>
 <body>
 <%@ include file="../../petmedic_navbar.jsp"%>
@@ -84,7 +57,7 @@ margin: 0;
 			<div class="col-md-8 leftDiv"><h2>마이페이지</h2></div>
 			<div class="col-md-4 rightDiv">
 				<div class="wrapDiv">
-					<div class="handDivR" onclick="location.href='getHos'" style="padding:15px;"><b>내<br>병원</b></div>
+					<div class="handDivR" onclick="hosDetail('<%= hospital.getHos_id() %>')" style="padding:15px;"><b>내<br>병원</b></div>
 					<div class="oneDivR circleDiv"></div>
 					<div class="twoDivR circleDiv"></div>
 					<div class="threeDivR circleDiv"></div>
@@ -122,11 +95,10 @@ margin: 0;
 	<div class="container mobileMyMenu">
          <div class="row mobileMytitle">
             <div class="col"><h3><strong>마이페이지</strong></h3></div>
-            <div class="col"><span>마이페이지</span></div>
          </div>
          <div class="row mobileMy_memu mobileMymemu1">
             <div class="col">
-               <div class="mobileMy_wrap" onclick="location.href='getHos'">
+               <div class="mobileMy_wrap" onclick="hosDetail('<%= hospital.getHos_id() %>')">
                <b>내 병원</b>
                </div>
             </div>
@@ -163,7 +135,7 @@ margin: 0;
       
 	<div class="container webmenus">
 	<div class="row">
-			<div class="col-6 title" ><span id="titlebutton" onclick="location.href='myHos'"><b>병원정보</b></span></div>
+			<div class="col-6 title" ><span id="titlebutton" onclick="hosDetail('<%= hospital.getHos_id() %>')"><b>병원정보</b></span></div>
 			<div class="col-6 title leftp"><span id="titlebutton" onclick="location.href='docList'"><b>소속의사</b></span></div>
 		</div>
 		<div class="row">
@@ -222,16 +194,16 @@ margin: 0;
 			<div class="col-6 blurblur">
 				<div>
 				<c:choose>
-						<c:when test="${empty resList}">
-							<h3>예약 내용이 없습니다.</h3>
-						</c:when>
-						<c:otherwise>
+            <c:when test="${empty resList}">
+                <h3>예약 내용이 없습니다.</h3>
+            </c:when>
+            <c:otherwise>
                 <table style="padding:20px; width:100%;">
                     <tr style="padding:20px; border-bottom: 1px solid #666666;">
                         <th style="padding-left:20px;">방문예정일</th>
                         <th style="padding:10px;">예약자명</th>
                         <th style="padding-left:20px;">상태</th>
-                        <th style="padding-left:20px;">작업</th> <!-- 새로운 열 추가: 작업 -->
+                        <th style="padding-left:20px;">예약취소</th> <!-- 새로운 열 추가: 작업 -->
                     </tr>
                     <c:forEach items="${resList}" var="res" varStatus="status" end="2">
                         <tr>
@@ -262,12 +234,12 @@ margin: 0;
                                         <button type="button" disabled id="hosmypagereservebtbt1">취소</button>
                                     </c:otherwise>
                                 </c:choose>
-							</td>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
             </c:otherwise>
-						</c:choose>
+        </c:choose>
 				</div>
 			</div>
 			<div class="col-6 leftp">
@@ -280,146 +252,46 @@ margin: 0;
 						<c:otherwise>
 								<table style="width:100%;">
 									<tr style="border-bottom:1px solid #666666;">
-										<th style="padding-left:20px;">유저아이디</th>
-										<th style="padding:10px;">예약일</th>
+										<th style="padding-left:20px;">예약일</th>
+										<th style="padding:10px;">유저아이디</th>
 										<th style="padding-left:20px;">별점</th>
 									</tr>
 									<c:forEach items="${revList}" var="rev" varStatus="status" end="2">
-											<tr>
-												<td style="padding:20px;">${rev.rev_userid}</td>
-												<td style="padding:20px;">${rev.rev_date}</td>
-												<td style="padding:20px;">${rev.rev_star}</td>
-												
-											</tr>
-									</c:forEach>
+										    <tr>
+										        <td style="padding:20px;">
+           										 <fmt:parseDate value="${rev.rev_res_date}" pattern="yyyy-MM-dd" var="dateObj" timeZone="Asia/Seoul" />
+												 <fmt:formatDate value="${dateObj}" pattern="yyyy년 M월 d일" var="formattedDate" />
+										           
+										            <c:set var="hourPart" value="${fn:substring(rev.rev_res_time, 0, 2)}" />
+										            <c:set var="minutePart" value="${fn:substring(rev.rev_res_time, 3, 5)}" />
+										            
+										            <c:set var="formattedTime" value="${hourPart}시 ${minutePart}분" />
+										            ${formattedDate} ${formattedTime}
+										        </td>
+										        <td style="padding:20px;">${rev.rev_userid}</td>
+										      	<td style="padding:20px;">${rev.rev_star}</td>
+										    </tr>
+										</c:forEach>
+									
+									
 								</table>
 							</c:otherwise>
 						</c:choose>
-				
+				</div>
 				
 				</div>
 			</div>
 		</div>
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-6 title"></div> -->
-<!-- 			<div class="col-6 title leftp" style="text-align:right;"><span id="delhosbutton" onclick="location.href='/toDelHos'">회원탈퇴</span></div> -->
-<!-- 		</div> -->
 	</div>
-	
-	
-	<div class="container mobilemenus">
-			<div class="title" ><span id="titlebutton" onclick="location.href='myHos'"><b>병원 정보</b></span></div>
 
-			<div class="blurblur">
-				
-				<div class="mobiletable">
-				<table class="hos_map_info" style="width:100%;">
-					<tr class="hos_map_info_tr" style="width:50%;">
-						<td class="hos_map_info_td" style=" padding: 10px;"><b>주소</b><br>${hos.hos_addr}<br>${hos.hos_addr2}</td>
-						<td class="hos_map_info_td" rowspan="2" style="width:50%;height:150px; padding: 10px;">
-							<div id="map2" style="width:100%; height:150px;"></div>
-						</td>
-					</tr>
-					
-					<tr class="hos_map_info_tr">
-						<td class="hos_map_info_td" style=" padding: 10px;"><b>연락처</b><br>${hos.hos_tel}</td>
-					</tr>
-				</table>
-				</div>
-			</div>
-			<div class="title leftp"><span id="titlebutton" onclick="location.href='docList'"><b>소속 의사 보기</b></span></div>
-				<div class="blurblur">
-					<c:choose>
-						<c:when test="${empty docList}">
-							<h3>등록된 의사가 없습니다.</h3>
-						</c:when>
-						<c:otherwise>
-							<table class="hos_mypage_doctors" style="width:100%; text-align:center;">
-							<tr>
-								<c:forEach items="${docList}" var="doc" varStatus="status" end="2">
-									<td style="padding:10px;">
-									<c:choose>
-										<c:when test="${empty doc.doc_filename }">
-											<img class="petpet" src="${pageContext.request.contextPath}/img/doc.png" alt="${doc.doc_name}" title="${doc.doc_name}" /> 
-										</c:when>
-										<c:otherwise>
-											<img class="petpet" src="${pageContext.request.contextPath}/img/${doc.doc_filename}" alt="${doc.doc_name}" title="${doc.doc_name}"/> 
-										</c:otherwise>
-									</c:choose>
-										<p><b>${doc.doc_name}</b><br>수의사</p>
-										</td>
-								</c:forEach>
-							</table>
-						</c:otherwise>
-					</c:choose>
-				</div>
-				
-			<div class=" title"><span id="titlebutton" onclick="location.href='resList'"><b>예약목록 보기</b></span></div>
-		
-			<div class="blurblur">
-				<div>
-				<c:choose>
-						<c:when test="${empty resList}">
-							<h3>예약 내용이 없습니다.</h3>
-						</c:when>
-						<c:otherwise>
-                <table style="padding:20px; width:100%;">
-                    <tr style="padding:20px; border-bottom: 1px solid #666666;">
-                        <th style="padding-left:20px;">방문예정일</th>
-                        <th style="padding:10px;">예약자명</th>
-                        <th style="padding-left:20px;">상태</th>
-                        <th style="padding-left:20px;">작업</th> <!-- 새로운 열 추가: 작업 -->
-                    </tr>
-                    <c:forEach items="${resList}" var="res" varStatus="status" end="2">
-                        <tr>
-                            <td style="padding:20px;">
-                                <fmt:formatDate value="${res.res_date}" pattern="yyyy년 M월 d일" var="formattedDate" />
-                                <c:set var="hourPart" value="${fn:substring(res.res_time, 0, 2)}" />
-                                <c:set var="minutePart" value="${fn:substring(res.res_time, 3, 5)}" />
-                                <c:set var="formattedTime" value="${hourPart}시 ${minutePart}분" />
-                                ${formattedDate} ${formattedTime}
-                            </td>
-                            <td style="padding:20px;">${res.res_users_id}</td>
-                            <td style="padding:20px;">
-                                <c:choose>
-                                    <c:when test="${res.res_cancel eq 'N'}">
-                                        예약
-                                    </c:when>
-                                    <c:otherwise>
-                                        취소
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                            <td style="padding:20px;">
-                                <c:choose>
-                                    <c:when test="${res.res_cancel eq 'N'}">
-                                        <button type="button" class="btn btn-danger" onclick="resCancel(${res.res_seq})">취소</button>
-                                    </c:when>
-                                    <c:otherwise>
-                                        -
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </c:otherwise>
-						</c:choose>
-						</div>
-			</div>
-			<div class="title leftp"><span id="titlebutton" onclick="location.href='toHosReview'"><b>리뷰보기</b></span></div>
-			<div class="leftp">
-			</div>
-<!-- 			<div class="title"><span onclick="location.href='/toDelHos'">회원탈퇴</span></div> -->
-		</div>
-		
-		
-		
-	</div>
 <!-- 	지도 출력을 위한 스크립트 추가: -->
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33735b8c827ea4901cbe3f2885cc2b93&libraries=services"></script>
 <script>
+
+function hosDetail(hosId) {
+    location.href = "/getHos?hos_id=" + hosId;
+}
+
 var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -455,8 +327,28 @@ geocoder.addressSearch('${hos.hos_addr2}', function(result, status) {
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
     } 
-});    
+});
+
+function resCancel(val){
+	if (confirm('예약을 취소하시겠습니까? 취소후에는 되돌릴 수 없습니다.' )){
+
+	   $.ajax({
+	      method: "post",
+	      url: "/cancelHosReserve",
+	      data: {"res_seq": val },
+	      cache: false,
+	      success: function(res){
+	         location.href="/toHosMyPage";
+	      },
+	      error: function(request, status){
+	         console.log('취소에러');
+	      }
+	   });
+
+	}
+	}
 </script>
+
 <%@ include file="../../footer.jsp"%>
 </body>
 </html>

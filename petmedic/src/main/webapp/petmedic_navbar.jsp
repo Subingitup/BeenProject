@@ -240,10 +240,12 @@ function getHosListCate(val){
 	   const dropMenu = document.getElementById("petMedicDropMenu");
 	
 	   dropBtnOrigin.addEventListener("mouseenter", function () {
+		   event.stopPropagation();
 	     dropMenu.classList.add("active");
 	   });
 
 	   dropBtn.addEventListener("mouseleave", function () {
+		   event.stopPropagation();
 	     dropMenu.classList.remove("active");
 	   });
 	   

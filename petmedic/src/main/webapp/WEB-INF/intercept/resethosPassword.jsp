@@ -15,9 +15,7 @@ width:165px;
 #emailChk{
 width:165px;
 }
-#id{
-width:165px;
-}
+
 }
 </style>
 <body>
@@ -28,8 +26,8 @@ width:165px;
     <div class="forgotIdDiv">
     <h2 id="forgottitle">비밀번호 설정</h2>
         <div class="form-group">
-            <div class="input-group">
-                <input type="text" class="form-control" id="id" name="hos_id" placeholder="아이디를 입력해주세요" required>
+            <div class="input-group" id="xxxx">
+                <input type="text" class="form-control" id="id" name="hos_id" placeholder="아이디 입력" required>
             </div>
             <span id="idAlertSpan"></span>
         </div>
