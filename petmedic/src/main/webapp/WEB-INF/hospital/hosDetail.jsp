@@ -538,11 +538,11 @@ var uid = '<%=(String) session.getAttribute("users_id")%>';
             if(res == "1"){
          	   $("#zzim").text("☆");
             }else if(res == "2"){
-         	   alert("다 찼다");
+         	   alert("찜목록이 가득 찼습니다.");
             }else if(res == "zzimSuc"){
             	$("#zzim").text("★");
             }else{
-            	alert("에러났다. 확인요망");
+            	alert("로그인 후 이용 가능합니다.");
             }
             
          },   error: function(status, request){
