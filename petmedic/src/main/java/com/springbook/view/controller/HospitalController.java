@@ -116,15 +116,13 @@ public class HospitalController {
 	      return hospitalService.getHosList(vo);
 	   }
 
-	// 병원 상세페이지 메인
-   @RequestMapping("/getHos")
-   public String getHos(@RequestParam("hos_id") String hosId, Model model) {
-       HospitalVO vo = new HospitalVO();
-       vo.setHos_id(hosId);
-       model.addAttribute("hos", hospitalService.getHos(vo));
-
-       return "/hospital/hosDetail";
-   }
+	   @RequestMapping("/getHos")
+		public String getHos(HospitalVO vo,UsersVO uvo, Model model, HttpSession session) {
+			uvo.setUsers_id((String)session.getAttribute("users_id"));
+			model.addAttribute("hos", hospitalService.getHos(vo));
+			model.addAttribute("users",userService.getUserInfo(uvo));
+			return "/hospital/hosDetail";
+		}
 
 	// 검색에서 병원상세로
 	@RequestMapping("/getHosInfo")
@@ -937,8 +935,13 @@ public String step1() {
 
 @RequestMapping("/hosZzim")
 @ResponseBody
-public String hosZzim(UsersVO uvo) {
+public String hosZzim(UsersVO uvo, HttpSession session) {
 	String hosId = uvo.getHos_id();
+	if((String)session.getAttribute("users_id") == null ) {
+		return "nolog";
+	}else {
+		uvo.setUsers_id((String)session.getAttribute("users_id"));
+	}
 	UsersVO tvo = userService.hosZzim(uvo);
 	String up1 = tvo.getUsers_pick1(); 
 	String up2 = tvo.getUsers_pick2(); 

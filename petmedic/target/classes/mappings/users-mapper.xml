@@ -136,17 +136,6 @@
 	update users set USERS_DEL='Y', USERS_DEL_DATE = CURDATE() where USERS_ID =#{users_id}
 	</update>
 
-<!-- 	<resultMap type="users" id="usersMap"> -->
-<!-- 		<id property="users_id" column="USERS_ID" /> PK 있는 컬럼에 쓰임 -->
-<!-- 		<result property="users_name" column="USERS_NAME" /> -->
-<!-- 		<result property="users_pw" column="USERS_PW" /> -->
-<!-- 		<result property="users_role" column="USERS_ROLE" /> -->
-<!-- 		<result property="users_hos_name1" column="users_hos_name1" /> -->
-<!-- 		<result property="users_hos_name2" column="users_hos_name2" /> -->
-<!-- 		<result property="users_hos_name3" column="users_hos_name3" /> -->
-<!-- 		<result property="users_hos_name4" column="users_hos_name4" /> -->
-<!-- 		<result property="users_hos_name5" column="users_hos_name5" /> -->
-<!-- 	</resultMap> -->
 
 	<select id="getUsersHos" resultType="users">
 		SELECT * FROM USERS WHERE

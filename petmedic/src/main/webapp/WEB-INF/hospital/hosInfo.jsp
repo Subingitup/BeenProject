@@ -17,10 +17,6 @@ box-shadow: 0 0 0 1px #E8E2E2;
 border-collapse: collapse;
 border: none;
 }
-.blurblur {
-    width: 70%;
-    margin: 0 auto;
-}
 
 @media only screen and (max-width: 768px) {
     .blurblur {

@@ -17,7 +17,7 @@ display: none;
 		<div>
 			${review.rev_title}
 		</div>
-		<div>
+		<div style="color: #006940ff;">
 			<c:if test="${review.rev_star==0}">
 				☆☆☆☆☆
 			</c:if>
@@ -61,8 +61,8 @@ display: none;
 <div id="hosReviewReport" class="hiddenReport">
 	<form id="reviewReportForm" action="reportReviewHos">
 		<input type="hidden" name="rev_hos_seq" value="${review.rev_hos_seq}">
-		<label for="reviewReport">신고사유를 입력해주세요.</label>
-		<textarea id="reviewReport" rows="4" cols="50" maxlength="600" name="rev_info"></textarea>
+		<label for="reviewReport" style="display:block;">신고사유를 입력해주세요.</label>
+		<textarea id="reviewReport" rows="4" cols="50" maxlength="600" name="rev_info" style="width:100%;"></textarea>
 	</form>
 	<div>
 	<button type="button" id="reveiwReport" class="hosReviewInfoBtn" onclick="reviewReport()">접수</button>
