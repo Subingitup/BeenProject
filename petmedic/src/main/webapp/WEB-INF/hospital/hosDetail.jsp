@@ -546,11 +546,11 @@ function favoriteinsert(val){
 	            }else if(res == "nolog"){
 	            	alert("로그인 후 사용 가능합니다.");
 	            }else{
-	            	alert("공습경보");
+	            	alert("에러가 발생했습니다.");
 	            }
 	            
 	         },   error: function(status, request){
-	            console.log('즐겨찾기 아약스오류');
+	            console.log('에러가 발생했습니다.');
 	         }
 	      });
 	   }
