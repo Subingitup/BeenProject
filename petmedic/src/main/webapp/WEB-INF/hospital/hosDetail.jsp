@@ -527,30 +527,33 @@ function openHosDetailReviewModal(val) {
 
 
 function favoriteinsert(val){
-   
-var uid = '<%=(String) session.getAttribute("users_id")%>';
-      $.ajax({
-         type:"post",
-         url: "hosZzim",
-         data: {"users_id": uid, "hos_id": val},
-         cache:false,
-         success: function(res){
-            if(res == "1"){
-         	   $("#zzim").text("☆");
-            }else if(res == "2"){
-         	   alert("다 찼다");
-            }else if(res == "zzimSuc"){
-            	$("#zzim").text("★");
-            }else{
-            	alert("에러났다. 확인요망");
-            }
-            
-         },   error: function(status, request){
-            console.log('즐겨찾기 아약스오류');
-         }
-      });
-   }
-
+	   
+<%-- 	var uid = '<%= (String)session.getAttribute("users_id") %>'; --%>
+	      $.ajax({
+	         type:"post",
+	         url: "hosZzim",
+// 	         data: {"users_id": uid, "hos_id": val},
+	         data: {"hos_id": val},
+	         cache:false,
+	         success: function(res){
+	        	 console.log(res);
+	            if(res == "1"){
+	         	   $("#zzim").text("☆");
+	            }else if(res == "2"){
+	         	   alert("찜목록이 가득 찼습니다.");
+	            }else if(res == "zzimSuc"){
+	            	$("#zzim").text("★");
+	            }else if(res == "nolog"){
+	            	alert("로그인 후 사용 가능합니다.");
+	            }else{
+	            	alert("에러가 발생했습니다.");
+	            }
+	            
+	         },   error: function(status, request){
+	            console.log('에러가 발생했습니다.');
+	         }
+	      });
+	   }
 
 </script>
  <%@ include file="../../footer.jsp"%>

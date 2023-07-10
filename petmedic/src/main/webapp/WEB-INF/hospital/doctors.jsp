@@ -7,10 +7,6 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        
         #qwerqwer {
             margin: 0 auto;
             width: 70%;
