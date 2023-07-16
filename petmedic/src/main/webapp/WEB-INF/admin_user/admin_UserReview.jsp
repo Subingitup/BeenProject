@@ -79,7 +79,7 @@
 		<%
 			if (pageNUM <= 1) {
 			%>
-				<button type="button" class="pagingBefore">&lt;&nbsp;이전</button>
+				<button type="button" class="pagingBefore"></button>
 		<%
 			} else {
 			%>
@@ -107,7 +107,7 @@
 		<%
 			if (pageNUM == totalPage) {
 			%>
-				<button type="button" class="pagingAfter">다음&nbsp;&gt;</button>
+				<button type="button" class="pagingAfter"></button>
 		<%
 			} else {
 			%>

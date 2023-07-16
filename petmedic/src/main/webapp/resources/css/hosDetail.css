@@ -73,6 +73,11 @@ padding: 15px;
 font-size: 13pt;
 }
 
+#hosDetailTableDiv button:hover{
+background-color: white;
+border:3px solid #008a41;
+color: #008a41;
+}
 
 #disabledReserve{
 background-color:#dcdcdc;

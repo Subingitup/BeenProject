@@ -57,7 +57,7 @@
 					<span style="color:gray;">등록된 사이트가 없습니다.</span>
 				</c:when>
 				<c:otherwise>
-					<a href="${hospital.hos_url}">${hospital.hos_url}</a>
+					<a href="${hospital.hos_url}" target="_blank">${hospital.hos_url}</a>
 				</c:otherwise>
 			</c:choose>
 		</td>

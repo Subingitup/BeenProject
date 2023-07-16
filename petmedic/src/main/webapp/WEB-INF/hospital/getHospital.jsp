@@ -522,11 +522,9 @@ var hosTelNumber = document.getElementById('hos_tel_modi');
 var hosTelNumberError = document.getElementById('hos-number-error');
 hosTelNumber.addEventListener('keyup', function() {
 	if(validateHosTelNumber(hosTelNumber.value)){
-		console.log("번호번호성공");
 	  	hosTelNumber.setCustomValidity('');
 	  	hosTelNumberError.innerText = '';
 	}else{
-		console.log("번호번호실패");
 		hosTelNumber.setCustomValidity("ex)03112345678");
 		hosTelNumberError.innerText = "지역번호로 시작하는 11자 이내의 숫자로 작성해주세요.('-'제외)";
 	}
@@ -567,18 +565,15 @@ function hosTimeValidate(){
 	
 	if (hosStartSelect.value==="hostimeerror" || hosEndSelect.value === "hostimeerror") {
 		if(hosStartSelect.value === "hostimeerror"){
-			console.log("진료실패1!");
 			hosStartSelect.focus();
 			hosTimeError.innerText="진료시작시간을 선택해주세요.";
 			return false;
 		}else{
-			console.log("진료실패2!");
 			hosEndSelect.focus();
 			hosTimeError.innerText="진료종료시간을 선택해주세요.";
 			return false;
 		}
 	}else{
-		console.log("진료성공!");
 		hosTimeError.innerText="";
 		return true;
 	}
@@ -592,11 +587,9 @@ function hosLunchValidate() {
 	var hosLunchError = document.getElementById('hosLunchError');
 	
 	if ((stime1 !== '1'&&stime2 !== '1')||(stime1 == '1'&&stime2 == '1')) {
-		console.log("점심성공!");
 		hosLunchError.innerText="";
 		return true;
 	}else{
-		console.log("점심실패!");
 		hosLunchError.innerText="점심시간을 정확하게 선택해주세요.";
 		return false;
 	}
