@@ -48,10 +48,10 @@
    <!-- 이메일 인증 관련 빈 등록 -->
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="java.jjang.1212@gmail.com" />
-		<property name="password" value="amcmfjliyawollvi" />
+		<property name="host" value="" />
+		<property name="port" value="" />
+		<property name="username" value="" />
+		<property name="password" value="" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="javaMailProperties">
 			<props>
